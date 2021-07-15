@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/navbar.css}">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<nav class="navbar navbar-expand-lg"  th:fragment="navbar" id="navbar">
+    <div class="logo py-5 text-center">
+        <img src="resources/static/images/sparta-logo" style="height: 20px">
+    </div>
+    <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto mt-auto">
+            <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{about}">About</a></li>
+            <li sec:authorize="!isAuthenticated()" class="nav-item">
+                <a class="nav-link" th:href="@{/login}">Login</a>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <a href="javascript: document.logoutForm.submit()" class="nav-link">Log Out</a>
+                <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                    <input hidden type="submit" value="Sign Out" />
+                </form>
+            </li>
+<!--            TODO enter in correct role name-->
+            <li sec:authorize="hasAuthority('RICHARD')" class="nav-item">
+                <a class="nav-link" th:href="@{/user}">My Account</a>
+            </li>
+        </ul>
+
+
+    </div>
+</nav>
