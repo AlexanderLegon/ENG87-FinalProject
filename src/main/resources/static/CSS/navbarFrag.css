@@ -1,12 +1,23 @@
 #navbarFrag{
+
     background-color: black;
     color: white;
 
 }
 
 #spartaLogo{
-    background: whitesmoke;
     height: 30px;
-    width: 100px;
+    width: 30px;
     padding: 2px;
+}
+
+#navbarFooter{
+    margin: auto;
+    background-color: black;
+    color: white;
+
+}
+
+#TheBoys{
+    width: max-content;
 }

@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class NavBarController {
+public class FragmentController {
 
-    public NavBarController() {
+    public FragmentController() {
     }
 
     @GetMapping("/")
