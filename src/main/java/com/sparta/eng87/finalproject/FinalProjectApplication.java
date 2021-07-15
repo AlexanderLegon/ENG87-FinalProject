@@ -8,6 +8,10 @@ import com.sparta.eng87.finalproject.entities.DisciplineEntity;
 import com.sparta.eng87.finalproject.services.DisciplineService;
 import com.sparta.eng87.finalproject.entities.TraineeEntity;
 import com.sparta.eng87.finalproject.services.TraineeService;
+
+import com.sparta.eng87.finalproject.entities.TrainerEntity;
+import com.sparta.eng87.finalproject.services.TrainerService;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,7 +25,8 @@ public class FinalProjectApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(LocationService locationService, DisciplineService disciplineService, TraineeService traineeService) {
+
+    public CommandLineRunner demo(LocationService locationService, DisciplineService disciplineService, TraineeService traineeService, TrainerService trainerService) {
         return (args) -> {
             locationService.addLocation(new LocationEntity("Leeds", 50));
             locationService.addLocation(new LocationEntity("Manchester", 25));
@@ -43,6 +48,9 @@ public class FinalProjectApplication {
             traineeService.addTrainee(new TraineeEntity("Alex C", "dafghsfd", 2));
             traineeService.addTrainee(new TraineeEntity("Jian", "dafghsfd", 2));
             traineeService.addTrainee(new TraineeEntity("Adrian", "dafghsfd", 2));
+            trainerService.addTrainer(new TrainerEntity("Karim", "Wohler"));
+            trainerService.addTrainer(new TrainerEntity("Mike", "Wazowski"));
+            trainerService.addTrainer(new TrainerEntity("Ainsley", "Harriott"));
         };
     }
 }
