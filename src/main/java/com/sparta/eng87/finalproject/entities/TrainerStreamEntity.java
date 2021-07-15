@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "trainer_stream", schema = "courseorganisation", catalog = "")
+@IdClass(TrainerDisciplinePKEntity.class)
 public class TrainerStreamEntity {
 
     @OneToMany
@@ -33,7 +34,7 @@ public class TrainerStreamEntity {
     public void setTrainer_id(List<TraineeEntity> trainer_id) {
         this.trainer_id = trainer_id;
     }
-
+    
     public List<DisciplineEntity> getDiscipline_id() {
         return discipline_id;
     }
