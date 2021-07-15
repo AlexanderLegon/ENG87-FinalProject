@@ -37,7 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // This part configures what roles can access which pages
         http.authorizeRequests()
-                .antMatchers("/**").authenticated()
+                .antMatchers("/").authenticated()
+                .antMatchers("/css/**").permitAll()
                 .anyRequest().authenticated()
 
                 // This part configures where to send user that logs in successfully
