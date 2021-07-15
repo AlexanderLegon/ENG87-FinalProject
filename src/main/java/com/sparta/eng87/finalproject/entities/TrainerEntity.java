@@ -1,11 +1,12 @@
 package com.sparta.eng87.finalproject.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "trainer", schema = "courseorganisation", catalog = "")
 @SequenceGenerator(name="sequenceTrainer", initialValue=1, allocationSize = 1)
-public class TrainerEntity {
+public class TrainerEntity implements Serializable {
     private Integer trainerId;
     private String firstName;
     private String lastName;

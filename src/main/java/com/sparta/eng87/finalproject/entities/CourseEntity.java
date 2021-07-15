@@ -1,27 +1,32 @@
 package com.sparta.eng87.finalproject.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "course", schema="courseorganisation")
 @SequenceGenerator(name="sequenceCourse", initialValue=1, allocationSize = 1)
-public class CourseEntity {
+public class CourseEntity implements Serializable {
 
     private Integer courseId;
     private String courseName;
     private Integer disciplineId;
     private Integer trainerId;
     private Integer typeId;
-    private Integer locationId;
+
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private LocationEntity locationEntity;
+
     private Date startDate;
 
-    public CourseEntity(String courseName, Integer disciplineId, Integer trainerId, Integer typeId, Integer locationId, Date startDate) {
+    public CourseEntity(String courseName, Integer disciplineId, Integer trainerId, Integer typeId, Date startDate) {
         this.courseName = courseName;
         this.disciplineId = disciplineId;
         this.trainerId = trainerId;
         this.typeId = typeId;
-        this.locationId = locationId;
         this.startDate = startDate;
     }
 
@@ -80,15 +85,6 @@ public class CourseEntity {
         this.typeId = typeId;
     }
 
-    @Basic
-    @Column(name="location_id")
-    public Integer getLocationId() {
-        return locationId;
-    }
-
-    public void setLocationId(Integer locationId) {
-        this.locationId = locationId;
-    }
 
     @Basic
     @Column(name="start_date")

@@ -10,6 +10,7 @@ import java.util.List;
 @IdClass(TrainerDisciplinePKEntity.class)
 public class TrainerStreamEntity {
 
+    @Id
     @OneToMany
     @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id")
     private List<TraineeEntity> trainer_id;
@@ -34,7 +35,7 @@ public class TrainerStreamEntity {
     public void setTrainer_id(List<TraineeEntity> trainer_id) {
         this.trainer_id = trainer_id;
     }
-    
+
     public List<DisciplineEntity> getDiscipline_id() {
         return discipline_id;
     }

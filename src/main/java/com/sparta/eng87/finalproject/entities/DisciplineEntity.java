@@ -3,13 +3,14 @@ package com.sparta.eng87.finalproject.entities;
 import com.sparta.eng87.finalproject.repositories.DisciplineRepository;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
 @Table(name = "discipline", schema = "courseorganisation", catalog = "")
 @SequenceGenerator(name="sequenceDiscipline", initialValue=1, allocationSize = 1)
-public class DisciplineEntity {
+public class DisciplineEntity implements Serializable {
     private Integer discipline_id;
     private String discipline_name;
     private Integer discipline_duration;

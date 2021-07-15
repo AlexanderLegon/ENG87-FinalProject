@@ -1,6 +1,8 @@
 package com.sparta.eng87.finalproject.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "location", schema = "courseorganisation")
@@ -9,6 +11,9 @@ public class LocationEntity {
     private Integer locationId;
     private String location;
     private Integer numberOfRooms;
+
+    @OneToMany(mappedBy = "location")
+    private Set<CourseEntity> courseEntities;
 
     public LocationEntity() {
     }
