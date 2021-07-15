@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "trainee", schema = "courseorganisation", catalog = "")
+@SequenceGenerator(name="sequenceTrainee", initialValue=1, allocationSize = 1)
 public class TraineeEntity {
     private Integer traineeId;
     private String firstName;
@@ -22,7 +23,7 @@ public class TraineeEntity {
 
     @Id
     @Column(name = "trainee_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceTrainee")
     public Integer getTraineeId() {
         return traineeId;
     }

@@ -5,6 +5,7 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "course", schema="courseorganisation")
+@SequenceGenerator(name="sequenceCourse", initialValue=1, allocationSize = 1)
 public class CourseEntity {
 
     private Integer courseId;
@@ -29,7 +30,7 @@ public class CourseEntity {
 
     @Id
     @Column(name = "course_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceCourse")
     public Integer getCourseId() {
         return courseId;
     }

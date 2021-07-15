@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "trainer", schema = "courseorganisation", catalog = "")
+@SequenceGenerator(name="sequenceTrainer", initialValue=1, allocationSize = 1)
 public class TrainerEntity {
     private Integer trainerId;
     private String firstName;
@@ -19,7 +20,7 @@ public class TrainerEntity {
 
     @Id
     @Column(name = "trainer_id")
-    @GeneratedValue//(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceTrainer")
     public Integer getTrainerId(){
         return trainerId;
     }

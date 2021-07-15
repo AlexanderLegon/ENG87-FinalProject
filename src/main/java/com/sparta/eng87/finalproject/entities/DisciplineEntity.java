@@ -8,6 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "discipline", schema = "courseorganisation", catalog = "")
+@SequenceGenerator(name="sequenceDiscipline", initialValue=1, allocationSize = 1)
 public class DisciplineEntity {
     private Integer discipline_id;
     private String discipline_name;
@@ -22,7 +23,7 @@ public class DisciplineEntity {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceDiscipline")
     @Column(name = "discipline_id")
     public Integer getDiscipline_id() {
         return discipline_id;
