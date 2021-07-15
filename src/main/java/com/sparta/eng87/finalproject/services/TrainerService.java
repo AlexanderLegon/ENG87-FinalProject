@@ -17,4 +17,8 @@ public class TrainerService {
     public void save(TrainerEntity trainerEntity){
         trainerRepository.save(trainerEntity);
     }
+
+    public void addTrainer(TrainerEntity trainerEntity){
+        trainerRepository.save(trainerEntity);
+    }
 }

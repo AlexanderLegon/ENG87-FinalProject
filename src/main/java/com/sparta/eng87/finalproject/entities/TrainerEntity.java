@@ -9,6 +9,15 @@ public class TrainerEntity {
     private String firstName;
     private String lastName;
 
+    public TrainerEntity(Integer trainerId, String firstName, String lastName) {
+        this.trainerId = trainerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public TrainerEntity() {
+    }
+
     @Id
     @Column(name = "trainer_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

@@ -14,10 +14,12 @@ public class FinalProjectApplication {
         SpringApplication.run(FinalProjectApplication.class, args);
     }
 
-//    @Bean
-//    public CommandLineRunner demo(TrainerService trainerService){
-//        return (args) -> {
-//            TrainerEntity uno = new TrainerEntity();
-//        }
-//    }
+    @Bean
+    public CommandLineRunner demo(TrainerService trainerService){
+        return (args) -> {
+            trainerService.addTrainer(new TrainerEntity(1, "Karim", "Wohler"));
+            trainerService.addTrainer(new TrainerEntity(2, "Mike", "Wazowski"));
+            trainerService.addTrainer(new TrainerEntity(3, "Ainsley", "Harriott"));
+        };
+    }
 }
