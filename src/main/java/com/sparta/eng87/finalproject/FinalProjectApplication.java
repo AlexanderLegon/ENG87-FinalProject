@@ -1,8 +1,11 @@
 package com.sparta.eng87.finalproject;
 
+
 import com.sparta.eng87.finalproject.entities.LocationEntity;
 import com.sparta.eng87.finalproject.repositories.LocationRepository;
 import com.sparta.eng87.finalproject.services.LocationService;
+import com.sparta.eng87.finalproject.entities.DisciplineEntity;
+import com.sparta.eng87.finalproject.services.DisciplineService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,15 +19,18 @@ public class FinalProjectApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(LocationService locationService) {
+    public CommandLineRunner demo(LocationService locationService, DisciplineService disciplineService) {
         return (args) -> {
-
-            //loginService.addUser(new LoginEntity("employee", encoder.encode("password"), "EMPLOYEE",1 , (short) 1,1 ));
-            //loginService.addUser(new LoginEntity("user", encoder.encode("password"), "USER",1 , (short) 1,1 ));
+            
             locationService.addLocation(new LocationEntity("Leeds", 50));
             locationService.addLocation(new LocationEntity("Manchester", 25));
             locationService.addLocation(new LocationEntity("Liverpool", 30));
             locationService.addLocation(new LocationEntity("Birmingham", 40));
+            disciplineService.addDiscipline(new DisciplineEntity("Java", 12));
+            disciplineService.addDiscipline(new DisciplineEntity("C#", 12));
+            disciplineService.addDiscipline(new DisciplineEntity("DevOps", 12));
+            disciplineService.addDiscipline(new DisciplineEntity("JavaSDET", 12));
+            disciplineService.addDiscipline(new DisciplineEntity("C#SDET", 12));
 
 
         };
