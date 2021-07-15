@@ -1,24 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" th:href="@{/login.css}">
 </head>
 <body>
-<h1>Login</h1>
+<h1 id="login-page-title">Login</h1>
 <div th:if="${param.error}">
     Invalid Credentials
 </div>
-<div class="wrapper fadeInDown">
+<div>
     <form id="login-form" th:action="@{/login}" method="post">
-      <input type="text" id="username" class="fadeIn second loginForm" name="username" placeholder="username">
-      <input type="password" id="password" class="fadein third loginForm" name="password" placeholder="password">
-      <input type="submit" class="fadein yellow-button" value="log in">
+      <input type="text" id="username" name="username" placeholder="username">
+      <input type="password" id="password" name="password" placeholder="password">
+      <input type="submit" value="log in">
     </form>
 </div>
 </body>
