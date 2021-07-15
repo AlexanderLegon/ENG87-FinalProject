@@ -15,6 +15,18 @@ public class CourseEntity {
     private Integer locationId;
     private Date startDate;
 
+    public CourseEntity(String courseName, Integer disciplineId, Integer trainerId, Integer typeId, Integer locationId, Date startDate) {
+        this.courseName = courseName;
+        this.disciplineId = disciplineId;
+        this.trainerId = trainerId;
+        this.typeId = typeId;
+        this.locationId = locationId;
+        this.startDate = startDate;
+    }
+
+    public CourseEntity() {
+    }
+
     @Id
     @Column(name = "course_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
