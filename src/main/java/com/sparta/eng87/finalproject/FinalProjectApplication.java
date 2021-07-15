@@ -18,6 +18,16 @@ public class FinalProjectApplication {
     public CommandLineRunner demo(TraineeService traineeService){
         return (args) -> {
             traineeService.addTrainee(new TraineeEntity("qwe", "asd", 1));
+            traineeService.addTrainee(new TraineeEntity("dgfsgdsf", "dafghsfd", 2));
+            traineeService.addTrainee(new TraineeEntity("George", "dafghsfd", 2));
+            traineeService.addTrainee(new TraineeEntity("Karim", "dafghsfd", 2));
+            traineeService.addTrainee(new TraineeEntity("Tom", "dafghsfd", 2));
+            traineeService.addTrainee(new TraineeEntity("Thomas", "dafghsfd", 2));
+            traineeService.addTrainee(new TraineeEntity("Alexander", "dafghsfd", 2));
+            traineeService.addTrainee(new TraineeEntity("Alex L", "dafghsfd", 2));
+            traineeService.addTrainee(new TraineeEntity("Alex C", "dafghsfd", 2));
+            traineeService.addTrainee(new TraineeEntity("Jian", "dafghsfd", 2));
+            traineeService.addTrainee(new TraineeEntity("Adrian", "dafghsfd", 2));
         };
     }
 
