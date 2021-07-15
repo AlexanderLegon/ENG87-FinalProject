@@ -1,7 +1,6 @@
 package com.sparta.eng87.finalproject;
 
 
-
 import com.sparta.eng87.finalproject.entities.LocationEntity;
 import com.sparta.eng87.finalproject.repositories.LocationRepository;
 import com.sparta.eng87.finalproject.services.LocationService;
@@ -9,18 +8,17 @@ import com.sparta.eng87.finalproject.entities.DisciplineEntity;
 import com.sparta.eng87.finalproject.services.DisciplineService;
 import com.sparta.eng87.finalproject.entities.TraineeEntity;
 import com.sparta.eng87.finalproject.services.TraineeService;
-
 import com.sparta.eng87.finalproject.entities.TrainerEntity;
 import com.sparta.eng87.finalproject.services.TrainerService;
-
-
 import com.sparta.eng87.finalproject.entities.CourseEntity;
 import com.sparta.eng87.finalproject.services.CourseService;
-
+import com.sparta.eng87.finalproject.entities.CourseTypeEntity;
+import com.sparta.eng87.finalproject.services.CourseTypeService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
 
 import java.sql.Date;
 
@@ -35,8 +33,7 @@ public class FinalProjectApplication {
     }
 
     @Bean
-
-    public CommandLineRunner demo(LocationService locationService, DisciplineService disciplineService, TraineeService traineeService, TrainerService trainerService, CourseService courseService) {
+    public CommandLineRunner demo(CourseTypeService courseTypeService, LocationService locationService, DisciplineService disciplineService, TraineeService traineeService, TrainerService trainerService, CourseService courseService) {
         return (args) -> {
             locationService.addLocation(new LocationEntity("Leeds", 50));
             locationService.addLocation(new LocationEntity("Manchester", 25));
@@ -65,7 +62,8 @@ public class FinalProjectApplication {
             courseService.addCourse(new CourseEntity("Data 17", 2 ,2 , 2 ,2, Date.valueOf("2021-04-19")));
             courseService.addCourse(new CourseEntity("Engineering 90", 4 ,2 , 2 ,3, Date.valueOf("2021-05-10")));
             courseService.addCourse(new CourseEntity("Business 61", 5 ,3 , 1 ,2, Date.valueOf("2021-04-12")));
+            courseTypeService.save(new CourseTypeEntity("Business"));
+            courseTypeService.save(new CourseTypeEntity("Technology"));
         };
     }
-
 }
