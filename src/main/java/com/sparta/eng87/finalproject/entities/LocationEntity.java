@@ -9,9 +9,17 @@ public class LocationEntity {
     private String location;
     private Integer numberOfRooms;
 
+    public LocationEntity() {
+    }
+
+    public LocationEntity(String location, Integer numberOfRooms) {
+        this.location = location;
+        this.numberOfRooms = numberOfRooms;
+    }
+
     @Id
     @Column(name = "location_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue
     public Integer getLocationId() {
         return locationId;
     }
