@@ -11,6 +11,15 @@ public class TraineeEntity {
     private String lastName;
     private Integer courseId;
 
+    public TraineeEntity(String firstName, String lastName, Integer courseId) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.courseId = courseId;
+    }
+
+    public TraineeEntity() {
+    }
+
     @Id
     @Column(name = "trainee_id")
     @GeneratedValue
