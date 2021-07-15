@@ -17,9 +17,9 @@ public class FinalProjectApplication {
     @Bean
     public CommandLineRunner demo(TrainerService trainerService){
         return (args) -> {
-            trainerService.addTrainer(new TrainerEntity(1, "Karim", "Wohler"));
-            trainerService.addTrainer(new TrainerEntity(2, "Mike", "Wazowski"));
-            trainerService.addTrainer(new TrainerEntity(3, "Ainsley", "Harriott"));
+            trainerService.addTrainer(new TrainerEntity("Karim", "Wohler"));
+            trainerService.addTrainer(new TrainerEntity("Mike", "Wazowski"));
+            trainerService.addTrainer(new TrainerEntity("Ainsley", "Harriott"));
         };
     }
 }

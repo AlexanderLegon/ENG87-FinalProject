@@ -9,8 +9,7 @@ public class TrainerEntity {
     private String firstName;
     private String lastName;
 
-    public TrainerEntity(Integer trainerId, String firstName, String lastName) {
-        this.trainerId = trainerId;
+    public TrainerEntity(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -20,7 +19,7 @@ public class TrainerEntity {
 
     @Id
     @Column(name = "trainer_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue//(strategy = GenerationType.SEQUENCE)
     public Integer getTrainerId(){
         return trainerId;
     }
