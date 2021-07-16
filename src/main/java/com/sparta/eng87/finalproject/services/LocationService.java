@@ -18,4 +18,5 @@ public class LocationService {
     public void addLocation (LocationEntity locationEntity) {
         locationRepository.save(locationEntity);
     }
+
 }
