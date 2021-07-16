@@ -15,7 +15,35 @@
 <body id="accountManagementBody">
 <nav th:replace="fragments/header.html :: navbar"></nav>
 
+<br/>
+<div id = "changePassword">
+    <h1>Change your password</h1>
+    <br/>
+    <form th:action="@{/changePassword}" method="post">
+        <label>New Password</label>
+        <label><input type="password" name="password1" id="newPassword"></label>
+        <br>
+        <br>
+        <label>Confirm Password</label>
+        <label><input type="password" name="password2" id="confirmPassword"></label>
+        <br>
+        <br>
+        <input type="submit" value="Submit" id="submitPassword">
+    </form>
+</div>
+<br/>
+<br/>
 
+<div id="passwordsDoNotMatch">
+    <span th:if="${ReturnValue == 'Invalid Details'}">
+       <h1 >Passwords do not Match</h1>
+    </span>
+</div>
+<div id="passwordUpdated">
+    <span th:if="${ReturnValue == 'Password Updated'}">
+       <h1 >Password Updated</h1>
+    </span>
+</div>
 
 <footer>
     <nav th:replace="fragments/footer.html :: navbar"></nav>
