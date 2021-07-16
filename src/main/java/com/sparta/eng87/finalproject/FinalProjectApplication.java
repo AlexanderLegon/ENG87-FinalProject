@@ -65,6 +65,7 @@ public class FinalProjectApplication {
 //            qualityGateService.save(new QualityGateEntity(2,"passed",1,2,"Amazing","Really well structured answer to all questions"));
 //            userService.addUser(new UserEntity("Alex", encoder.encode("password"), "USER", 1));
 //            userService.addUser(new UserEntity("Tom", encoder.encode("password"), "USER", 1));
+
         };
     }
 
