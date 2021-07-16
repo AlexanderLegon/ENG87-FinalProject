@@ -13,7 +13,10 @@
         <form id="add-trainee-form" th:action="@{/addTrainee}" method="post">
             <div class="mb-3">
                 <label for="trainee-first-name" class="form-label">Course name</label>
-                <input type="text" id="trainee-course" class="form-control" name="trainee-course-name" autofocus>
+<!--                <input type="text" id="trainee-course" class="form-control" name="trainee-course-name" autofocus>-->
+                <select name="trainee-course-name" id="trainee-course-name" class="form-select">
+                    <option th:each="course : ${courses}" th:value="${course.courseName}" th:text="${course.courseName}">Course Name</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="trainee-first-name" class="form-label">First name</label>

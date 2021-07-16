@@ -6,6 +6,8 @@ import com.sparta.eng87.finalproject.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CourseService {
 
@@ -19,5 +21,13 @@ public class CourseService {
     public void addCourse(CourseEntity courseEntity){
         courseRepository.save(courseEntity);
 
+    }
+
+    public CourseEntity getCourseEntityByCourseName(String courseName) {
+        return courseRepository.getCourseEntityByCourseName(courseName);
+    }
+
+    public List<CourseEntity> getAllCourses() {
+        return courseRepository.getAllCourses();
     }
 }
