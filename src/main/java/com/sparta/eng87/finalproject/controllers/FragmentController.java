@@ -21,7 +21,7 @@ public class FragmentController {
 
     @GetMapping("/login")
     public String goToLogin(){
-        return "loginPage";
+        return "login";
     }
 
 
