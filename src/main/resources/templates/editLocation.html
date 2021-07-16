@@ -10,7 +10,7 @@
 <body id="editLocation" class="sparta-background-colour">
 <nav th:replace="fragments/header.html :: navbar"></nav>
 <div class="container">
-  <h1 id="edit-location-page-title">edit Location</h1>
+  <h1 id="edit-location-page-title">Edit Location</h1>
   <div>
     <form id="edit-location-form" th:action="@{/updateLocation/{id}(id=${location.locationId})}" th:object="${location}" method="post">
       <div class="mb-3">
