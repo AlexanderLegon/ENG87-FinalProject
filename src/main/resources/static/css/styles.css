@@ -13,13 +13,20 @@ h1 {
     margin-bottom: -1rem;
 }
 
-#login-form {
+form {
     margin-top: 1.5rem;
-    max-width: 50%;
+    max-width: 40%;
     margin-left: auto;
     margin-right: auto;
 }
 
 .btn {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
+    background-color: rgb(225, 57, 99) !important;
+    border-color: rgb(225, 57, 99) !important;
+}
+
+.sparta-background-colour {
+    background-color: rgb(2, 24, 27);
+    color: white;
 }

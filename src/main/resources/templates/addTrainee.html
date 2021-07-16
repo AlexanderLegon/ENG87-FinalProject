@@ -2,25 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Add a trainee</title>
     <link rel="stylesheet" type="text/css" th:href="@{css/styles.css}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body class="sparta-background-colour">
 <div class="container">
-    <h1 id="login-page-title">Login</h1>
-    <div id="invalid-credentials-msg" th:if="${param.error}">
-        <p>Invalid Credentials</p>
-    </div>
+    <h1 id="login-page-title">Add a Trainee</h1>
     <div>
-        <form id="login-form" th:action="@{/login}" method="post">
+        <form id="add-trainee-form" th:action="@{/addTrainee}" method="post">
             <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" id="username" class="form-control" name="username" autofocus>
+                <label for="trainee-first-name" class="form-label">Course name</label>
+                <input type="text" id="trainee-course" class="form-control" name="trainee-course-name" autofocus>
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" id="password" class="form-control" name="password">
+                <label for="trainee-first-name" class="form-label">First name</label>
+                <input type="text" id="trainee-first-name" class="form-control" name="trainee-first-name">
+            </div>
+            <div class="mb-3">
+                <label for="trainee-last-name" class="form-label">Last name</label>
+                <input type="text" id="trainee-last-name" class="form-control" name="trainee-last-name">
             </div>
             <div class="mb-3">
                 <input type="submit" class="btn btn-primary" value="Submit">
