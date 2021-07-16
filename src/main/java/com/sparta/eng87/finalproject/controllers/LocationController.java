@@ -41,7 +41,7 @@ public class LocationController {
         return "editLocation";
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("/updateLocation/{id}")
     public String updateLocation(LocationEntity locationEntity,
                                  @PathVariable("id") Integer id) {
         locationEntity.setLocationId(id);
@@ -49,7 +49,7 @@ public class LocationController {
         return "redirect:/";
     }
 
-    @GetMapping("/deleteLocation/{id}")
+    @PostMapping("/deleteLocation/{id}")
     public String deleteLocation(@PathVariable("id") Integer id) {
         locationService.deleteLocation(id);
         return "redirect:/";
