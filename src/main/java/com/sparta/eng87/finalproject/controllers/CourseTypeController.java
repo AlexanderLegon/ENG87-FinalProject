@@ -4,7 +4,9 @@ import com.sparta.eng87.finalproject.entities.CourseTypeEntity;
 import com.sparta.eng87.finalproject.services.CourseTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,6 +30,19 @@ public class CourseTypeController {
     public String addBook(@RequestParam(name = "course-type-name") String typeName) {
         CourseTypeEntity courseTypeEntity = new CourseTypeEntity();
         courseTypeEntity.setTypeName(typeName);
+        courseTypeService.addCourseType(courseTypeEntity);
+        return "redirect:/";
+    }
+
+    @GetMapping("/editCourseType/{id}")
+    public String updateDiscipline(@PathVariable("id") Integer id, Model model){
+        model.addAttribute("course_type", courseTypeService.findCourseTypeById(id));
+        return "editCourseType";
+    }
+
+    @PostMapping("/updateCourseType/{id}")
+    public String updateDiscipline(CourseTypeEntity courseTypeEntity, @PathVariable("id") Integer id){
+        courseTypeEntity.setCourseTypeId(id);
         courseTypeService.addCourseType(courseTypeEntity);
         return "redirect:/";
     }
