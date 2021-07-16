@@ -26,4 +26,8 @@ public class CourseService {
                 () -> new IllegalArgumentException("Invalid ID")
         );
     }
+
+    public void removeCourse(Integer id){
+        courseRepository.deleteById(id);
+    }
 }
