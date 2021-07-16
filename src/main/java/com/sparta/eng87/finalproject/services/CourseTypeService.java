@@ -15,8 +15,8 @@ public class CourseTypeService {
         this.courseTypeRepository = courseTypeRepository;
     }
 
-    public void save (CourseTypeEntity courseType){
-        courseTypeRepository.save(courseType);
+    public void addCourseType(CourseTypeEntity courseTypeEntity){
+        courseTypeRepository.save(courseTypeEntity);
     }
 
 }

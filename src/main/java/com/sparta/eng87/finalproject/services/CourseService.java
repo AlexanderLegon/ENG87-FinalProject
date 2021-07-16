@@ -18,6 +18,5 @@ public class CourseService {
 
     public void addCourse(CourseEntity courseEntity){
         courseRepository.save(courseEntity);
-
     }
 }
