@@ -9,7 +9,7 @@
 <body class="sparta-background-colour">
     <nav th:replace="fragments/header.html :: navbar"></nav>
     <div class="container">
-        <h1 id="login-page-title">Edit a Trainee</h1>
+        <h1 id="edit-trainee-page-title">Edit a Trainee</h1>
         <div>
             <form id="edit-trainee-form" th:action="@{/editTrainee/{id}(id=${trainee.traineeId})}" th:object="${trainee}" method="post">
                 <div class="mb-3">
