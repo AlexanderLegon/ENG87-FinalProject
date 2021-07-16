@@ -18,13 +18,13 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <img th:src="@{images/sparta-logo.png}" id="spartaLogo">
+    <img th:src="@{/images/sparta-logo.png}" id="spartaLogo">
 
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto mt-auto">
             <li class="nav-item"><a class="nav-link" th:href="@{/}" id="homePageLink">Scheduler</a></li>
-            <li class="nav-item"><a class="nav-link" th:href="@{about}" id="aboutPageLink">About</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/accountManagement}" id="aboutPageLink">Account</a></li>
             <li sec:authorize="!isAuthenticated()" class="nav-item">
                 <a class="nav-link" th:href="@{/login}" id="loginLink">Login</a>
             </li>

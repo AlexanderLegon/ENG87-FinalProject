@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
 import java.util.List;
 
 @Service
@@ -26,7 +27,24 @@ public class CourseService {
 
     public void addCourse(CourseEntity courseEntity){
         courseRepository.save(courseEntity);
+    }
 
+    public CourseEntity findCourseById(Integer id){
+        return courseRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Invalid ID")
+        );
+    }
+
+    public void removeCourse(Integer id){
+        courseRepository.deleteById(id);
+    }
+
+    public CourseEntity getCourseEntityByCourseName(String courseName) {
+        return courseRepository.getCourseEntityByCourseName(courseName);
+    }
+
+    public List<CourseEntity> getAllCourses() {
+        return courseRepository.getAllCourses();
     }
 
     public List<String> getCourseNames(){

@@ -1,8 +1,6 @@
 #navbarFrag{
-
     background-color: black;
     color: white;
-
 }
 
 #spartaLogo{
@@ -20,4 +18,5 @@
 
 #TheBoys{
     width: max-content;
+    text-align: right;
 }

@@ -20,4 +20,10 @@ public interface CourseRepository extends JpaRepository<CourseEntity,Integer> {
             "ON l.location_id = c.location_id " +
             "ORDER BY c.start_date", nativeQuery = true)
     List<Object[]> getAllCourses();
+
+    CourseEntity getCourseEntityByCourseName(String courseName);
+
+    @Query(value="SELECT * FROM course", nativeQuery = true)
+    List<CourseEntity> getAllCourses();
+
 }

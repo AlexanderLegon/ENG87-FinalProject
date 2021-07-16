@@ -30,3 +30,25 @@ form {
     background-color: rgb(2, 24, 27);
     color: white;
 }
+
+#navbarFrag{
+    background-color: black;
+    color: white;
+}
+
+#spartaLogo{
+    height: 30px;
+    width: 30px;
+    padding: 2px;
+}
+
+#navbarFooter{
+    margin: auto;
+    background-color: black;
+    color: white;
+
+}
+
+#TheBoys{
+    width: max-content;
+}
