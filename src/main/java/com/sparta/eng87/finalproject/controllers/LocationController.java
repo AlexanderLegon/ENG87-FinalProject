@@ -49,5 +49,11 @@ public class LocationController {
         return "redirect:/";
     }
 
+    @GetMapping("/deleteLocation/{id}")
+    public String deleteLocation(@PathVariable("id") Integer id) {
+        locationService.deleteLocation(id);
+        return "redirect:/";
+    }
+
 
 }

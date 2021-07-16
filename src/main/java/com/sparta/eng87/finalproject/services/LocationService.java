@@ -24,4 +24,8 @@ public class LocationService {
                 () -> new IllegalArgumentException("Invalid location ID: " + id)
         );
     }
+
+    public void deleteLocation(Integer id) {
+        locationRepository.deleteById(id);
+    }
 }
