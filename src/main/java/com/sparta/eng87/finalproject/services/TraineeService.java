@@ -23,4 +23,8 @@ public class TraineeService {
     public TraineeEntity getTraineeById(Integer id) {
         return traineeRepository.getById(id);
     }
+
+    public void deleteTrainee(Integer id) {
+        traineeRepository.deleteById(id);
+    }
 }

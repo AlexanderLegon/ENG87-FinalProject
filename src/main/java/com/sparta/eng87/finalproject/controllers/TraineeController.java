@@ -61,4 +61,10 @@ public class TraineeController {
         traineeService.addTrainee(traineeEntity);
         return "redirect:/addTrainee";
     }
+
+    @GetMapping("/deleteTrainee/{id}")
+    public String deleteTrainee(@PathVariable("id") Integer id, TraineeEntity traineeEntity) {
+        traineeService.deleteTrainee(id);
+        return "redirect:/addTrainee";
+    }
 }
