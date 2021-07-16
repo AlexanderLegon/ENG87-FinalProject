@@ -9,14 +9,9 @@ public class FragmentController {
     public FragmentController() {
     }
 
-    @GetMapping("/")
-    public String goToScheduler(){
-        return "schedulerPage";
-    }
-
-    @GetMapping("/about")
+    @GetMapping("/accountManagement")
     public String goToAbout(){
-        return "aboutPage";
+        return "accountManagement";
     }
 
     @GetMapping("/login")

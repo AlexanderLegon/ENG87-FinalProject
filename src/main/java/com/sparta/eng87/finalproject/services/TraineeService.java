@@ -27,6 +27,7 @@ public class TraineeService {
 
     }
 
+
     public List<Object[]> findTraineeByCourse(String courseName){
 
        int courseId = courseRepository.findCourseIdByCourseName(courseName);
@@ -64,6 +65,14 @@ public class TraineeService {
            }
        }
        return trainees;
+
+
+    public TraineeEntity getTraineeById(Integer id) {
+        return traineeRepository.getById(id);
+    }
+
+    public void deleteTrainee(Integer id) {
+        traineeRepository.deleteById(id);
 
     }
 }

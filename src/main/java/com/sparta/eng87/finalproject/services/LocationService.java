@@ -18,4 +18,14 @@ public class LocationService {
     public void addLocation (LocationEntity locationEntity) {
         locationRepository.save(locationEntity);
     }
+
+    public Object findLocationById(Integer id) {
+        return locationRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Invalid location ID: " + id)
+        );
+    }
+
+    public void deleteLocation(Integer id) {
+        locationRepository.deleteById(id);
+    }
 }

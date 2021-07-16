@@ -7,20 +7,19 @@
   <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-custom" th:fragment="navbar">
+<nav class="navbar navbar-expand-lg"  style="position: relative; " th:fragment="navbar" id="navbarFrag">
 
-<div class="container">
   <div class="collapse navbar-collapse" id="navbarFooter">
     <ul class="navbar-nav mr-auto mt-auto">
+
       <img th:src="@{/images/sparta-logo.png}" id="spartaLogo">
-      <li class="nav-item col-sm"><a class="nav-link" id="FooterHomePageLink" th:href="@{/}">Scheduler</a></li>
-      <li class="nav-item col-sm"><a class="nav-link" id="FooterAboutPageLink" th:href="@{about}">About</a></li>
-      <li class="col-sm-8"></li>
-      <li class="col-sm-8"></li>
-      <li class="nav-item col-sm"><a class="nav-link" id="TheBoys">Made By Engineering87</a></li>
+      <li class="nav-item"><a class="nav-link" id="FooterHomePageLink" th:href="@{/}">Scheduler</a></li>
+      <li class="nav-item"><a class="nav-link" id="FooterAboutPageLink" th:href="@{/accountManagement}">Account</a></li>
+      <li class="nav-item"><a class="nav-link">________________________________________________________________________________________________________________________________________________________________________________________________________________________________</a></li>
+      <li class="nav-item"><a class="nav-link" id="TheBoys">Made By Engineering87</a></li>
+
     </ul>
   </div>
-</div>
 </nav>
 </body>
 </html>
