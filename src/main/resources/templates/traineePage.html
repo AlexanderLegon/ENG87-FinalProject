@@ -16,6 +16,36 @@
 
 
 
+<!--<div id="traineeList">-->
+<!--    <label th:text="${courseName}" id="courseNameLabel" ></label>-->
+<!--    <ul  class="list-group">-->
+<!--        <li  th:each="trainee: ${trainees}" class="list-group-item"  th:text="${trainee.firstName} + ' ' + ${trainee.lastName}" ></li>-->
+
+<!--    </ul>-->
+<!--</div>-->
+
+<div id="traineeList">
+<table class="table" id="traineeTable">
+    <thead>
+    <tr>
+        <th scope="col" id="tableHeader1">First Name</th>
+        <th scope="col" id="tableHeader2">Last Name</th>
+        <th scope="col" id="tableHeader3">Quality Gate Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="trainee iterStat: ${trainees}" >
+
+        <td th:text="${trainee[0]}"  ></td>
+        <td th:text="${trainee[1]}" >Otto</td>
+
+        <td th:text="${trainee[2]}" >Pending</td>
+    </tr>
+
+    </tbody>
+</table>
+</div>
+
 <footer>
     <nav th:replace="fragments/footer.html :: navbar"></nav>
 </footer>
