@@ -12,7 +12,7 @@
 <div class="container">
     <h1 id="edit_course_title">Edit Course</h1>
     <div>
-        <form id="edit-course-form" th:action="@{/update-course/{id}(id=${course.courseId})}" th:object="${course}"
+        <form id="edit-course-form" th:action="@{/updateCourse/{id}(id=${course.courseId})}" th:object="${course}"
               method="post">
             <div class="mb-3">
                 <label for="course_name" class="form-label">Course Name</label>
@@ -43,7 +43,7 @@
                 <input type="submit" class="btn btn-primary" value="Submit">
             </div>
         </form>
-        <form id="remove-course-form" th:action="@{/remove-course/{id}(id=${course.courseId})}" th:object="${course}"
+        <form id="remove-course-form" th:action="@{/removeCourse/{id}(id=${course.courseId})}" th:object="${course}"
               method="post">
             <div class="mb-3">
                 <input type="submit" class="btn btn-primary" value="Remove Course">

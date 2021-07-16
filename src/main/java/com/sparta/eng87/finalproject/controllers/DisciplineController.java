@@ -32,20 +32,20 @@ public class DisciplineController {
         return "redirect:/";
     }
 
-    @GetMapping("/edit-discipline/{id}")
+    @GetMapping("/editDiscipline/{id}")
     public String updateDiscipline(@PathVariable("id") Integer id, Model model){
         model.addAttribute("discipline", disciplineService.findDisciplineById(id));
         return "editDiscipline";
     }
 
-    @PostMapping("/update-discipline/{id}")
+    @PostMapping("/updateDiscipline/{id}")
     public String updateDiscipline(DisciplineEntity disciplineEntity, @PathVariable("id") Integer id){
         disciplineEntity.setDiscipline_id(id);
         disciplineService.addDiscipline(disciplineEntity);
         return "redirect:/";
     }
 
-    @PostMapping("/remove-discipline/{id}")
+    @PostMapping("/removeDiscipline/{id}")
     public String removeDiscipline(DisciplineEntity disciplineEntity, @PathVariable("id") Integer id){
         disciplineService.deleteDiscipline(id);
         return "redirect:/";

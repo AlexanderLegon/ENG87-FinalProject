@@ -13,7 +13,7 @@
 <div class="container">
     <h1 id="edit-discipline-title">Edit Discipline</h1>
     <div>
-        <form id="edit-discipline-form" th:action="@{/update-discipline/{id}(id=${discipline.discipline_id})}" th:object="${discipline}" method="post" >
+        <form id="edit-discipline-form" th:action="@{/updateDiscipline/{id}(id=${discipline.discipline_id})}" th:object="${discipline}" method="post" >
             <div class="mb-3">
                 <label for="discipline-name" class="form-label">Discipline name</label>
                 <input type="text" id="discipline-name" th:field="*{discipline_name}" class="form-control" name="discipline-name" autofocus>
@@ -26,7 +26,7 @@
                 <input type="submit" class="btn btn-primary" value="Submit">
             </div>
         </form>
-        <form id="remove-discipline-form" th:action="@{/remove-discipline/{id}(id=${discipline.discipline_id})}" th:object="${discipline}" method="post" >
+        <form id="remove-discipline-form" th:action="@{/removeDiscipline/{id}(id=${discipline.discipline_id})}" th:object="${discipline}" method="post" >
             <div class="mb-3">
                 <input type="submit" class="btn btn-primary" value="Remove">
             </div>

@@ -54,14 +54,14 @@ public class CourseController {
         return "editCourse";
     }
 
-    @PostMapping("/update-course/{id}")
+    @PostMapping("/updateCourse/{id}")
     public String editCourse(@PathVariable("id") Integer id, CourseEntity courseEntity){
         courseEntity.setCourseId(id);
         courseService.addCourse(courseEntity);
         return "redirect:/";
     }
 
-    @PostMapping("/remove-course/{id}")
+    @PostMapping("/removeCourse/{id}")
     public String removeCourse(@PathVariable("id") Integer id){
         courseService.removeCourse(id);
         return "redirect:/";
