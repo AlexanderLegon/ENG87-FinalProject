@@ -1,0 +1,13 @@
+#changePassword{
+    text-align: center;
+}
+
+#passwordsDoNotMatch{
+    text-align: center;
+    color: red;
+}
+
+#passwordUpdated{
+    text-align: center;
+    color: blue;
+}
