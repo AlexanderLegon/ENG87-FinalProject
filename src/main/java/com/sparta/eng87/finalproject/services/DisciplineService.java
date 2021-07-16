@@ -18,6 +18,11 @@ public class DisciplineService {
         disciplineRepository.save(disciplineEntity);
     }
 
+    public DisciplineEntity findDisciplineById(Integer id){
+        return disciplineRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Invalid Discipline ID " + id)
+        );
+    }
 
 
 }
