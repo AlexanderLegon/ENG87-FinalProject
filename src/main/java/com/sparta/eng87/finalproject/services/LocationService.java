@@ -19,4 +19,9 @@ public class LocationService {
         locationRepository.save(locationEntity);
     }
 
+    public Object findLocationById(Integer id) {
+        return locationRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Invalid location ID: " + id)
+        );
+    }
 }
