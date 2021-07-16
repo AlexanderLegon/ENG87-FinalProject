@@ -1,6 +1,6 @@
 package com.sparta.eng87.finalproject.services;
 
-import com.sparta.eng87.finalproject.Repositories.CourseTypeRepository;
+import com.sparta.eng87.finalproject.repositories.CourseTypeRepository;
 import com.sparta.eng87.finalproject.entities.CourseTypeEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

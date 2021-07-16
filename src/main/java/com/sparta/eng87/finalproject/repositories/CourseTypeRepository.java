@@ -1,4 +1,4 @@
-package com.sparta.eng87.finalproject.Repositories;
+package com.sparta.eng87.finalproject.repositories;
 
 import com.sparta.eng87.finalproject.entities.CourseTypeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

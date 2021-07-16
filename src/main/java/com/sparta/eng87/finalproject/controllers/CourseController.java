@@ -1,4 +1,4 @@
-package com.sparta.eng87.finalproject.controller;
+package com.sparta.eng87.finalproject.controllers;
 
 import org.springframework.stereotype.Controller;
 
