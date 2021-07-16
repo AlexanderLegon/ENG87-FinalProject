@@ -20,4 +20,10 @@ public class CourseService {
         courseRepository.save(courseEntity);
 
     }
+
+    public CourseEntity findCourseById(Integer id){
+        return courseRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Invalid ID")
+        );
+    }
 }
