@@ -19,4 +19,12 @@ public class TraineeService {
         traineeRepository.save(traineeEntity);
 
     }
+
+    public TraineeEntity getTraineeById(Integer id) {
+        return traineeRepository.getById(id);
+    }
+
+    public void updateTrainee(TraineeEntity traineeEntity) {
+        traineeRepository.save(traineeEntity);
+    }
 }

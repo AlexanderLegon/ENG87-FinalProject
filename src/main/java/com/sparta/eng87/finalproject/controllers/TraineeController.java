@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -42,6 +43,21 @@ public class TraineeController {
         traineeEntity.setCourseId(courseId);
         traineeEntity.setFirstName(firstName);
         traineeEntity.setLastName(lastName);
+        traineeService.addTrainee(traineeEntity);
+        return "redirect:/addTrainee";
+    }
+
+    @GetMapping("/editTrainee/{id}")
+    public String getEditTraineePage(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("trainee",traineeService.getTraineeById(id));
+        List<CourseEntity> courses = courseService.getAllCourses();
+        model.addAttribute("courses", courses);
+        return "editTrainee";
+    }
+
+    @PostMapping("/editTrainee/{id}")
+    public String editTrainee(@PathVariable("id") Integer id, TraineeEntity traineeEntity) {
+        traineeEntity.setTraineeId(id);
         traineeService.addTrainee(traineeEntity);
         return "redirect:/addTrainee";
     }
