@@ -23,8 +23,4 @@ public class TraineeService {
     public TraineeEntity getTraineeById(Integer id) {
         return traineeRepository.getById(id);
     }
-
-    public void updateTrainee(TraineeEntity traineeEntity) {
-        traineeRepository.save(traineeEntity);
-    }
 }
