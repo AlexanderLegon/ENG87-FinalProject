@@ -44,4 +44,10 @@ public class DisciplineController {
         disciplineService.addDiscipline(disciplineEntity);
         return "redirect:/";
     }
+
+    @PostMapping("/remove-discipline/{id}")
+    public String removeDiscipline(DisciplineEntity disciplineEntity, @PathVariable("id") Integer id){
+        disciplineService.deleteDiscipline(id);
+        return "redirect:/";
+    }
 }

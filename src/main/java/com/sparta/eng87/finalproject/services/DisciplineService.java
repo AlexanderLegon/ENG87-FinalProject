@@ -24,5 +24,8 @@ public class DisciplineService {
         );
     }
 
+    public void deleteDiscipline(Integer id){
+        disciplineRepository.deleteById(id);
+    }
 
 }
