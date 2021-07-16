@@ -1,6 +1,8 @@
 package com.sparta.eng87.finalproject;
 
 
+import com.sparta.eng87.finalproject.entities.UserEntity;
+import com.sparta.eng87.finalproject.services.UserService;
 import com.sparta.eng87.finalproject.entities.*;
 import com.sparta.eng87.finalproject.repositories.LocationRepository;
 import com.sparta.eng87.finalproject.services.*;
@@ -8,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 import java.sql.Date;
@@ -16,14 +19,17 @@ import java.sql.Date;
 @SpringBootApplication
 public class FinalProjectApplication {
 
+    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
     public static void main(String[] args) {
 
 
         SpringApplication.run(FinalProjectApplication.class, args);
     }
 
+
     @Bean
-    public CommandLineRunner demo(CourseTypeService courseTypeService, LocationService locationService, DisciplineService disciplineService, TraineeService traineeService, TrainerService trainerService, CourseService courseService, QualityGateService qualityGateService) {
+    public CommandLineRunner demo(UserService userService, CourseTypeService courseTypeService, LocationService locationService, DisciplineService disciplineService, TraineeService traineeService, TrainerService trainerService, CourseService courseService, QualityGateService qualityGateService) {
         return (args) -> {
 //            locationService.addLocation(new LocationEntity("Leeds", 50));
 //            locationService.addLocation(new LocationEntity("Manchester", 25));
@@ -54,10 +60,13 @@ public class FinalProjectApplication {
 //            courseService.addCourse(new CourseEntity("Business 61", 5 ,3 , 1 ,2, Date.valueOf("2021-04-12")));
 //            courseTypeService.save(new CourseTypeEntity("Business"));
 //            courseTypeService.save(new CourseTypeEntity("Technology"));
-            qualityGateService.save(new QualityGateEntity(1,"Failed- needs support",1,2,"good technical answers but soft skill questions lacking","good content to answers but they are rambled and communication is unclear"));
-            qualityGateService.save(new QualityGateEntity(1,"Passed",2,3,"much clearer answers with strong personality coming through","Made good attempt at technical questions testing to see how they behaved when they aren't sure"));
-            qualityGateService.save(new QualityGateEntity(2,"passed",1,2,"Amazing","Really well structured answer to all questions"));
+//           qualityGateService.save(new QualityGateEntity(1,"Failed- needs support",1,2,"good technical answers but soft skill questions lacking","good content to answers but they are rambled and communication is unclear"));
+//            qualityGateService.save(new QualityGateEntity(1,"Passed",2,3,"much clearer answers with strong personality coming through","Made good attempt at technical questions testing to see how they behaved when they aren't sure"));
+//            qualityGateService.save(new QualityGateEntity(2,"passed",1,2,"Amazing","Really well structured answer to all questions"));
+            userService.addUser(new UserEntity("Alex", encoder.encode("password"), "USER", 1));
+            userService.addUser(new UserEntity("Tom", encoder.encode("password"), "USER", 1));
 
         };
     }
+
 }
