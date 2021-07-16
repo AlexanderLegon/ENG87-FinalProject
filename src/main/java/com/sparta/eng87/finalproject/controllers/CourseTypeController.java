@@ -35,15 +35,22 @@ public class CourseTypeController {
     }
 
     @GetMapping("/editCourseType/{id}")
-    public String updateDiscipline(@PathVariable("id") Integer id, Model model){
+    public String updateCourseType(@PathVariable("id") Integer id, Model model){
         model.addAttribute("course_type", courseTypeService.findCourseTypeById(id));
         return "editCourseType";
     }
 
     @PostMapping("/updateCourseType/{id}")
-    public String updateDiscipline(CourseTypeEntity courseTypeEntity, @PathVariable("id") Integer id){
+    public String updateCourseType(CourseTypeEntity courseTypeEntity, @PathVariable("id") Integer id){
         courseTypeEntity.setCourseTypeId(id);
         courseTypeService.addCourseType(courseTypeEntity);
+        return "redirect:/";
+    }
+
+    @GetMapping("/deleteCourseType/{id}")
+    public String deleteCourseType(@PathVariable("id")Integer id){
+        //bookService.deleteBook(id);
+        courseTypeService.deleteCourseType(id);
         return "redirect:/";
     }
 }

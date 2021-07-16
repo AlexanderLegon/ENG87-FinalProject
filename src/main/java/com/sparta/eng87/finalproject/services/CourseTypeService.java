@@ -28,5 +28,9 @@ public class CourseTypeService {
         );
     }
 
+    public void deleteCourseType(Integer id){
+        courseTypeRepository.deleteById(id);
+    }
+
 
 }
