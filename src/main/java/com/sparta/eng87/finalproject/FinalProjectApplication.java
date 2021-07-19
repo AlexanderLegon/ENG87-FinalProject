@@ -63,10 +63,9 @@ public class FinalProjectApplication {
 //           qualityGateService.save(new QualityGateEntity(1,"Failed- needs support",1,2,"good technical answers but soft skill questions lacking","good content to answers but they are rambled and communication is unclear"));
 //            qualityGateService.save(new QualityGateEntity(1,"Passed",2,3,"much clearer answers with strong personality coming through","Made good attempt at technical questions testing to see how they behaved when they aren't sure"));
 //            qualityGateService.save(new QualityGateEntity(2,"passed",1,2,"Amazing","Really well structured answer to all questions"));
-//            userService.addUser(new UserEntity("Alex", encoder.encode("password"), "USER", 1));
+            userService.addUser(new UserEntity("Alex", encoder.encode("password"), "USER", 1));
 //            userService.addUser(new UserEntity("Tom", encoder.encode("password"), "USER", 1));
 
         };
     }
-
 }

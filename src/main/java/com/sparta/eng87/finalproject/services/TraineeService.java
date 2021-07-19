@@ -28,51 +28,47 @@ public class TraineeService {
     }
 
 
-    public List<Object[]> findTraineeByCourse(String courseName){
+    public List<Object[]> findTraineeByCourse(String courseName) {
 
-       int courseId = courseRepository.findCourseIdByCourseName(courseName);
-       List<Object[]> trainees = traineeRepository.getTraineesByCourseId(courseId);
+        int courseId = courseRepository.findCourseIdByCourseName(courseName);
+        List<Object[]> trainees = traineeRepository.getTraineesByCourseId(courseId);
 
-       List<String> duplicates = new ArrayList<>();
+        List<String> duplicates = new ArrayList<>();
         List<Object[]> results = new ArrayList<>();
 
-        for (int i =0;i<trainees.size();i++)
-       {
-           if (duplicates.contains(trainees.get(i)[0]))
-           {
-              for(int j=0;j<results.size();j++){
-                  if((results.get(j)[0].equals(trainees.get(i)[0]) && !results.get(j)[2].toString().equalsIgnoreCase("passed"))){
-                      if(trainees.get(i).toString().equalsIgnoreCase("passed")){
-                          results.remove(j);
-                          results.add(trainees.get(i));
-                          break;
-                      }
-                      if (results.get(j)[2].toString().equalsIgnoreCase("failed-needs support")){
-                        break;
-                      }
-                      if(results.get(j)[2].toString().equalsIgnoreCase("failed"))
-                      {
-                          results.remove(j);
-                          results.add(trainees.get(i));
-                          break;
-                      }
-                  }
-              }
-           }
-           else {
-               results.add(trainees.get(i));
-               duplicates.add(trainees.get(i)[0].toString());
-           }
-       }
-       return trainees;
-
-
-    public TraineeEntity getTraineeById(Integer id) {
-        return traineeRepository.getById(id);
-    }
-
-    public void deleteTrainee(Integer id) {
-        traineeRepository.deleteById(id);
+        for (int i = 0; i < trainees.size(); i++) {
+            if (duplicates.contains(trainees.get(i)[0])) {
+                for (int j = 0; j < results.size(); j++) {
+                    if ((results.get(j)[0].equals(trainees.get(i)[0]) && !results.get(j)[2].toString().equalsIgnoreCase("passed"))) {
+                        if (trainees.get(i).toString().equalsIgnoreCase("passed")) {
+                            results.remove(j);
+                            results.add(trainees.get(i));
+                            break;
+                        }
+                        if (results.get(j)[2].toString().equalsIgnoreCase("failed-needs support")) {
+                            break;
+                        }
+                        if (results.get(j)[2].toString().equalsIgnoreCase("failed")) {
+                            results.remove(j);
+                            results.add(trainees.get(i));
+                            break;
+                        }
+                    }
+                }
+            } else {
+                results.add(trainees.get(i));
+                duplicates.add(trainees.get(i)[0].toString());
+            }
+        }
+        return trainees;
 
     }
+        public TraineeEntity getTraineeById (Integer id){
+            return traineeRepository.getById(id);
+        }
+
+        public void deleteTrainee (Integer id){
+            traineeRepository.deleteById(id);
+
+        }
 }
