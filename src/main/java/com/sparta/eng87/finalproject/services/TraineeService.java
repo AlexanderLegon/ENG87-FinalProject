@@ -60,7 +60,8 @@ public class TraineeService {
                 duplicates.add(trainees.get(i)[0].toString());
             }
         }
-        return trainees;
+        return results;
+//        return trainees;
 
     }
         public TraineeEntity getTraineeById (Integer id){
