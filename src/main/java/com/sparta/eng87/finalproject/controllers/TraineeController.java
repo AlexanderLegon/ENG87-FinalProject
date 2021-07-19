@@ -75,6 +75,7 @@ public class TraineeController {
     @PostMapping("/editTrainee/{id}")
     public String editTrainee(@PathVariable("id") Integer id, TraineeEntity traineeEntity) {
         traineeEntity.setTraineeId(id);
+        traineeService.addTrainee(traineeEntity);
         return "redirect:/";
     }
 
