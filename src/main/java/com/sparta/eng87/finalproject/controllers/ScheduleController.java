@@ -25,8 +25,11 @@ public class ScheduleController {
 
     @GetMapping("/")
     public String goToScheduler(Model model){
-
-        model.addAttribute("CourseName", courseService.getCourseNames());
+        List<String> dates = scheduleService.listDates();
+        List<String> courseNames = courseService.getCourseNames();
+        List<String[]> activeDays =  scheduleService.getActiveCourseWeeks(dates,courseNames);
+        model.addAttribute("activeWeeks",activeDays);
+        model.addAttribute("CourseName", courseNames);
         model.addAttribute("DisciplineName", courseService.getDisciplineNames());
         model.addAttribute("CourseTypeName", courseService.getCourseTypeNames());
         model.addAttribute("TrainerName", courseService.getTrainerNames());
@@ -36,8 +39,6 @@ public class ScheduleController {
         model.addAttribute("CourseEndDate", courseService.getListOfStringFromDates(courseService.getCourseEndDate()));
         model.addAttribute("BondDate", courseService.getListOfStringFromDates(courseService.getBonds()));
         model.addAttribute("color", trainerService.getListOfTrainerColor(courseService.getTrainerNames()));
-
-        List<String> dates = scheduleService.listDates();
         model.addAttribute("dates", dates);
         return "schedulerPage";
     }
