@@ -5,6 +5,8 @@ import com.sparta.eng87.finalproject.repositories.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LocationService {
 
@@ -23,6 +25,10 @@ public class LocationService {
         return locationRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("Invalid location ID: " + id)
         );
+    }
+
+    public List<Object> getAllLocations(){
+        return locationRepository.getAllLocations();
     }
 
     public void deleteLocation(Integer id) {

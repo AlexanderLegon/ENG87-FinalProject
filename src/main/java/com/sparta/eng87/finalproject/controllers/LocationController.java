@@ -32,7 +32,7 @@ public class LocationController {
         locationEntity.setLocation(location);
         locationEntity.setNumberOfRooms(noOfRooms);
         locationService.addLocation(locationEntity);
-        return "redirect:/";
+        return "redirect:/centres";
     }
 
     @GetMapping("/editLocation/{id}")
@@ -46,13 +46,14 @@ public class LocationController {
                                  @PathVariable("id") Integer id) {
         locationEntity.setLocationId(id);
         locationService.addLocation(locationEntity);
-        return "redirect:/";
+        return "redirect:/centres";
     }
 
-    @PostMapping("/deleteLocation/{id}")
-    public String deleteLocation(@PathVariable("id") Integer id) {
+    @GetMapping("/deleteLocation/{id}")
+    public String deleteLocation(@PathVariable("id") Integer id,Model model) {
         locationService.deleteLocation(id);
-        return "redirect:/";
+        model.addAttribute("locations", locationService.getAllLocations());
+        return "redirect:/centres";
     }
 
 
