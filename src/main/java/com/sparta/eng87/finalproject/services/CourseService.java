@@ -49,7 +49,7 @@ public class CourseService {
 
     public List<String> getCourseNames(){
         List<String> courseNames = new ArrayList<>();
-        List<Object[]> courseInformation = courseRepository.getAllCourses();
+        List<Object[]> courseInformation = courseRepository.getAllCoursesByArray();
 
         for(Object[] c: courseInformation){
             courseNames.add("" + c[0]);
@@ -59,7 +59,7 @@ public class CourseService {
 
     public List<String> getDisciplineNames(){
         List<String> disciplineNames = new ArrayList<>();
-        List<Object[]> courseInformation = courseRepository.getAllCourses();
+        List<Object[]> courseInformation = courseRepository.getAllCoursesByArray();
 
         for(Object[] c: courseInformation){
             disciplineNames.add("" + c[1]);
@@ -69,7 +69,7 @@ public class CourseService {
 
     public List<String> getCourseTypeNames(){
         List<String> courseTypeNames = new ArrayList<>();
-        List<Object[]> courseInformation = courseRepository.getAllCourses();
+        List<Object[]> courseInformation = courseRepository.getAllCoursesByArray();
 
         for(Object[] c: courseInformation){
             courseTypeNames.add("" + c[2]);
@@ -79,7 +79,7 @@ public class CourseService {
 
     public List<String> getTrainerNames(){
         List<String> trainerNames = new ArrayList<>();
-        List<Object[]> courseInformation = courseRepository.getAllCourses();
+        List<Object[]> courseInformation = courseRepository.getAllCoursesByArray();
 
         for(Object[] c: courseInformation){
             trainerNames.add("" + c[3] + " " + c[4]);
@@ -89,7 +89,7 @@ public class CourseService {
 
     public List<String> getLocations(){
         List<String> locations = new ArrayList<>();
-        List<Object[]> courseInformation = courseRepository.getAllCourses();
+        List<Object[]> courseInformation = courseRepository.getAllCoursesByArray();
 
         for(Object[] c: courseInformation){
             locations.add("" + c[5]);
@@ -99,7 +99,7 @@ public class CourseService {
 
     public List<Date> getCourseStartDates(){
         List<Date> courseStartDates = new ArrayList<>();
-        List<Object[]> courseInformation = courseRepository.getAllCourses();
+        List<Object[]> courseInformation = courseRepository.getAllCoursesByArray();
 
         for(Object[] c: courseInformation){
             courseStartDates.add((Date)c[6]);
@@ -119,7 +119,7 @@ public class CourseService {
 
     public List<Integer> getDisciplineDurations(){
         List<Integer> disciplineDurations = new ArrayList<>();
-        List<Object[]> courseInformation = courseRepository.getAllCourses();
+        List<Object[]> courseInformation = courseRepository.getAllCoursesByArray();
 
         for(Object[] c: courseInformation){
             disciplineDurations.add((Integer)c[7]);

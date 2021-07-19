@@ -3,6 +3,7 @@ package com.sparta.eng87.finalproject.services;
 import com.sparta.eng87.finalproject.entities.TraineeEntity;
 import com.sparta.eng87.finalproject.entities.TrainerEntity;
 import com.sparta.eng87.finalproject.repositories.CourseRepository;
+import com.sparta.eng87.finalproject.repositories.QualityGateRepository;
 import com.sparta.eng87.finalproject.repositories.TraineeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,62 +18,66 @@ public class TraineeService {
     private CourseRepository courseRepository;
 
     @Autowired
-    public TraineeService(TraineeRepository traineeRepository,CourseRepository courseRepository) {
+    public TraineeService(TraineeRepository traineeRepository,CourseRepository courseRepository, QualityGateRepository qualityGateRepositoryAdd) {
         this.traineeRepository = traineeRepository;
         this.courseRepository=courseRepository;
     }
 
     public void addTrainee(TraineeEntity traineeEntity){
         traineeRepository.save(traineeEntity);
-
     }
 
 
-    public List<Object[]> findTraineeByCourse(String courseName){
+    public List<Object[]> findTraineeByCourse(String courseName) {
 
-       int courseId = courseRepository.findCourseIdByCourseName(courseName);
-       List<Object[]> trainees = traineeRepository.getTraineesByCourseId(courseId);
+        int courseId = courseRepository.findCourseIdByCourseName(courseName);
+        List<Object[]> trainees = traineeRepository.getTraineesByCourseId(courseId);
 
-       List<String> duplicates = new ArrayList<>();
+        List<String> duplicates = new ArrayList<>();
         List<Object[]> results = new ArrayList<>();
 
-        for (int i =0;i<trainees.size();i++)
-       {
-           if (duplicates.contains(trainees.get(i)[0]))
-           {
-              for(int j=0;j<results.size();j++){
-                  if((results.get(j)[0].equals(trainees.get(i)[0]) && !results.get(j)[2].toString().equalsIgnoreCase("passed"))){
-                      if(trainees.get(i).toString().equalsIgnoreCase("passed")){
-                          results.remove(j);
-                          results.add(trainees.get(i));
-                          break;
-                      }
-                      if (results.get(j)[2].toString().equalsIgnoreCase("failed-needs support")){
-                        break;
-                      }
-                      if(results.get(j)[2].toString().equalsIgnoreCase("failed"))
-                      {
-                          results.remove(j);
-                          results.add(trainees.get(i));
-                          break;
-                      }
-                  }
-              }
-           }
-           else {
-               results.add(trainees.get(i));
-               duplicates.add(trainees.get(i)[0].toString());
-           }
-       }
-       return trainees;
+        for(Object[] trainee: trainees){
+            if (trainee[2] == (null)){
+                trainee[2] = "Pending";
+            }
+        }
 
-
-    public TraineeEntity getTraineeById(Integer id) {
-        return traineeRepository.getById(id);
-    }
-
-    public void deleteTrainee(Integer id) {
-        traineeRepository.deleteById(id);
+        for (int i = 0; i < trainees.size(); i++) {
+            if (duplicates.contains(trainees.get(i)[3])) {
+                for (int j = 0; j < results.size(); j++) {
+                    if ((results.get(j)[3].equals(trainees.get(i)[3]) )) {
+                        if (trainees.get(i).toString().equalsIgnoreCase("passed")) {
+                            results.remove(j);
+                            results.add(trainees.get(i));
+                            break;
+                        }
+                        else if (results.get(j)[2].toString().equalsIgnoreCase("failed-needs support")) {
+                            break;
+                        }
+                        else if (results.get(j)[2].toString().equalsIgnoreCase("failed")) {
+                            results.remove(j);
+                            results.add(trainees.get(i));
+                            break;
+                        }
+                        else{
+                            results.get(j)[2] = "Pending";
+                            break;
+                        }
+                    }
+                }
+            } else {
+                results.add(trainees.get(i));
+                duplicates.add(trainees.get(i)[3].toString());
+            }
+        }
+        return results;
 
     }
+        public TraineeEntity getTraineeById (Integer id){
+            return traineeRepository.getById(id);
+        }
+
+        public void deleteTrainee (Integer id){
+            traineeRepository.deleteById(id);
+        }
 }

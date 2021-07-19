@@ -19,7 +19,8 @@ public interface CourseRepository extends JpaRepository<CourseEntity,Integer> {
             "INNER JOIN location l " +
             "ON l.location_id = c.location_id " +
             "ORDER BY c.start_date", nativeQuery = true)
-    List<Object[]> getAllCourses();
+
+    List<Object[]> getAllCoursesByArray();
 
     CourseEntity getCourseEntityByCourseName(String courseName);
 
