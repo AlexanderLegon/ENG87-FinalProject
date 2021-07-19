@@ -11,38 +11,30 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
-
-
-<nav class="navbar navbar-expand-lg"  style="position: relative; " th:fragment="navbar" id="navbarFrag">
-    <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <img th:src="@{/images/sparta-logo.png}" id="spartaLogo">
-
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto mt-auto">
-            <li class="nav-item"><a class="nav-link" th:href="@{/}" id="homePageLink">Scheduler</a></li>
-            <li class="nav-item"><a class="nav-link" th:href="@{/accountManagement}" id="aboutPageLink">Account</a></li>
-            <li sec:authorize="!isAuthenticated()" class="nav-item">
-                <a class="nav-link" th:href="@{/login}" id="loginLink">Login</a>
+<body>
+<nav class="navbar" th:fragment="navbar" id="navbarFrag">
+<div class="container">
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-between w-100">
+            <li><img th:src="@{/images/sparta-logo.png}" id="spartaLogo"></li>
+            <li><a th:href="@{/}"  class="nav-link px-2 text-white" id="homePageLink">Scheduler Page</a></li>
+            <li><a  class="nav-link px-2 text-white" th:href="@{/traineePage}" id="traineePageLink">Trainees Page</a></li>
+            <li><a  class="nav-link px-2 text-white" th:href="@{/trainerPage}" id="trainerPageLink">Trainers Page</a></li>
+            <li><a  class="nav-link px-2 text-white" th:href="@{/coursePage}" id="coursePageLink">Courses Page</a></li>
+            <li><a  class="nav-link px-2 text-white" th:href="@{/centres}" id="centrePageLink">Centres Page</a></li>
+                <li><a th:href="@{/accountManagement}"  class="nav-link px-2 text-white" id="aboutPageLink">Account</a></li>
+            <li sec:authorize="!isAuthenticated()" class="nav-item">-->
+                <a  class="nav-link px-2 text-white" th:href="@{/login}" id="loginLink">Login</a>
             </li>
-            <li sec:authorize="isAuthenticated()" class="nav-item" >
-                <a href="javascript: document.logoutForm.submit()" class="nav-link" id="logoutLink">Log Out</a>
+            <li sec:authorize="isAuthenticated()">
+                <a href="javascript: document.logoutForm.submit()" class="nav-link px-2 text-white" id="logoutLink">Log Out</a>
                 <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
                     <input hidden type="submit" value="Sign Out" />
                 </form>
             </li>
-<!--            TODO rename with appropriate role-->
-            <li sec:authorize="hasAuthority('RICHARD')" class="nav-item">
-                <a class="nav-link" th:href="@{/user}" id="myAccountLink">My Account</a>
+            <li sec:authorize="hasAuthority('RICHARD')"  class="nav-link px-2 text-white">
+                <a class="nav-link px-2 text-white" th:href="@{/user}" id="myAccountLink">My Account</a>
             </li>
-            <li class="nav-item"><a class="nav-link" th:href="@{/traineePage}" id="traineePageLink">Trainee</a></li>
-            <li class="nav-item"><a class="nav-link" th:href="@{/trainerPage}" id="trainerPageLink">Trainer</a></li>
-            <li class="nav-item"><a class="nav-link" th:href="@{/coursePage}" id="coursePageLink">Course</a></li>
-            <li class="nav-item"><a class="nav-link" th:href="@{/centres}" id="centrePageLink">Centres</a></li>
         </ul>
-
-    </div>
+</div>
 </nav>
+</body>
