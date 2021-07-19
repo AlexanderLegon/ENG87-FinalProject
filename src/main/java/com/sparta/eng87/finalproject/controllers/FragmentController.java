@@ -19,5 +19,24 @@ public class FragmentController {
         return "login";
     }
 
+    @GetMapping("/traineePage")
+    public String goToTrainee(){
+        return "traineePage";
+    }
+
+    @GetMapping("/trainerPage")
+    public String goToTrainer(){
+        return "trainerPage";
+    }
+
+    @GetMapping("/coursePage")
+    public String goToCourse(){
+        return "coursePage";
+    }
+
+    @GetMapping("/centres")
+    public String goToCentre(){
+        return "centres";
+    }
 
 }
