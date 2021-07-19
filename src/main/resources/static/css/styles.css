@@ -52,3 +52,15 @@ form {
 #TheBoys{
     width: max-content;
 }
+
+.blue {
+    background: blue !important;
+}
+
+.green {
+    background: green !important;
+}
+
+.red {
+    background: red !important;
+}

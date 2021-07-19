@@ -1,6 +1,7 @@
 package com.sparta.eng87.finalproject.controllers;
 
 import com.sparta.eng87.finalproject.services.CourseService;
+import com.sparta.eng87.finalproject.services.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,10 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ScheduleController {
 
     private CourseService courseService;
+    private TrainerService trainerService;
 
     @Autowired
-    public ScheduleController(CourseService courseService) {
+    public ScheduleController(CourseService courseService, TrainerService trainerService) {
         this.courseService = courseService;
+        this.trainerService = trainerService;
     }
 
     @GetMapping("/")
@@ -27,6 +30,7 @@ public class ScheduleController {
         model.addAttribute("DisciplineDuration", courseService.getDisciplineDurations());
         model.addAttribute("CourseEndDate", courseService.getListOfStringFromDates(courseService.getCourseEndDate()));
         model.addAttribute("BondDate", courseService.getListOfStringFromDates(courseService.getBonds()));
+        model.addAttribute("color", trainerService.getListOfTrainerColor(courseService.getTrainerNames()));
 
         return "schedulerPage";
     }
