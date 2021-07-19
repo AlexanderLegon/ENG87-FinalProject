@@ -15,12 +15,12 @@
 <body id="schedulerBody">
 <nav th:replace="fragments/header.html :: navbar"></nav>
 
-<br><br><br>
-<div>
-    <table class="table table-striped">
+<div class="sch-wrapper">
+    <div class="sch-scroller">
+        <table class="table table-striped sch-table">
         <thead>
         <tr id = "headings">
-            <th scope="col">Training Course</th>
+            <th scope="col" class="sticky-col">Course</th>
             <th scope="col">Discipline</th>
             <th scope="col">Course Type</th>
             <th scope="col">Trainer</th>
@@ -34,7 +34,7 @@
         </thead>
         <tbody>
         <tr th:id = "coursename" th:each = "coursename, iterStat : ${CourseName}">
-            <td th:text="${coursename}"></td>
+            <td th:text="${coursename}" class="sticky-col"></td>
             <td th:text="${DisciplineName[iterStat.index]}"></td>
             <td th:text="${CourseTypeName[iterStat.index]}"></td>
             <td th:text="${TrainerName[iterStat.index]}"></td>
@@ -45,13 +45,16 @@
             <td th:text="${BondDate[iterStat.index]}"></td>
         </tr>
         </tbody>
-    </table>
+        </table>
+    </div>
+
 </div>
-<br><br><br><br><br><br>
+
 
 
 <footer>
     <nav th:replace="fragments/footer.html :: navbar"></nav>
 </footer>
 </body>
+
 </html>
