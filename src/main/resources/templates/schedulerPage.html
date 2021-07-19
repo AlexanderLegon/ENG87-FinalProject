@@ -39,7 +39,7 @@
             <th scope="col" data-breakpoints="all" data-title="End of Course">End of Course</th>
             <th scope="col" data-breakpoints="all" data-title="Bond">Bond</th>
             <th scope="col" data-breakpoints="all"></th>
-            <th scope="col">Schedule</th>
+            <th th:each="date: ${dates}" th:text="${date}" class="vertical-date"></th>
         </tr>
         </thead>
         <tbody>
@@ -55,7 +55,7 @@
             <td th:text="${CourseEndDate[iterStat.index]}"></td>
             <td th:text="${BondDate[iterStat.index]}"></td>
             <td><a th:href="@{/traineePage/{coursename}(coursename=${coursename})}">See Trainees</a></td>
-            <td th:styleappend="'background-color:' + ${color[iterStat.index]}" ></td>
+            <td th:styleappend="'background-color:' + ${color[iterStat.index]}" class="vertical-table-lines"></td>
 <!--            <td th:if="${TrainerName[iterStat.index] == 'Karim Wohler'}" class="red">Red</td>-->
 <!--            <td th:if="${TrainerName[iterStat.index] == 'Mike Wazowski'}" class="green">Green</td>-->
         </tr>
