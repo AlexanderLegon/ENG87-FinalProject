@@ -24,43 +24,45 @@
 <nav th:replace="fragments/header.html :: navbar"></nav>
 
 <br><br><br>
-<div>
-    <table class="table table-striped" data-show-toggle="false" data-expand-first="false">
-        <thead>
-        <tr id = "headings">
-            <th data-visible="false">ID</th>
-            <th scope="col">Training Course</th>
-            <th scope="col" data-breakpoints="all" data-title="Discipline">Discipline</th>
-            <th scope="col" data-breakpoints="all" data-title="Course Type">Course Type</th>
-            <th scope="col">Trainer</th>
-            <th scope="col">Course Location</th>
-            <th scope="col" data-breakpoints="all" data-title="Start of Course">Start of Course</th>
-            <th scope="col" data-breakpoints="all" data-title="Duration">Duration</th>
-            <th scope="col" data-breakpoints="all" data-title="End of Course">End of Course</th>
-            <th scope="col" data-breakpoints="all" data-title="Bond">Bond</th>
-            <th scope="col" data-breakpoints="all"></th>
-            <th th:each="date: ${dates}" th:text="${date}" class="vertical-date"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:id = "coursename" th:each = "coursename, iterStat : ${CourseName}">
-            <td th:text="${iterStat.index}"></td>
-            <td th:text="${coursename}"></td>
-            <td th:text="${DisciplineName[iterStat.index]}"></td>
-            <td th:text="${CourseTypeName[iterStat.index]}"></td>
-            <td th:text="${TrainerName[iterStat.index]}"></td>
-            <td th:text="${LocationName[iterStat.index]}"></td>
-            <td th:text="${CourseStartDate[iterStat.index]}"></td>
-            <td th:text="${DisciplineDuration[iterStat.index]}"></td>
-            <td th:text="${CourseEndDate[iterStat.index]}"></td>
-            <td th:text="${BondDate[iterStat.index]}"></td>
-            <td><a th:href="@{/traineePage/{coursename}(coursename=${coursename})}">See Trainees</a></td>
-            <td th:styleappend="'background-color:' + ${color[iterStat.index]}" class="vertical-table-lines"></td>
-<!--            <td th:if="${TrainerName[iterStat.index] == 'Karim Wohler'}" class="red">Red</td>-->
-<!--            <td th:if="${TrainerName[iterStat.index] == 'Mike Wazowski'}" class="green">Green</td>-->
-        </tr>
-        </tbody>
-    </table>
+<div class="sch-wrapper">
+    <div class="sch-scroller">
+        <table class="table table-striped sch-table" data-show-toggle="false" data-expand-first="false">
+            <thead>
+            <tr id = "headings">
+                <th data-visible="false">ID</th>
+                <th scope="col" class="sticky-col">Training Course</th>
+                <th scope="col" data-breakpoints="all" data-title="Discipline">Discipline</th>
+                <th scope="col" data-breakpoints="all" data-title="Course Type">Course Type</th>
+                <th scope="col">Trainer</th>
+                <th scope="col">Course Location</th>
+                <th scope="col" data-breakpoints="all" data-title="Start of Course">Start of Course</th>
+                <th scope="col" data-breakpoints="all" data-title="Duration">Duration</th>
+                <th scope="col" data-breakpoints="all" data-title="End of Course">End of Course</th>
+                <th scope="col" data-breakpoints="all" data-title="Bond">Bond</th>
+                <th scope="col" data-breakpoints="all"></th>
+                <th th:each="date: ${dates}" th:text="${date}" class="vertical-date"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:id = "coursename" th:each = "coursename, iterStat : ${CourseName}">
+                <td th:text="${iterStat.index}"></td>
+                <td th:text="${coursename}" class="sticky-col"></td>
+                <td th:text="${DisciplineName[iterStat.index]}"></td>
+                <td th:text="${CourseTypeName[iterStat.index]}"></td>
+                <td th:text="${TrainerName[iterStat.index]}"></td>
+                <td th:text="${LocationName[iterStat.index]}"></td>
+                <td th:text="${CourseStartDate[iterStat.index]}"></td>
+                <td th:text="${DisciplineDuration[iterStat.index]}"></td>
+                <td th:text="${CourseEndDate[iterStat.index]}"></td>
+                <td th:text="${BondDate[iterStat.index]}"></td>
+                <td><a th:href="@{/traineePage/{coursename}(coursename=${coursename})}">See Trainees</a></td>
+                <td th:styleappend="'background-color:' + ${color[iterStat.index]}" class="vertical-table-lines"></td>
+    <!--            <td th:if="${TrainerName[iterStat.index] == 'Karim Wohler'}" class="red">Red</td>-->
+    <!--            <td th:if="${TrainerName[iterStat.index] == 'Mike Wazowski'}" class="green">Green</td>-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 <br><br><br><br><br><br>
 
