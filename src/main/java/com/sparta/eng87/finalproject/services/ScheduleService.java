@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 
@@ -72,35 +73,45 @@ public class ScheduleService {
         List<String[]> activeDays = new ArrayList<>();
         List<Integer> currentCourseActive = new ArrayList<>();
         boolean active = false;
-//        LocalDateTime now = LocalDateTime.now();
-//        ZoneId zone = ZoneId.of("GMT");
-        ZoneOffset offset = ZoneOffset.of("+0:00");
+
+//        ZoneOffset offset = ZoneOffset.of("Z");
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         for (int i = 0; i<courseNames.size();i++) {
             courseStartDate = courseRepository.getCourseStartDatesByCourseName(courseNames.get(i));
-
-
-
-            courseStartDate = dateFormat.format(courseStartDate);
             currentEndDate = dateFormat.format(courseEndDate.get(i));
-            while (!(new SimpleDateFormat("EE").format(courseStartDate)).equals("Mon")) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(Date.from(LocalDate.parse(courseStartDate).atStartOfDay().toInstant(offset)));
-                calendar.add(Calendar.DAY_OF_YEAR, (-1));
-                Date temp  = calendar.getTime();
-                courseStartDate = temp.toString();
-                //   System.out.println(new SimpleDateFormat("EE").format(date));
-            }
-            while (!(new SimpleDateFormat("EE").format(currentEndDate)).equals("Mon")) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(Date.from(LocalDate.parse(currentEndDate).atStartOfDay().toInstant(offset)));
-                calendar.add(Calendar.DAY_OF_YEAR, (-1));
-                Date temp  = calendar.getTime();
-                currentEndDate = temp.toString();
-                //   System.out.println(new SimpleDateFormat("EE").format(date));
-            }
 
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            LocalDateTime courseStartDateTime = LocalDateTime.parse(courseStartDate, formatter);
+            LocalDateTime courseEndDateTime = LocalDateTime.parse(currentEndDate, formatter);
+
+            System.out.println(courseStartDateTime);
+//            courseStartDate = dateFormat.format(courseStartDate);
+
+
+            while (!(courseStartDateTime.getDayOfWeek().equals("MONDAY"))) {
+
+                courseStartDateTime=courseStartDateTime.minusDays(1);
+
+
+            }
+            while (!(courseEndDateTime.getDayOfWeek().equals("MONDAY"))) {
+
+                courseEndDateTime=courseEndDateTime.minusDays(1);
+
+
+            }
+//            while (!(new SimpleDateFormat("EE").format(currentEndDate)).equals("Mon")) {
+//                Calendar calendar = Calendar.getInstance();
+//                calendar.setTime(Date.from(LocalDate.parse(currentEndDate).atStartOfDay().toInstant(offset)));
+//                calendar.add(Calendar.DAY_OF_YEAR, (-1));
+//                Date temp  = calendar.getTime();
+//                currentEndDate = temp.toString();
+//                //   System.out.println(new SimpleDateFormat("EE").format(date));
+//            }
+
+            currentEndDate = courseEndDateTime.toString();
+            courseStartDate = courseStartDateTime.toString();
             for(String week:weeks){
 
                 if (week.equals(courseStartDate)){
@@ -109,7 +120,7 @@ public class ScheduleService {
                 } else if (active){
                     currentCourseActive.add(1);
                 }
-                if(week.equals(courseEndDate)){
+                if(week.equals(currentEndDate)){
                     currentCourseActive.add(1);
                     active = false;
                 } else if(!active){
