@@ -56,7 +56,10 @@
                 <td th:text="${CourseEndDate[iterStat.index]}"></td>
                 <td th:text="${BondDate[iterStat.index]}"></td>
                 <td><a th:href="@{/traineePage/{coursename}(coursename=${coursename})}">See Trainees</a></td>
-                <td th:styleappend="'background-color:' + ${color[iterStat.index]}" class="vertical-table-lines"></td>
+                <span th:each="active : ${activeWeeks[iterStat.index]}">
+                <td th:if="${active==1}" th:styleappend="'background-color:' + ${color[iterStat.index]}" class="vertical-table-lines" id="active"></td>
+                <td th:unless="${active==1}" style="background-color: white" class="vertical-table-lines" id="inactive"></td>
+                </span>
     <!--            <td th:if="${TrainerName[iterStat.index] == 'Karim Wohler'}" class="red">Red</td>-->
     <!--            <td th:if="${TrainerName[iterStat.index] == 'Mike Wazowski'}" class="green">Green</td>-->
             </tr>

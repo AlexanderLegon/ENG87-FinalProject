@@ -27,7 +27,7 @@ public class ScheduleController {
     public String goToScheduler(Model model){
         List<String> dates = scheduleService.listDates();
         List<String> courseNames = courseService.getCourseNames();
-        List<String[]> activeDays =  scheduleService.getActiveCourseWeeks(dates,courseNames);
+        List<Object[]> activeDays =  scheduleService.getActiveCourseWeeks(dates,courseNames);
         model.addAttribute("activeWeeks",activeDays);
         model.addAttribute("CourseName", courseNames);
         model.addAttribute("DisciplineName", courseService.getDisciplineNames());

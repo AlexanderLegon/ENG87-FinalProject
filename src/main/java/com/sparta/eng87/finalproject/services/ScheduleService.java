@@ -5,10 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -66,11 +63,11 @@ public class ScheduleService {
 
     }
 
-    public List<String[]> getActiveCourseWeeks(List<String> weeks, List<String> courseNames) {
+    public List<Object[]> getActiveCourseWeeks(List<String> weeks, List<String> courseNames) {
         String courseStartDate;
-        List<java.util.Date> courseEndDate = courseService.getCourseEndDate();
+        List<Date> courseEndDate = courseService.getCourseEndDate();
         String currentEndDate;
-        List<String[]> activeDays = new ArrayList<>();
+        List<Object[]> activeDays = new ArrayList<>();
         List<Integer> currentCourseActive = new ArrayList<>();
         boolean active = false;
 
@@ -80,22 +77,23 @@ public class ScheduleService {
         for (int i = 0; i<courseNames.size();i++) {
             courseStartDate = courseRepository.getCourseStartDatesByCourseName(courseNames.get(i));
             currentEndDate = dateFormat.format(courseEndDate.get(i));
-
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-            LocalDateTime courseStartDateTime = LocalDateTime.parse(courseStartDate, formatter);
-            LocalDateTime courseEndDateTime = LocalDateTime.parse(currentEndDate, formatter);
+            System.out.println(i);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate courseStartDateTime = LocalDate.parse(courseStartDate, formatter);
+            LocalDate courseEndDateTime = LocalDate.parse(currentEndDate, formatter2);
 
             System.out.println(courseStartDateTime);
 //            courseStartDate = dateFormat.format(courseStartDate);
 
-
-            while (!(courseStartDateTime.getDayOfWeek().equals("MONDAY"))) {
+            System.out.println(courseStartDateTime.getDayOfWeek());
+            while (!(courseStartDateTime.getDayOfWeek().equals(DayOfWeek.MONDAY))) {
 
                 courseStartDateTime=courseStartDateTime.minusDays(1);
 
 
             }
-            while (!(courseEndDateTime.getDayOfWeek().equals("MONDAY"))) {
+            while (!(courseEndDateTime.getDayOfWeek().equals(DayOfWeek.MONDAY))) {
 
                 courseEndDateTime=courseEndDateTime.minusDays(1);
 
@@ -112,25 +110,29 @@ public class ScheduleService {
 
             currentEndDate = courseEndDateTime.toString();
             courseStartDate = courseStartDateTime.toString();
-            for(String week:weeks){
+            for(String week:weeks) {
+                LocalDate currentWeek = LocalDate.parse(week, formatter2);
 
-                if (week.equals(courseStartDate)){
-                    active = true;
+                if ((currentWeek.isAfter(courseStartDateTime) && currentWeek.isBefore(courseEndDateTime))||currentWeek.isEqual(courseEndDateTime)||currentWeek.isEqual(courseStartDateTime)){
                     currentCourseActive.add(1);
-                } else if (active){
-                    currentCourseActive.add(1);
-                }
-                if(week.equals(currentEndDate)){
-                    currentCourseActive.add(1);
-                    active = false;
-                } else if(!active){
-                    currentCourseActive.add(0);
-                }
+                }else{currentCourseActive.add(0);}
+//                if (currentWeek.isEqual(courseStartDateTime)) {
+//                    active = true;
+//                    currentCourseActive.add(1);
+//                } else if (active){
+//                    currentCourseActive.add(1);
+//                }
+//                if(currentWeek.isEqual(courseEndDateTime) && LocalDate.parse(weeks.get(0), formatter2).isAfter(courseStartDateTime)){
+//                    currentCourseActive.add(1);
+//                    active = false;
+//                } else if(!active){
+//                    currentCourseActive.add(0);
+//                }
 
             }
 
-            activeDays.add((String[]) currentCourseActive.toArray());
-
+            activeDays.add(currentCourseActive.toArray());
+            currentCourseActive.clear();
         }
         return activeDays;
     }
