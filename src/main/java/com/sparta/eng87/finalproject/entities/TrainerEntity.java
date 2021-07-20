@@ -9,10 +9,12 @@ public class TrainerEntity {
     private Integer trainerId;
     private String firstName;
     private String lastName;
+    private String color;
 
-    public TrainerEntity(String firstName, String lastName) {
+    public TrainerEntity(String firstName, String lastName, String color) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.color = color;
     }
 
     public TrainerEntity() {
@@ -47,5 +49,15 @@ public class TrainerEntity {
 
     public void setLastName(String lastName){
         this.lastName = lastName;
+    }
+
+    @Basic
+    @Column(name = "trainerColor")
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }
