@@ -23,6 +23,41 @@
 <body id="schedulerBody">
 <nav th:replace="fragments/header.html :: navbar"></nav>
 
+<<<<<<< HEAD
+<div class="sch-wrapper">
+    <div class="sch-scroller">
+        <table class="table table-striped sch-table">
+        <thead>
+        <tr id = "headings">
+            <th scope="col" class="sticky-col">Course</th>
+            <th scope="col">Discipline</th>
+            <th scope="col">Course Type</th>
+            <th scope="col">Trainer</th>
+            <th scope="col">Course Location</th>
+            <th scope="col">Start of Course</th>
+            <th scope="col">Duration</th>
+            <th scope="col">End of Course</th>
+            <th scope="col">Bond</th>
+            <th scope="col">Schedule</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:id = "coursename" th:each = "coursename, iterStat : ${CourseName}">
+            <td th:text="${coursename}" class="sticky-col"></td>
+            <td th:text="${DisciplineName[iterStat.index]}"></td>
+            <td th:text="${CourseTypeName[iterStat.index]}"></td>
+            <td th:text="${TrainerName[iterStat.index]}"></td>
+            <td th:text="${LocationName[iterStat.index]}"></td>
+            <td th:text="${CourseStartDate[iterStat.index]}"></td>
+            <td th:text="${DisciplineDuration[iterStat.index]}"></td>
+            <td th:text="${CourseEndDate[iterStat.index]}"></td>
+            <td th:text="${BondDate[iterStat.index]}"></td>
+        </tr>
+        </tbody>
+        </table>
+    </div>
+
+=======
 <br><br><br>
 <div class="sch-wrapper">
     <div class="sch-scroller">
@@ -66,12 +101,14 @@
             </tbody>
         </table>
     </div>
+>>>>>>> 585a16a91b49b1ac62b6e9faf87952feb5cf35e3
 </div>
-<br><br><br><br><br><br>
+
 
 
 <footer>
     <nav th:replace="fragments/footer.html :: navbar"></nav>
 </footer>
 </body>
+
 </html>
