@@ -41,6 +41,7 @@ body {
     margin-top: 1rem;
     background-color: rgb(225, 57, 99) !important;
     border-color: rgb(225, 57, 99) !important;
+    vertical-align: middle;
 }
 
 a:link {
@@ -63,7 +64,6 @@ a:active {
 
 table {
     text-align: center;
-
 }
 
 tr {
