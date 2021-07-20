@@ -5,6 +5,8 @@ import com.sparta.eng87.finalproject.repositories.DisciplineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DisciplineService {
     private DisciplineRepository disciplineRepository;
@@ -26,6 +28,10 @@ public class DisciplineService {
 
     public void deleteDiscipline(Integer id){
         disciplineRepository.deleteById(id);
+    }
+
+    public List<Object[]> getAllDisciplines(){
+        return disciplineRepository.getAllDisciplines();
     }
 
 }
