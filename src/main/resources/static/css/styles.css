@@ -52,3 +52,63 @@ form {
 #TheBoys{
     width: max-content;
 }
+
+.blue {
+    background: blue !important;
+}
+
+.green {
+    background: green !important;
+}
+
+.red {
+    background: red !important;
+}
+
+.vertical-date {
+    writing-mode: vertical-lr;
+    -webkit-transform: rotate(
+            190deg
+    );
+    padding-bottom: 50px !important;
+
+}
+
+.vertical-table-lines {
+    border-right: solid 1px #000000;
+    border-left: solid 1px black;
+    border-bottom: solid 1px black !important;
+}
+
+.sch-table {
+    border: none;
+    border-collapse: separate;
+    border-spacing: 0;
+
+}
+.sch-table thead th {
+    border: none;
+    padding: 10px;
+    text-align: left;
+    white-space: nowrap;
+}
+.sch-table tbody td {
+    padding: 10px;
+    white-space: nowrap;
+}
+.sch-wrapper {
+    position: relative;
+}
+.sch-scroller {
+    margin-left: 120px;
+    overflow-x: scroll;
+    overflow-y: visible;
+    padding-bottom: 5px;
+    width: 960px;
+}
+.sch-table .sticky-col {
+    left: 0;
+    position: absolute;
+    top: auto;
+    width: 120px;
+}

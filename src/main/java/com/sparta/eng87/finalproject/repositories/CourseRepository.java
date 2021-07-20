@@ -30,4 +30,8 @@ public interface CourseRepository extends JpaRepository<CourseEntity,Integer> {
     @Query(value = "SELECT course_id FROM course WHERE course_name = ?1" ,nativeQuery = true)
     int findCourseIdByCourseName(String courseName);
 
+    @Query(value = "SELECT start_date FROM course WHERE course_name = ?1" ,nativeQuery = true)
+     String getCourseStartDatesByCourseName(String courseName);
+
+
 }
