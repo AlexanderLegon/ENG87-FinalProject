@@ -95,19 +95,22 @@ public class ScheduleService {
                 courseEndDateTime=courseEndDateTime.minusDays(1);
             }
 
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("yyyy/MM/dd");
             try {
                 Date d1 = simpleDateFormat.parse(courseStartDate);
-                Date d2 = simpleDateFormat.parse(courseEndDate.toString());
-                Date d3 = simpleDateFormat.parse("2021/12/20");
+                Date d2 = simpleDateFormat2.parse(currentEndDate);
+                Date d3 = simpleDateFormat2.parse("2021/12/20");
                 Calendar c = Calendar.getInstance();
-                System.out.println(d2);
+                System.out.println("End Date Initial "+d2);
 
-                if(d1.compareTo(d3) < 0 && (d2.compareTo(d3) > 0)){
+                if((d1.compareTo(d3) < 0) && (d2.compareTo(d3) > 0)){
                     c.setTime(d2);
                     c.add(Calendar.DATE, 14);
                     d2 = simpleDateFormat.parse(String.valueOf(c.getTime()));
-                    System.out.println(d2);
+                    System.out.println("End Date After "+d2);
+                } else {
+                    System.out.println("FAIL");
                 }
 
             } catch (ParseException e) {
