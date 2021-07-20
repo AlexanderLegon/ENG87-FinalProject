@@ -4,6 +4,7 @@ import com.sparta.eng87.finalproject.repositories.CourseRepository;
 import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -92,6 +93,7 @@ public class ScheduleService {
                 courseStartDate = temp.toString();
                 //   System.out.println(new SimpleDateFormat("EE").format(date));
             }
+
             while (!(new SimpleDateFormat("EE").format(currentEndDate)).equals("Mon")) {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(Date.from(LocalDate.parse(currentEndDate).atStartOfDay().toInstant(offset)));
@@ -100,6 +102,31 @@ public class ScheduleService {
                 currentEndDate = temp.toString();
                 //   System.out.println(new SimpleDateFormat("EE").format(date));
             }
+//SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd h:m");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            try {
+                Date d1 = simpleDateFormat.parse(courseStartDate);
+                Date d2 = simpleDateFormat.parse(courseEndDate.toString());
+                Date d3 = simpleDateFormat.parse("2021/12/20");
+                Calendar c = Calendar.getInstance();
+                System.out.println(d2);
+
+                if(d1.compareTo(d3) < 0 && (d2.compareTo(d3) > 0)){
+                    c.setTime(d2);
+                    c.add(Calendar.DATE, 14);
+                    d2 = simpleDateFormat.parse(String.valueOf(c.getTime()));
+                    System.out.println(d2);
+                }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+
+
+
+
 
             for(String week:weeks){
 
