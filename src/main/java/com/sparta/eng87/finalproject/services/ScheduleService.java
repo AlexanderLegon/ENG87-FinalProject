@@ -78,16 +78,14 @@ public class ScheduleService {
         for (int i = 0; i<courseNames.size();i++) {
             courseStartDate = courseRepository.getCourseStartDatesByCourseName(courseNames.get(i));
             currentEndDate = dateFormat.format(courseEndDate.get(i));
-            System.out.println(i);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate courseStartDateTime = LocalDate.parse(courseStartDate, formatter);
             LocalDate courseEndDateTime = LocalDate.parse(currentEndDate, formatter2);
 
-            System.out.println(courseStartDateTime);
+
 //            courseStartDate = dateFormat.format(courseStartDate);
 
-            System.out.println(courseStartDateTime.getDayOfWeek());
             while (!(courseStartDateTime.getDayOfWeek().equals(DayOfWeek.MONDAY))) {
                 courseStartDateTime=courseStartDateTime.minusDays(1);
             }
