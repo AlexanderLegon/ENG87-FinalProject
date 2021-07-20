@@ -76,13 +76,16 @@ public class TraineeController {
     public String editTrainee(@PathVariable("id") Integer id, TraineeEntity traineeEntity) {
         traineeEntity.setTraineeId(id);
         traineeService.addTrainee(traineeEntity);
-        return "redirect:/addTrainee";
+        return "redirect:/";
     }
 
-    @GetMapping("/deleteTrainee/{id}")
-    public String deleteTrainee(@PathVariable("id") Integer id, TraineeEntity traineeEntity) {
+    @GetMapping("/deleteTrainee/{id}/{courseName}")
+    public String deleteTrainee(@PathVariable("id") Integer id, TraineeEntity traineeEntity,
+                                @PathVariable("courseName") String courseName, Model model) {
         traineeService.deleteTrainee(id);
-        return "redirect:/addTrainee";
+        model.addAttribute("courseName", courseName);
+        model.addAttribute("trainees", traineeService.findTraineeByCourse(courseName));
+        return "redirect:/traineePage/{courseName}";
     }
 
 }

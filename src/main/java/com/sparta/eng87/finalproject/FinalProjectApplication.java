@@ -66,6 +66,7 @@ public class FinalProjectApplication {
 //            userService.addUser(new UserEntity("Alex", encoder.encode("password"), "USER", 1));
 //            userService.addUser(new UserEntity("Richard", encoder.encode("password"), "USER", 1));
 
+
         };
     }
 }
