@@ -104,11 +104,12 @@ form {
     overflow-x: scroll;
     overflow-y: visible;
     padding-bottom: 5px;
-    width: 960px;
+    width: 90%;
 }
 .sch-table .sticky-col {
     left: 0;
-    position: absolute;
-    top: auto;
-    width: 120px;
+    position: sticky;
+    z-index: 1;
+    background: white;
+    width: auto;
 }
