@@ -61,3 +61,4 @@ public class TrainerEntity {
         this.color = color;
     }
 }
+
