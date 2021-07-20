@@ -94,25 +94,25 @@ public class ScheduleService {
             while (!(courseEndDateTime.getDayOfWeek().equals(DayOfWeek.MONDAY))) {
                 courseEndDateTime=courseEndDateTime.minusDays(1);
             }
-
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
-            try {
-                Date d1 = simpleDateFormat.parse(courseStartDate);
-                Date d2 = simpleDateFormat.parse(courseEndDate.toString());
-                Date d3 = simpleDateFormat.parse("2021/12/20");
-                Calendar c = Calendar.getInstance();
-                System.out.println(d2);
-
-                if(d1.compareTo(d3) < 0 && (d2.compareTo(d3) > 0)){
-                    c.setTime(d2);
-                    c.add(Calendar.DATE, 14);
-                    d2 = simpleDateFormat.parse(String.valueOf(c.getTime()));
-                    System.out.println(d2);
-                }
-
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+//
+//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+//            try {
+//                Date d1 = simpleDateFormat.parse(courseStartDate);
+//                Date d2 = simpleDateFormat.parse(courseEndDate.toString());
+//                Date d3 = simpleDateFormat.parse("2021/12/20");
+//                Calendar c = Calendar.getInstance();
+//                System.out.println(d2);
+//
+//                if(d1.compareTo(d3) < 0 && (d2.compareTo(d3) > 0)){
+//                    c.setTime(d2);
+//                    c.add(Calendar.DATE, 14);
+//                    d2 = simpleDateFormat.parse(String.valueOf(c.getTime()));
+//                    System.out.println(d2);
+//                }
+//
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
 
             currentEndDate = courseEndDateTime.toString();
             courseStartDate = courseStartDateTime.toString();
