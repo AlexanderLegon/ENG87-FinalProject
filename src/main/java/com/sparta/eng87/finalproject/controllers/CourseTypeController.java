@@ -31,7 +31,7 @@ public class CourseTypeController {
         CourseTypeEntity courseTypeEntity = new CourseTypeEntity();
         courseTypeEntity.setTypeName(typeName);
         courseTypeService.addCourseType(courseTypeEntity);
-        return "redirect:/";
+        return "redirect:/extraCourseInfoPage";
     }
 
     @GetMapping("/editCourseType/{id}")
@@ -44,13 +44,13 @@ public class CourseTypeController {
     public String updateCourseType(CourseTypeEntity courseTypeEntity, @PathVariable("id") Integer id){
         courseTypeEntity.setCourseTypeId(id);
         courseTypeService.addCourseType(courseTypeEntity);
-        return "redirect:/";
+        return "redirect:/extraCourseInfoPage";
     }
 
     @GetMapping("/deleteCourseType/{id}")
     public String deleteCourseType(@PathVariable("id")Integer id){
         //bookService.deleteBook(id);
         courseTypeService.deleteCourseType(id);
-        return "redirect:/";
+        return "redirect:/extraCourseInfoPage";
     }
 }

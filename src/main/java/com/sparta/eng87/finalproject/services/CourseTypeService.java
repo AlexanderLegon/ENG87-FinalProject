@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 @Service
 public class CourseTypeService {
 
@@ -32,5 +34,7 @@ public class CourseTypeService {
         courseTypeRepository.deleteById(id);
     }
 
-
+    public List<Object[]> getAllCourseTypes(){
+        return courseTypeRepository.getAllCourseTypes();
+    }
 }
