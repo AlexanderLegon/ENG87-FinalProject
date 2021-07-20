@@ -53,6 +53,33 @@ form {
     width: max-content;
 }
 
+.blue {
+    background: blue !important;
+}
+
+.green {
+    background: green !important;
+}
+
+.red {
+    background: red !important;
+}
+
+.vertical-date {
+    writing-mode: vertical-lr;
+    -webkit-transform: rotate(
+            190deg
+    );
+    padding-bottom: 50px !important;
+
+}
+
+.vertical-table-lines {
+    border-right: solid 1px #000000;
+    border-left: solid 1px black;
+    border-bottom: solid 1px black !important;
+}
+
 .sch-table {
     border: none;
     border-collapse: separate;
