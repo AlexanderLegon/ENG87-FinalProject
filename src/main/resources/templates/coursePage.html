@@ -49,7 +49,7 @@
                 <td th:text="${course[2]}" th:id="${iterStat.index} + 'course_type'">Course Type</td>
                 <td th:text="${course[5]}" th:id="${iterStat.index} + 'location'">Location</td>
                 <td th:text="${course[6]}" th:id="${iterStat.index} + 'start_date'">Start Date</td>
-                <td th:text="${course[3]} + ${course[4]}" th:id="${iterStat.index} + 'trainer_name'">Trainer</td>
+                <td th:text="${course[3]} + ' ' + ${course[4]}" th:id="${iterStat.index} + 'trainer_name'">Trainer</td>
 
                 <td>
                     <div class="mb-3">
