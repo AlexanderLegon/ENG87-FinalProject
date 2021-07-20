@@ -110,7 +110,7 @@ form {
     left: 0;
     position: sticky;
     z-index: 1;
-    background: white;
+    background: rgb(2, 24, 27);
     width: auto;
 }
 
@@ -141,3 +141,6 @@ html, body{
 #wrapper{
     min-height: 100%;
 }
+tr{
+     color: white !important;
+ }
