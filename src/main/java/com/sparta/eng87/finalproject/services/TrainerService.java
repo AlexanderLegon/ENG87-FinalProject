@@ -37,6 +37,7 @@ public class TrainerService {
 
     public void deleteTrainer(Integer id) {
         trainerRepository.deleteById(id);
+    }
 
     public List<String> getListOfTrainerColor(List<String> trainerNames) {
         List<String> colors = new ArrayList<>();
