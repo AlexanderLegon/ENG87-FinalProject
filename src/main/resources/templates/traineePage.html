@@ -4,58 +4,68 @@
     <meta charset="UTF-8">
     <title>Trainee</title>
     <link rel="stylesheet" type="text/css" th:href="@{/CSS/navbarFrag.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/CSS/traineePage.css}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/spartaStyles.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-<body id="traineeBody">
+<body id="traineeBody" class="sparta-background-colour">
 <nav th:replace="fragments/header.html :: navbar"></nav>
+<br>
+<div class="container">
+    <div id="addTrainee" class="text-center">
+        <button class="btn btn-primary"><a th:href="@{/addTrainee}" id="traineePageLink">Add Trainee</a></button>
+    </div>
+    <br>
+    <div id="traineeList">
+        <table class="table" id="traineeTable">
+            <thead>
+            <tr>
+                <th scope="col" id="tableHeader1">First Name</th>
+                <th scope="col" id="tableHeader2">Last Name</th>
+                <th scope="col" id="tableHeader3">Quality Gate Status</th>
+                <th scope="col" id="tableHeader4">Edit Trainee</th>
+                <th scope="col" id="tableHeader5">Delete Trainee</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="trainee, iterStat: ${trainees}" th:id="${iterStat.index} + 'row'">
 
+                <td th:text="${trainee[0]}" th:id="${iterStat.index} + 'name'"> first name</td>
+                <td th:text="${trainee[1]}" th:id="${iterStat.index} + 'surname'">last name</td>
 
-<div id="addTrainee">
-    <button><a th:href="@{/addTrainee}" id="traineePageLink">Add Trainee</a></button>
+                <td th:text="${trainee[2]}" th:id="${iterStat.index} + 'qgs'">quality gate status</td>
+                <!--        <td>-->
+                <!--            <button><a th:href="@{/editTrainee/{Tid}(Tid=${trainee[3]})}"-->
+                <!--                       th:id="${iterStat.index}">Edit</a></button>-->
+                <!--        </td>-->
+                <td>
+                    <div class="mb-3">
+                        <button class="btn btn-primary"><a th:href="@{/editTrainee/{Tid}(Tid=${trainee[3]})}"
+                                                           th:id="${iterStat.index}">Edit</a></button>
+                    </div>
+                </td>
+                <td>
+                    <div class="mb-3">
+                        <button class="btn btn-primary"><a
+                                th:href="@{/deleteTrainee/{Tid}/{courseName}(Tid=${trainee[3]}, courseName=${trainee[4]})}"
+                                th:id="${iterStat.index}">Delete</a></button>
+                    </div>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    </br>
+    </br>
 </div>
-
-<div id="traineeList">
-<table class="table" id="traineeTable">
-    <thead>
-    <tr>
-        <th scope="col" id="tableHeader1">First Name</th>
-        <th scope="col" id="tableHeader2">Last Name</th>
-        <th scope="col" id="tableHeader3">Quality Gate Status</th>
-        <th scope="col" id="tableHeader4">Edit Trainee</th>
-        <th scope="col" id="tableHeader5">Delete Trainee</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="trainee, iterStat: ${trainees}"  th:id="${iterStat.index} + 'row'">
-
-        <td th:text="${trainee[0]}" th:id="${iterStat.index} + 'name'" > first name</td>
-        <td th:text="${trainee[1]}" th:id="${iterStat.index} + 'surname'">last name</td>
-
-        <td th:text="${trainee[2]}" th:id="${iterStat.index} + 'qgs'">quality gate status</td>
-<!--        <td>-->
-<!--            <button><a th:href="@{/editTrainee/{Tid}(Tid=${trainee[3]})}"-->
-<!--                       th:id="${iterStat.index}">Edit</a></button>-->
-<!--        </td>-->
-        <td>
-            <button><a th:href="@{/editTrainee/{Tid}(Tid=${trainee[3]})}"
-                       th:id="${iterStat.index}">Edit</a></button>
-        </td>
-        <td>
-            <button><a th:href="@{/deleteTrainee/{Tid}/{courseName}(Tid=${trainee[3]}, courseName=${trainee[4]})}"
-                       th:id="${iterStat.index}">Delete</a></button>
-        </td>
-    </tr>
-
-    </tbody>
-</table>
-</div>
-</br>
-</br>
 <footer>
     <nav th:replace="fragments/footer.html :: navbar"></nav>
 </footer>
