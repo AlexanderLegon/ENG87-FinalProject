@@ -1,5 +1,7 @@
 package com.sparta.eng87.finalproject.controllers;
 
+import com.sparta.eng87.finalproject.services.CourseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
@@ -10,9 +12,13 @@ import com.sparta.eng87.finalproject.services.LocationService;
 public class FragmentController {
 
     private LocationService locationService;
+    private CourseService courseService;
 
-    public FragmentController(LocationService locationService) {
+
+    @Autowired
+    public FragmentController(LocationService locationService, CourseService courseService) {
         this.locationService = locationService;
+        this.courseService = courseService;
     }
 
     @GetMapping("/accountManagement")
@@ -36,7 +42,8 @@ public class FragmentController {
     }
 
     @GetMapping("/coursePage")
-    public String goToCourse(){
+    public String goToCourse(Model model){
+        model.addAttribute("courses", courseService.getAllCoursesObjects());
         return "coursePage";
     }
 

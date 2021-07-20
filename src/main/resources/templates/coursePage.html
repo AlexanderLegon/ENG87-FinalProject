@@ -11,14 +11,54 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
+
+
 <body id="CoursesBody">
 <nav th:replace="fragments/header.html :: navbar"></nav>
 
+<div id="addCourse">
+    <button><a th:href="@{/addCourse}" id="CoursePageLink">Add Course</a></button>
+</div>
 
 
 
+<div id="CourseList">
+    <table class="table" id="courseTable">
+        <thead>
+        <tr id = "course_headings">
+            <th scope="col" id="tableHeader1course">Course Name</th>
+            <th scope="col" id="tableHeader2course">Discipline</th>
+            <th scope="col" id="tableHeader3course">Course Type</th>
+            <th scope="col" id="tableHeader4course">Location</th>
+            <th scope="col" id="tableHeader5course">Start Date</th>
+            <th scope="col" id="tableHeader6course">Trainer</th>
+            <th scope="col" id="tableHeader7course">Edit</th>
+            <th scope="col" id="tableHeader8course">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="course, iterStat: ${courses}"  th:id="${iterStat.index} + 'row'">
 
-<footer>
+            <td th:text="${course[0]}" th:id="${iterStat.index} + 'course'">Course Name</td>
+            <td th:text="${course[1]}" th:id="${iterStat.index} + 'discipline'" >Discipline</td>
+            <td th:text="${course[2]}" th:id="${iterStat.index} + 'course_type'" >Course Type</td>
+            <td th:text="${course[5]}" th:id="${iterStat.index} + 'location'" >Location</td>
+            <td th:text="${course[6]}" th:id="${iterStat.index} + 'start_date'">Start Date</td>
+            <td th:text="${course[3]} + ${course[4]}" th:id="${iterStat.index} + 'trainer_name'" >Trainer</td>
+
+            <td>
+                <button><a th:href="@{/editCourse/{Cid}(Cid=${course[8]})}"
+                           th:id="${iterStat.index}">Edit</a></button>
+            </td>
+            <td>
+                <button><a th:href="@{/deleteCourse/{Cid}(Cid=${course[8]})}"
+                           th:id="${iterStat.index}">Delete</a></button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</Discipline<footer>
     <nav th:replace="fragments/footer.html :: navbar"></nav>
 </footer>
 </body>
