@@ -16,6 +16,44 @@
 <nav th:replace="fragments/header.html :: navbar"></nav>
 
 
+<div id="addTrainer">
+    <button><a th:href="@{/addTrainer}" id="TrainerPageLink">Add Trainer</a></button>
+</div>
+
+<div id="trainerList">
+    <table class="table" id="trainerTable">
+        <thead>
+        <tr>
+            <th scope="col" id="tableHeader1">First Name</th>
+            <th scope="col" id="tableHeader2">Last Name</th>
+            <th scope="col" id="tableHeader3">Hex Code</th>
+            <th scope="col" id="tableHeader4">Edit</th>
+            <th scope="col" id="tableHeader5">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="trainers, iterStat: ${trainers}"  th:id="${iterStat.index} + 'row'">
+
+            <td th:text="${trainers[1]}" th:id="${iterStat.index} + 'trainer-firstname'" >First name</td>
+            <td th:text="${trainers[2]}" th:id="${iterStat.index} + 'trainer-lastname'">Last name</td>
+            <td th:text="${trainers[3]}" th:id="${iterStat.index} + 'Hex'">Hex Code</td>
+
+
+            <td>
+                <button><a th:href="@{/editTrainer/{Lid}(Lid=${trainers[0]})}"
+                           th:id="${iterStat.index}">Edit</a></button>
+            </td>
+            <td>
+                <button><a th:href="@{/deleteTrainer/{Lid}(Lid=${trainers[0]})}"
+                           th:id="${iterStat.index}">Delete</a></button>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+</br>
+</br>
 <footer>
     <nav th:replace="fragments/footer.html :: navbar"></nav>
 </footer>

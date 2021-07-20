@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface CourseRepository extends JpaRepository<CourseEntity,Integer> {
-    @Query(value="SELECT c.course_name, d.discipline_name, ct.type_name, t.first_name, t.last_name, l.location, c.start_date, d.discipline_duration " +
+    @Query(value="SELECT c.course_name, d.discipline_name, ct.type_name, t.first_name, t.last_name, l.location, c.start_date, d.discipline_duration, c.course_id " +
             "FROM course c INNER JOIN discipline d " +
             "ON c.discipline_id = d.discipline_id " +
             "INNER JOIN course_type ct " +

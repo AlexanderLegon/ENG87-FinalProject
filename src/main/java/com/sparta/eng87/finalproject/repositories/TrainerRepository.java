@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface TrainerRepository extends JpaRepository<TrainerEntity, Integer> {
     @Query(value="SELECT * FROM trainer ORDER BY trainer_id", nativeQuery = true)
-    List<TrainerEntity> getAllTrainers();
+    List<Object> getAllTrainers();
 
     @Query(value = "SELECT trainer_color FROM trainer WHERE first_name = ?1 AND last_name = ?2", nativeQuery = true)
     String getTrainerColorByTrainerName(String firstName, String secondName);

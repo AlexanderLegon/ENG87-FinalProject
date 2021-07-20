@@ -47,6 +47,10 @@ public class CourseService {
         return courseRepository.getAllCourses();
     }
 
+    public List<Object[]> getAllCoursesObjects() {
+        return courseRepository.getAllCoursesByArray();
+    }
+
     public List<String> getCourseNames(){
         List<String> courseNames = new ArrayList<>();
         List<Object[]> courseInformation = courseRepository.getAllCoursesByArray();
