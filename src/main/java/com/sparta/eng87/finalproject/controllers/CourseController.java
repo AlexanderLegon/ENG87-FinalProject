@@ -21,6 +21,7 @@ public class CourseController {
         this.courseService = courseService;
     }
 
+
     @GetMapping("/addCourse")
     public String getAddCoursePage(){
         return "addCourse";
@@ -45,7 +46,7 @@ public class CourseController {
 
         courseService.addCourse(courseEntity);
 
-        return "redirect:/";
+        return "redirect:/coursePage";
     }
 
     @GetMapping("/editCourse/{id}")
@@ -58,12 +59,12 @@ public class CourseController {
     public String editCourse(@PathVariable("id") Integer id, CourseEntity courseEntity){
         courseEntity.setCourseId(id);
         courseService.addCourse(courseEntity);
-        return "redirect:/";
+        return "redirect:/coursePage";
     }
 
-    @PostMapping("/removeCourse/{id}")
+    @GetMapping("/deleteCourse/{id}")
     public String removeCourse(@PathVariable("id") Integer id){
         courseService.removeCourse(id);
-        return "redirect:/";
+        return "redirect:/coursePage";
     }
 }
