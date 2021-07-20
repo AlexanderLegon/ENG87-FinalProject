@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface TrainerRepository extends JpaRepository<TrainerEntity, Integer> {
     @Query(value="SELECT * FROM trainer ORDER BY trainer_id", nativeQuery = true)
-    List<TrainerEntity> getAllTrainers();
+    List<Object> getAllTrainers();
 }

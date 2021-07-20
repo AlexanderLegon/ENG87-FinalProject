@@ -1,5 +1,9 @@
 package com.sparta.eng87.finalproject.controllers;
 
+import com.sparta.eng87.finalproject.services.CourseService;
+import com.sparta.eng87.finalproject.services.TraineeService;
+import com.sparta.eng87.finalproject.services.TrainerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
@@ -10,9 +14,16 @@ import com.sparta.eng87.finalproject.services.LocationService;
 public class FragmentController {
 
     private LocationService locationService;
+    private TrainerService trainerService;
+    private TraineeService traineeService;
+    private CourseService courseService;
 
-    public FragmentController(LocationService locationService) {
+    @Autowired
+    public FragmentController(LocationService locationService, CourseService courseService, TraineeService traineeService, TrainerService trainerService) {
+        this.traineeService = traineeService;
+        this.trainerService = trainerService;
         this.locationService = locationService;
+        this.courseService = courseService;
     }
 
     @GetMapping("/accountManagement")
@@ -26,17 +37,20 @@ public class FragmentController {
     }
 
     @GetMapping("/traineePage")
-    public String goToTrainee(){
+    public String goToTrainee(Model model){
+        model.addAttribute("trainees", traineeService.getAllTrainees());
         return "traineePage";
     }
 
     @GetMapping("/trainerPage")
-    public String goToTrainer(){
+    public String goToTrainer(Model model){
+        model.addAttribute("trainers", trainerService.getAllTrainers());
         return "trainerPage";
     }
 
     @GetMapping("/coursePage")
-    public String goToCourse(){
+    public String goToCourse(Model model){
+        model.addAttribute("courses", courseService.getAllCoursesObjects());
         return "coursePage";
     }
 
