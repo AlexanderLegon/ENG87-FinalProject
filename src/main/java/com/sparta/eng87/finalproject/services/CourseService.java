@@ -153,7 +153,7 @@ public class CourseService {
                         Calendar c = Calendar.getInstance();
                         System.out.println("End Date Initial "+d2);
 
-                        if((d1.compareTo(d3) < 0)){
+                        if((d1.compareTo(d3) < 0) && (d2.compareTo(d3)) > 0){
                             c.setTime(d2);
                             c.add(Calendar.DATE, 14);
                             currentEndDate = String.valueOf(c.getTime());
