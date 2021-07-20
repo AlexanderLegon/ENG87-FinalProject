@@ -29,7 +29,7 @@ public class DisciplineController {
     public String addDiscipline(@RequestParam(name = "discipline-name") String disciplineName,
                                 @RequestParam(name = "discipline-duration") Integer disciplineDuration){
         disciplineService.addDiscipline(new DisciplineEntity(disciplineName, disciplineDuration));
-        return "redirect:/";
+        return "redirect:/extraCourseInfoPage";
     }
 
     @GetMapping("/editDiscipline/{id}")
@@ -42,12 +42,12 @@ public class DisciplineController {
     public String updateDiscipline(DisciplineEntity disciplineEntity, @PathVariable("id") Integer id){
         disciplineEntity.setDiscipline_id(id);
         disciplineService.addDiscipline(disciplineEntity);
-        return "redirect:/";
+        return "redirect:/extraCourseInfoPage";
     }
 
-    @PostMapping("/removeDiscipline/{id}")
+    @GetMapping("/removeDiscipline/{id}")
     public String removeDiscipline(DisciplineEntity disciplineEntity, @PathVariable("id") Integer id){
         disciplineService.deleteDiscipline(id);
-        return "redirect:/";
+        return "redirect:/extraCourseInfoPage";
     }
 }

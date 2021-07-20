@@ -1,13 +1,10 @@
 package com.sparta.eng87.finalproject.controllers;
 
-import com.sparta.eng87.finalproject.services.CourseService;
-import com.sparta.eng87.finalproject.services.TraineeService;
-import com.sparta.eng87.finalproject.services.TrainerService;
+import com.sparta.eng87.finalproject.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
-import com.sparta.eng87.finalproject.services.LocationService;
 
 @Controller
 public class FragmentController {
@@ -16,13 +13,17 @@ public class FragmentController {
     private TrainerService trainerService;
     private TraineeService traineeService;
     private CourseService courseService;
+    private CourseTypeService courseTypeService;
+    private DisciplineService disciplineService;
 
     @Autowired
-    public FragmentController(LocationService locationService, CourseService courseService, TraineeService traineeService, TrainerService trainerService) {
+    public FragmentController(LocationService locationService, CourseService courseService, TraineeService traineeService, TrainerService trainerService, CourseTypeService courseTypeService, DisciplineService disciplineService) {
         this.traineeService = traineeService;
         this.trainerService = trainerService;
         this.locationService = locationService;
         this.courseService = courseService;
+        this.courseTypeService = courseTypeService;
+        this.disciplineService = disciplineService;
     }
 
     @GetMapping("/accountManagement")
@@ -57,6 +58,13 @@ public class FragmentController {
     public String goToCentre(Model model){
         model.addAttribute("locations", locationService.getAllLocations());
         return "centres";
+    }
+
+    @GetMapping("/extraCourseInfoPage")
+    public String goToCourseTypes(Model model){
+        model.addAttribute("coursetypes", courseTypeService.getAllCourseTypes());
+        model.addAttribute("disciplines", disciplineService.getAllDisciplines());
+        return "extraCourseInfoPage";
     }
 
 }

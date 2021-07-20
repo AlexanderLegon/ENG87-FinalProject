@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/navbarFrag.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/coursePage.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+
+<body id="CourseTypesBody">
+<nav th:replace="fragments/header.html :: navbar"></nav>
+
+<div id="addCourseType">
+    <button><a th:href="@{/addCourseType}" id="CourseTypePageLink">Add Course Type</a></button>
+</div>
+
+
+<h1 id="courseTypeTableHeading">Course Type Table</h1>
+<div id="courseTypeList">
+    <table class="table" id="courseTypeTable">
+        <thead>
+        <tr id = "course_type_headings">
+            <th scope="col" id="tableHeader1CourseType">Course Type</th>
+            <th scope="col" id="tableHeader2CourseType">Edit</th>
+            <th scope="col" id="tableHeader3CourseType">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="coursetype, iterStat: ${coursetypes}"  th:id="${iterStat.index} + 'row'">
+
+            <td th:text="${coursetype[1]}" th:id="${iterStat.index} + 'coursetype'">Course Name</td>
+
+        <td>
+                <button><a th:href="@{/editCourseType/{CTid}(CTid=${coursetype[0]})}"
+                           th:id="${iterStat.index}">Edit</a></button>
+            </td>
+            <td>
+                <button><a th:href="@{/deleteCourseType/{CTid}(CTid=${coursetype[0]})}"
+                           th:id="${iterStat.index}">Delete</a></button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<div id="addDiscipline">
+    <button><a th:href="@{/addDiscipline}" id="disciplinePageLink">Add Discipline</a></button>
+</div>
+<h1 id="disciplineTableHeading">Discipline Table</h1>
+<div id="disciplineList">
+    <table class="table" id="disciplineTable">
+        <thead>
+        <tr id = "discipline_headings">
+            <th scope="col" id="tableHeader1Discipline">Discipline</th>
+            <th scope="col" id="tableHeader2Discipline">Duration</th>
+            <th scope="col" id="tableHeader3Discipline">Edit</th>
+            <th scope="col" id="tableHeader4Discipline">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="discipline, iterStat: ${disciplines}"  th:id="${iterStat.index} + 'row'">
+
+            <td th:text="${discipline[2]}" th:id="${iterStat.index} + 'discipline'">Discipline</td>
+            <td th:text="${discipline[1]} + ' Weeks'" th:id="${iterStat.index} + 'duration'">Duration</td>
+
+            <td>
+                <button><a th:href="@{/editDiscipline/{Did}(Did=${discipline[0]})}"
+                           th:id="${iterStat.index}">Edit</a></button>
+            </td>
+            <td>
+                <button><a th:href="@{/removeDiscipline/{Did}(Did=${discipline[0]})}"
+                           th:id="${iterStat.index}">Delete</a></button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</Discipline<footer>
+    <nav th:replace="fragments/footer.html :: navbar"></nav>
+</footer>
+</body>
+</html>
