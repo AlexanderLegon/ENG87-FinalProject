@@ -78,16 +78,14 @@ public class ScheduleService {
         for (int i = 0; i<courseNames.size();i++) {
             courseStartDate = courseRepository.getCourseStartDatesByCourseName(courseNames.get(i));
             currentEndDate = dateFormat.format(courseEndDate.get(i));
-            System.out.println(i);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate courseStartDateTime = LocalDate.parse(courseStartDate, formatter);
             LocalDate courseEndDateTime = LocalDate.parse(currentEndDate, formatter2);
 
-            System.out.println(courseStartDateTime);
+
 //            courseStartDate = dateFormat.format(courseStartDate);
 
-            System.out.println(courseStartDateTime.getDayOfWeek());
             while (!(courseStartDateTime.getDayOfWeek().equals(DayOfWeek.MONDAY))) {
                 courseStartDateTime=courseStartDateTime.minusDays(1);
             }
@@ -95,24 +93,7 @@ public class ScheduleService {
                 courseEndDateTime=courseEndDateTime.minusDays(1);
             }
 
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
-            try {
-                Date d1 = simpleDateFormat.parse(courseStartDate);
-                Date d2 = simpleDateFormat.parse(courseEndDate.toString());
-                Date d3 = simpleDateFormat.parse("2021/12/20");
-                Calendar c = Calendar.getInstance();
-                System.out.println(d2);
 
-                if(d1.compareTo(d3) < 0 && (d2.compareTo(d3) > 0)){
-                    c.setTime(d2);
-                    c.add(Calendar.DATE, 14);
-                    d2 = simpleDateFormat.parse(String.valueOf(c.getTime()));
-                    System.out.println(d2);
-                }
-
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
 
             currentEndDate = courseEndDateTime.toString();
             courseStartDate = courseStartDateTime.toString();
