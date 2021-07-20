@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.DateFormatter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -143,6 +144,27 @@ public class CourseService {
             Date endDate = calendar.getTime();
             for(int j = 0; j < 7; j++){
                 if(calendar.get(Calendar.DAY_OF_WEEK) == 6){
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("yyyy/MM/dd");
+                    try {
+                        Date d1 = simpleDateFormat.parse(courseStartDate);
+                        Date d2 = simpleDateFormat2.parse(currentEndDate);
+                        Date d3 = simpleDateFormat2.parse("2021/12/20");
+                        Calendar c = Calendar.getInstance();
+                        System.out.println("End Date Initial "+d2);
+
+                        if((d1.compareTo(d3) < 0)){
+                            c.setTime(d2);
+                            c.add(Calendar.DATE, 14);
+                            currentEndDate = String.valueOf(c.getTime());
+                            System.out.println("End Date After "+d2);
+                        } else {
+                            System.out.println("FAIL");
+                        }
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                     endDate = calendar.getTime();
                     courseEndDates.add(endDate);
                     break;
