@@ -2,9 +2,11 @@ package com.sparta.eng87.finalproject.controllers;
 
 
 import com.sparta.eng87.finalproject.entities.CourseEntity;
+import com.sparta.eng87.finalproject.entities.QualityGateEntity;
 import com.sparta.eng87.finalproject.entities.TraineeEntity;
 import com.sparta.eng87.finalproject.services.CourseService;
 
+import com.sparta.eng87.finalproject.services.QualityGateService;
 import com.sparta.eng87.finalproject.services.TraineeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.Date;
 import java.util.List;
 
 
@@ -24,11 +27,13 @@ public class TraineeController {
 
     private CourseService courseService;
     private TraineeService traineeService;
+    private QualityGateService qualityGateService;
 
     @Autowired
-    public TraineeController(CourseService courseService, TraineeService traineeService) {
+    public TraineeController(CourseService courseService, TraineeService traineeService, QualityGateService qualityGateService) {
         this.courseService = courseService;
         this.traineeService = traineeService;
+        this.qualityGateService = qualityGateService;
     }
 
 
@@ -88,4 +93,29 @@ public class TraineeController {
         return "redirect:/traineePage/{courseName}";
     }
 
+    @GetMapping("/addQualityGate/{Tid}")
+    public String getAddQualityGatePage(@PathVariable("Tid") Integer id, Model model){
+        model.addAttribute("Tid", id);
+        return "addQualityGate";
+    }
+
+    @PostMapping("/addQualityGate/{Tid}")
+    public String addQualityGate(@PathVariable("Tid") Integer id,
+                                 @PathVariable("qualityGateStatus") String QGS,
+                                 @PathVariable("trainerId1") Integer trainerId1,
+                                 @PathVariable("trainerId2") Integer trainerId2,
+                                 @PathVariable("trainerFeedback1") String trainerFeedback1,
+                                 @PathVariable("trainerFeedback2") String trainerFeedback2,
+                                 @PathVariable("date") String date){
+        QualityGateEntity qualityGateEntity = new QualityGateEntity();
+        qualityGateEntity.setTraineeID(id);
+        qualityGateEntity.setPass(QGS);
+        qualityGateEntity.setTrainer1ID(trainerId1);
+        qualityGateEntity.setTrainer2ID(trainerId2);
+        qualityGateEntity.setQualityGateDate(Date.valueOf(date));
+        qualityGateEntity.setFeedbackTrainer1(trainerFeedback1);
+        qualityGateEntity.setFeedbackTrainer2(trainerFeedback2);
+        qualityGateService.save(qualityGateEntity);
+        return "redirect:/traineePage";
+    }
 }
