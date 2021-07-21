@@ -23,41 +23,37 @@ public class ScheduleService {
     }
 
     public List<String> listDates() {
-        int prevWeeks = 12;
-        int futureWeeks = 40;
+
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
+        LocalDate yearStart = LocalDate.of(2021,5,1);
+        LocalDate yearEnd = LocalDate.of(2022,4,30);
+        LocalDate now = LocalDate.now();
+
         List<String> dates = new ArrayList<>();
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = new Date();
-        while (!(new SimpleDateFormat("EE").format(date)).equals("Mon")) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            calendar.add(Calendar.DAY_OF_YEAR, (-1));
-            date = calendar.getTime();
-            //   System.out.println(new SimpleDateFormat("EE").format(date));
+
+        while (!(yearStart.getDayOfWeek().equals(DayOfWeek.MONDAY))) {
+            yearStart=yearStart.minusDays(1);
         }
+
+        while (!(yearEnd.getDayOfWeek().equals(DayOfWeek.MONDAY))) {
+            yearEnd=yearEnd.minusDays(1);
+        }
+
+        while(now.isAfter(yearEnd)){
+            yearEnd=yearEnd.plusYears(1);
+        }
+
+
         //   System.out.println(dateFormat.format(date));
         //   System.out.println(new SimpleDateFormat("EE").format(date));
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
+       dates.add(formatter.format(yearStart).toString());
+        for (int i = 0; i < 52; i++) {
 
-        // TODO make this nicer to look at
-        for (int i = prevWeeks; i > 0; i--) {
-            calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            calendar.add(Calendar.DAY_OF_YEAR, (-7 * i));
-            Date newDate = calendar.getTime();
-            String temp = dateFormat.format(newDate);
-            dates.add(temp);
-            //   System.out.println(temp);
+            yearStart=yearStart.plusDays(7);
+            dates.add(formatter.format(yearStart).toString());
         }
-        for (int j = 0; j < futureWeeks; j++) {
-            calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            calendar.add(Calendar.DAY_OF_YEAR, (7 * j));
-            Date newDate = calendar.getTime();
-            String temp = dateFormat.format(newDate);
-            dates.add(temp);
-        }
+
 
 
         return dates;
@@ -78,16 +74,16 @@ public class ScheduleService {
         for (int i = 0; i<courseNames.size();i++) {
             courseStartDate = courseRepository.getCourseStartDatesByCourseName(courseNames.get(i));
             currentEndDate = dateFormat.format(courseEndDate.get(i));
-            System.out.println(i);
+
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate courseStartDateTime = LocalDate.parse(courseStartDate, formatter);
             LocalDate courseEndDateTime = LocalDate.parse(currentEndDate, formatter2);
 
-            System.out.println(courseStartDateTime);
+
 //            courseStartDate = dateFormat.format(courseStartDate);
 
-            System.out.println(courseStartDateTime.getDayOfWeek());
+
             while (!(courseStartDateTime.getDayOfWeek().equals(DayOfWeek.MONDAY))) {
                 courseStartDateTime=courseStartDateTime.minusDays(1);
             }
