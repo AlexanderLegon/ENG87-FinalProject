@@ -6,55 +6,95 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/javascript/script.js"></script>
 </head>
 <body class="sparta-background-colour">
 <nav th:replace="fragments/header.html :: navbar"></nav>
 <div class="container">
     <h1 id="edit_course_title">Edit Course</h1>
     <div>
-        <form id="edit-course-form" th:action="@{/updateCourse/{id}(id=${course.courseId})}" th:object="${course}"
+        <form id="edit-course-form" th:action="@{/updateCourse/{id}(id=${course.courseId})}"
               method="post">
             <div class="mb-3">
                 <label for="course_name" class="form-label">Course Name</label>
-                <input th:field="*{courseName}" type="text" id="course_name" class="form-control" name="course_name">
+                <input th:field="${course.courseName}" type="text" id="course_name" class="form-control"
+                       name="course_name">
             </div>
-            <div class="mb-3">
-                <label for="trainer_id" class="form-label">Trainer ID</label>
-                <select name="trainer_id" id="trainer_id" class="form-select" th:field="*{trainerId}">
-                    <option th:each="trainer : ${trainers}" th:value="${trainer.trainerId}" th:text="${trainer.firstName} + ' ' + ${trainer.lastName}"></option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="discipline_id" class="form-label">Discipline ID</label>
-                <select name="discipline_id" id="discipline_id" class="form-select" th:field="*{disciplineId}">
-                    <option th:each="discipline : ${disciplines}" th:value="${discipline.discipline_id}" th:text="${discipline.discipline_name}"></option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="type_id" class="form-label">Type ID</label>
-                <select name="type_id" id="type_id" class="form-select" th:field="*{typeId}">
-                    <option th:each="courseType : ${courseTypes}" th:value="${courseType.courseTypeId}" th:text="${courseType.typeName}"></option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="location_id" class="form-label">Location ID</label>
-                <select name="location_id" id="location_id" class="form-select" th:field="*{locationId}">
-                    <option th:each="location : ${locations}" th:value="${location.locationId}" th:text="${location.location}"></option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="start_date" class="form-label">Start Date</label>
-                <input th:field="*{startDate}" type="date" id="start_date" class="form-control" name="start_date">
-            </div>
-            <div class="mb-3">
-                <input type="submit" class="btn btn-primary" value="Submit">
-            </div>
-        </form>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-                crossorigin="anonymous"></script>
+            <!--    <div class="mb-3" th:each="trainer : ${trainers}">-->
+            <!--        <label for="start_date" class="form-label">Start Date</label>-->
+            <!--        <input type="date" id="start_date" class="form-control" name="start_date">-->
+            <!--    </div>-->
+            <div id="trainers">
+                <div class="row" th:each="trainer1:${trainers}">
+                    <div class="col">
+                        <label for="trainer_id0" class="form-label">Trainer ID</label>
+                        <!--                        <input type="number" id="trainer_id0" class="form-control" name="trainer_id">-->
+                        <select name="trainer_id" id="trainer_id0" class="form-select">
+                            <option class="trainers-options" th:each="trainer : ${allTrainers}"
+                                    th:value="${trainer.trainerId}"
+                                    th:text="${trainer.firstName} + ' ' + ${trainer.lastName}"
+                                    th:if="${trainer.trainerId == trainer1.trainerId}" selected="selected"></option>
+
+                            <option class="trainers-options" th:each="trainer : ${allTrainers}"
+                                    th:value="${trainer.trainerId}"
+                                    th:text="${trainer.firstName} + ' ' + ${trainer.lastName}"
+                                    th:unless="${trainer.trainerId == trainer1.trainerId}"></option>
+                        </select>
+                    </div>
+
+                    <div class=" col">
+                        <label for="trainer_start_week0" class="form-label">Trainer Start Week</label>
+                        <input th:value="${trainer1.trainerStartDate}" type="number" id="trainer_start_week0"
+                               class="form-control" name="trainer_start_week" 
+                               min="1" max="52">
+                    </div>
+                    <div class="col">
+                        <label for="trainer_end_week0" class="form-label">Trainer End Week</label>
+                        <input th:value="${trainer1.trainerEndDate} " type="number" id="trainer_end_week0"
+                               class="form-control" name="trainer_end_week"
+                                min="1" max="52">
+                    </div>
+
+            </div>
     </div>
+
+    <div class="mb-3">
+        <label for="discipline_id" class="form-label">Discipline ID</label>
+        <select name="discipline_id" id="discipline_id" class="form-select" th:field="${course.disciplineId}">
+            <option th:each="discipline : ${disciplines}" th:value="${discipline.discipline_id}"
+                    th:text="${discipline.discipline_name}"></option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="type_id" class="form-label">Type ID</label>
+        <select name="type_id" id="type_id" class="form-select" th:field="${course.typeId}">
+            <option th:each="courseType : ${courseTypes}" th:value="${courseType.courseTypeId}"
+                    th:text="${courseType.typeName}"></option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="location_id" class="form-label">Location ID</label>
+        <select name="location_id" id="location_id" class="form-select" th:field="${course.locationId}">
+            <option th:each="location : ${locations}" th:value="${location.locationId}"
+                    th:text="${location.location}"></option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="start_date" class="form-label">Start Date</label>
+        <input th:field="${course.startDate}" type="date" id="start_date" class="form-control" name="start_date">
+    </div>
+    <div class="mb-3">
+        <input onclick="return exceedsCapacity()" type="submit" class="btn btn-primary" value="Submit">
+    </div>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+</div>
 </div>
 <footer>
     <nav th:replace="fragments/footer.html :: navbar"></nav>
