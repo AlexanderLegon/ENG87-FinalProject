@@ -1,6 +1,7 @@
 package com.sparta.eng87.finalproject.entities;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(schema = "courseorganisation", name="quality_gate")
@@ -13,14 +14,16 @@ public class QualityGateEntity {
     private Integer trainer2ID;
     private String feedbackTrainer1;
     private String feedbackTrainer2;
+    private Date qualityGateDate;
 
-    public QualityGateEntity(Integer traineeID, String isPass, Integer trainer1ID, Integer trainer2ID, String feedbackTrainer1, String feedbackTrainer2) {
+    public QualityGateEntity(Integer traineeID, String isPass, Integer trainer1ID, Integer trainer2ID, String feedbackTrainer1, String feedbackTrainer2, Date qualityGateDate) {
         this.traineeID = traineeID;
         this.isPass = isPass;
         this.trainer1ID = trainer1ID;
         this.trainer2ID = trainer2ID;
         this.feedbackTrainer1 = feedbackTrainer1;
         this.feedbackTrainer2 = feedbackTrainer2;
+        this.qualityGateDate = qualityGateDate;
     }
 
     public QualityGateEntity() {
@@ -94,5 +97,15 @@ public class QualityGateEntity {
 
     public void setFeedbackTrainer2(String feedbackTrainer2) {
         this.feedbackTrainer2 = feedbackTrainer2;
+    }
+
+    @Basic
+    @Column(name = "quality_gate_date")
+    public Date getQualityGateDate() {
+        return qualityGateDate;
+    }
+
+    public void setQualityGateDate(Date qualityGateDate) {
+        this.qualityGateDate = qualityGateDate;
     }
 }

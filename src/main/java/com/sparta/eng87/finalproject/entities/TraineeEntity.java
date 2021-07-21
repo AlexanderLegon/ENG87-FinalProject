@@ -12,13 +12,12 @@ public class TraineeEntity {
     private String firstName;
     private String lastName;
     private Integer courseId;
-    private Date qualityGateDate;
 
-    public TraineeEntity(String firstName, String lastName, Integer courseId, Date qualityGateDate) {
+
+    public TraineeEntity(String firstName, String lastName, Integer courseId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.courseId = courseId;
-        this.qualityGateDate = qualityGateDate;
     }
 
     public TraineeEntity() {
@@ -63,16 +62,6 @@ public class TraineeEntity {
 
     public void setCourseId(Integer courseId) {
         this.courseId = courseId;
-    }
-
-    @Basic
-    @Column(name = "quality_gate_date")
-    public Date getQualityGateDate() {
-        return qualityGateDate;
-    }
-
-    public void setQualityGateDate(Date qualityGateDate) {
-        this.qualityGateDate = qualityGateDate;
     }
 
 
