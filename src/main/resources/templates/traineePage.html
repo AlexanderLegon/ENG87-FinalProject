@@ -73,16 +73,7 @@
                                                            th:id="${iterStat.index}">Add</a></button>
                     </div>
                 </td>
-<!--                <tr th:each="trainee, iterStat: ${trainees}">-->
                     <td th:each="qualitygate : ${qualitygates}" th:if="${qualitygate.getTraineeID()} == ${trainee[3]}" th:utext="${qualitygate.getQualityGateDate()} + ' --- ' + ${qualitygate.getPass()} + '&lt;br&gt;' +  '&lt;br&gt;' + 'Feedback 1 : ' + ${qualitygate.getFeedbackTrainer1()} + '&lt;br&gt;' + 'Feedback 2 : ' + ${qualitygate.getFeedbackTrainer2()}">help</td>
-<!--                    <td th:each="qualitygate : ${qualitygates}" th:if="${qualitygate.getTraineeID()} == ${trainee[3]}" th:text="${qualitygate.getFeedbackTrainer1()}">help</td>-->
-<!--                    <td th:each="qualitygate : ${qualitygates}" th:if="${qualitygate.getTraineeID()} == ${trainee[3]}" th:text="${qualitygate.getFeedbackTrainer2()}">help</td>-->
-<!--                    <td th:text="${trainee[5]}">Second Date</td>-->
-<!--                    <td th:text="${trainee[6]}">Feedback</td>-->
-<!--                    <td th:text="${trainee[7]}">Feedback</td>-->
-<!--                    <td th:text="${trainee[5]}">First Date</td>-->
-<!--                    <td th:text="${trainee[6]}"th>Feedback</td>-->
-
             </tr>
 
             </tbody>
