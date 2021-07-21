@@ -39,6 +39,7 @@
                 <th scope="col" id="tableHeader3">Quality Gate Status</th>
                 <th scope="col" id="tableHeader4">Edit Trainee</th>
                 <th scope="col" id="tableHeader5">Delete Trainee</th>
+                <th scope="col" id="tableHeader6">Add Quality Gate</th>
                     <th scope="col" data-breakpoints="all" data-title="Quality Gate History">Quality Gate History</th>
                     <td scope="col" data-breakpoints="all"></td>
                     <th scope="col" data-breakpoints="all"></th>
@@ -68,7 +69,12 @@
                                 th:id="${iterStat.index}">Delete</a></button>
                     </div>
                 </td>
-
+                <td>
+                    <div class="mb-3">
+                        <button class="btn btn-primary"><a th:href="@{/addQualityGate/{Tid}(Tid=${trainee[3]})}"
+                                                           th:id="${iterStat.index}">Add</a></button>
+                    </div>
+                </td>
                 <td>Third Date</td>
                 <td>Second Date</td>
                 <td>Good content to answers but they are rambled and communication is unclear</td>
