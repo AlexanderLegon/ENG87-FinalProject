@@ -42,6 +42,7 @@ public class FragmentController {
     public String goToTrainee(Model model){
         model.addAttribute("trainees", traineeService.getAllTrainees());
         model.addAttribute("qualitygates", qualityGateService.getAllQualityGates());
+        model.addAttribute("courses",courseService.getAllCourses());
         return "traineePage";
     }
 

@@ -144,3 +144,17 @@ html, body{
 tr{
      color: white !important;
  }
+
+.accordion-item {
+    background-color: rgb(2, 24, 27) !important;
+    color: white !important;
+}
+.accordion-button{
+    background-color: rgb(225, 57, 99) !important;
+    color: white !important;
+}
+#course-filter-div{
+    max-width: 300px !important;
+    text-align: center;
+    margin:auto;
+}
