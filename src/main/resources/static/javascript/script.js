@@ -45,7 +45,7 @@ function addTrainersForms(trainersFormsToAdd) {
                 var inputNode = document.createElement("input");
                 inputNode.type = "number";
                 inputNode.id = currentId;
-                inputNode.name = currentId;
+                inputNode.name = ids[j];
                 inputNode.className = "form-control";
 
                 if (j != 0) {
