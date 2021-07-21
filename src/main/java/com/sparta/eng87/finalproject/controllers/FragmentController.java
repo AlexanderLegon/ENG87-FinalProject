@@ -15,15 +15,17 @@ public class FragmentController {
     private CourseService courseService;
     private CourseTypeService courseTypeService;
     private DisciplineService disciplineService;
+    private QualityGateService qualityGateService;
 
     @Autowired
-    public FragmentController(LocationService locationService, CourseService courseService, TraineeService traineeService, TrainerService trainerService, CourseTypeService courseTypeService, DisciplineService disciplineService) {
+    public FragmentController(LocationService locationService, CourseService courseService, TraineeService traineeService, TrainerService trainerService, CourseTypeService courseTypeService, DisciplineService disciplineService, QualityGateService qualityGateService) {
         this.traineeService = traineeService;
         this.trainerService = trainerService;
         this.locationService = locationService;
         this.courseService = courseService;
         this.courseTypeService = courseTypeService;
         this.disciplineService = disciplineService;
+        this.qualityGateService = qualityGateService;
     }
 
     @GetMapping("/accountManagement")
@@ -39,6 +41,7 @@ public class FragmentController {
     @GetMapping("/traineePage")
     public String goToTrainee(Model model){
         model.addAttribute("trainees", traineeService.getAllTrainees());
+        model.addAttribute("qualitygates", qualityGateService.getAllQualityGates());
         return "traineePage";
     }
 

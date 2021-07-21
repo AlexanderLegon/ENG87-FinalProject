@@ -5,6 +5,8 @@ import com.sparta.eng87.finalproject.repositories.QualityGateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class QualityGateService {
 
@@ -17,5 +19,9 @@ public class QualityGateService {
 
     public void save(QualityGateEntity qualityGate){
         qualityGateRepository.save(qualityGate);
+    }
+
+    public List<QualityGateEntity> getAllQualityGates(){
+        return qualityGateRepository.getAllQualityGates();
     }
 }

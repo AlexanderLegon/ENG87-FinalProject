@@ -84,7 +84,8 @@ public class TraineeService {
     public List<Object[]> getAllTrainees(){
 
         List<Object[]> trainees = traineeRepository.getAllTrainees();
-        List<String> duplicates = new ArrayList<>();
+        List<Integer> duplicates = new ArrayList<>();
+
         List<Object[]> results = new ArrayList<>();
 
         for(Object[] trainee: trainees){
@@ -97,7 +98,7 @@ public class TraineeService {
             if (duplicates.contains(trainees.get(i)[3])) {
                 for (int j = 0; j < results.size(); j++) {
                     if ((results.get(j)[3].equals(trainees.get(i)[3]) )) {
-                        if (trainees.get(i).toString().equalsIgnoreCase("passed")) {
+                        if (trainees.get(i)[2].toString().equalsIgnoreCase("passed")) {
                             results.remove(j);
                             results.add(trainees.get(i));
                             break;
@@ -109,15 +110,12 @@ public class TraineeService {
                             results.remove(j);
                             results.add(trainees.get(i));
                             break;
-                        } else{
-                            results.get(j)[2] = "Pending";
-                            break;
                         }
                     }
                 }
             } else {
                 results.add(trainees.get(i));
-                duplicates.add(trainees.get(i)[3].toString());
+                duplicates.add((Integer)trainees.get(i)[3]);
             }
         }
         return results;
