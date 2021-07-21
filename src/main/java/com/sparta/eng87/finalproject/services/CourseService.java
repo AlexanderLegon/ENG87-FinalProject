@@ -235,5 +235,13 @@ public class CourseService {
         return endBondDates;
     }
 
+    public Integer getRoomOccupancyByLocationId(int locationId){
+        return courseRepository.getCurrentNumberOfCoursesAtLocation(locationId);
+    }
+
+    public Integer getNumberOfRoomsAtLocation(int locationId){
+        return courseRepository.getNumberOfRoomsAtLocation(locationId);
+    }
+
 
 }

@@ -2,23 +2,23 @@ package com.sparta.eng87.finalproject.controllers;
 
 import com.sparta.eng87.finalproject.entities.CourseEntity;
 import com.sparta.eng87.finalproject.services.CourseService;
+import com.sparta.eng87.finalproject.services.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 
 @Controller
 public class CourseController {
     private CourseService courseService;
+    private LocationService locationService;
 
     @Autowired
-    public CourseController(CourseService courseService) {
+    public CourseController(CourseService courseService, LocationService locationService) {
         this.courseService = courseService;
+        this.locationService = locationService;
     }
 
 
@@ -35,7 +35,6 @@ public class CourseController {
                             @RequestParam(name = "location_id") Integer locationId,
                             @RequestParam(name = "start_date") String startDate){
 
-
         CourseEntity courseEntity = new CourseEntity();
         courseEntity.setCourseName(courseName);
         courseEntity.setTrainerId(trainerId);
@@ -47,6 +46,7 @@ public class CourseController {
         courseService.addCourse(courseEntity);
 
         return "redirect:/coursePage";
+
     }
 
     @GetMapping("/editCourse/{id}")
@@ -66,5 +66,13 @@ public class CourseController {
     public String removeCourse(@PathVariable("id") Integer id){
         courseService.removeCourse(id);
         return "redirect:/coursePage";
+    }
+
+
+    @GetMapping("/getSpacesAtLocation/{locationId}")
+    @ResponseBody
+    public String getSpacesAtLocation(@PathVariable("locationId") Integer locationId){
+        int spacesAtLocation = courseService.getNumberOfRoomsAtLocation(locationId) - courseService.getRoomOccupancyByLocationId(locationId);
+        return String.valueOf(spacesAtLocation);
     }
 }
