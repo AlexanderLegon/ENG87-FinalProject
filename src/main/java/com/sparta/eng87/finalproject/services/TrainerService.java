@@ -47,4 +47,8 @@ public class TrainerService {
         }
         return colors;
     }
+
+    public List<TrainerEntity> getAllTrainerEntities() {
+        return trainerRepository.getAllTrainerEntities();
+    }
 }

@@ -3,6 +3,10 @@ package com.sparta.eng87.finalproject.controllers;
 import com.sparta.eng87.finalproject.entities.CourseEntity;
 import com.sparta.eng87.finalproject.services.CourseService;
 import com.sparta.eng87.finalproject.services.LocationService;
+import com.sparta.eng87.finalproject.entities.CourseTypeEntity;
+import com.sparta.eng87.finalproject.entities.DisciplineEntity;
+import com.sparta.eng87.finalproject.entities.LocationEntity;
+import com.sparta.eng87.finalproject.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,17 +17,27 @@ import java.sql.Date;
 @Controller
 public class CourseController {
     private CourseService courseService;
+    private TrainerService trainerService;
+    private DisciplineService disciplineService;
     private LocationService locationService;
+    private CourseTypeService courseTypeService;
 
     @Autowired
-    public CourseController(CourseService courseService, LocationService locationService) {
+    public CourseController(CourseService courseService, TrainerService trainerService, DisciplineService disciplineService, LocationService locationService, CourseTypeService courseTypeService) {
         this.courseService = courseService;
+        this.trainerService = trainerService;
+        this.disciplineService = disciplineService;
         this.locationService = locationService;
+        this.courseTypeService = courseTypeService;
     }
 
 
     @GetMapping("/addCourse")
-    public String getAddCoursePage(){
+    public String getAddCoursePage(Model model){
+        model.addAttribute("trainers", trainerService.getAllTrainerEntities());
+        model.addAttribute("disciplines", disciplineService.getAllDisciplineEntities());
+        model.addAttribute("locations", locationService.getAllLocationEntities());
+        model.addAttribute("courseTypes", courseTypeService.getAllCourseTypeEntities());
         return "addCourse";
     }
 
@@ -37,12 +51,11 @@ public class CourseController {
 
         CourseEntity courseEntity = new CourseEntity();
         courseEntity.setCourseName(courseName);
-        courseEntity.setTrainerId(trainerId);
         courseEntity.setDisciplineId(disciplineId);
-        courseEntity.setTypeId(typeId);
         courseEntity.setLocationId(locationId);
+        courseEntity.setTrainerId(trainerId);
+        courseEntity.setTypeId(typeId);
         courseEntity.setStartDate(Date.valueOf(startDate));
-
         courseService.addCourse(courseEntity);
 
         return "redirect:/coursePage";
@@ -52,6 +65,10 @@ public class CourseController {
     @GetMapping("/editCourse/{id}")
     public String editCourse(@PathVariable("id") Integer id, Model model){
         model.addAttribute("course", courseService.findCourseById(id));
+        model.addAttribute("trainers", trainerService.getAllTrainerEntities());
+        model.addAttribute("disciplines", disciplineService.getAllDisciplineEntities());
+        model.addAttribute("locations", locationService.getAllLocationEntities());
+        model.addAttribute("courseTypes", courseTypeService.getAllCourseTypeEntities());
         return "editCourse";
     }
 

@@ -39,4 +39,8 @@ public class LocationService {
     public int getNumberOfRoomsById(Integer locationId) {
         return locationRepository.getNumberOfRoomsById(locationId);
     }
+
+    public List<LocationEntity> getAllLocationEntities() {
+        return locationRepository.getAllLocationEntities();
+    }
 }

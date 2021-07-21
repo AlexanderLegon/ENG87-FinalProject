@@ -15,4 +15,7 @@ public interface LocationRepository extends JpaRepository<LocationEntity, Intege
 
     @Query(value = "SELECT number_of_rooms FROM location WHERE location_id = ?", nativeQuery = true)
     int getNumberOfRoomsById(Integer locationId);
+
+    @Query(value = "SELECT * FROM location", nativeQuery = true)
+    List<LocationEntity> getAllLocationEntities();
 }

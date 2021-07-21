@@ -20,20 +20,27 @@
             </div>
             <div class="mb-3">
                 <label for="trainer_id" class="form-label">Trainer ID</label>
-                <input th:field="*{trainerId}" type="number" id="trainer_id" class="form-control" name="trainer_id">
+                <select name="trainer_id" id="trainer_id" class="form-select" th:field="*{trainerId}">
+                    <option th:each="trainer : ${trainers}" th:value="${trainer.trainerId}" th:text="${trainer.firstName} + ' ' + ${trainer.lastName}"></option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="discipline_id" class="form-label">Discipline ID</label>
-                <input th:field="*{disciplineId}" type="number" id="discipline_id" class="form-control"
-                       name="discipline_id">
+                <select name="discipline_id" id="discipline_id" class="form-select" th:field="*{disciplineId}">
+                    <option th:each="discipline : ${disciplines}" th:value="${discipline.discipline_id}" th:text="${discipline.discipline_name}"></option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="type_id" class="form-label">Type ID</label>
-                <input th:field="*{typeId}" type="number" id="type_id" class="form-control" name="type_id">
+                <select name="type_id" id="type_id" class="form-select" th:field="*{typeId}">
+                    <option th:each="courseType : ${courseTypes}" th:value="${courseType.courseTypeId}" th:text="${courseType.typeName}"></option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="location_id" class="form-label">Location ID</label>
-                <input th:field="*{locationId}" type="number" id="location_id" class="form-control" name="location_id">
+                <select name="location_id" id="location_id" class="form-select" th:field="*{locationId}">
+                    <option th:each="location : ${locations}" th:value="${location.locationId}" th:text="${location.location}"></option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="start_date" class="form-label">Start Date</label>

@@ -12,4 +12,8 @@ public interface DisciplineRepository extends JpaRepository<DisciplineEntity,Int
 
     @Query(value = "SELECT * FROM discipline d", nativeQuery = true)
     List<Object[]> getAllDisciplines();
+
+    @Query(value="SELECT * FROM discipline", nativeQuery = true)
+    List<DisciplineEntity> getAllDisciplineEntities();
+
 }
