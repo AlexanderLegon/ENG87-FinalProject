@@ -61,6 +61,7 @@ public class FinalProjectApplication {
 //            courseTypeService.addCourseType(new CourseTypeEntity("Business"));
 //            courseTypeService.addCourseType(new CourseTypeEntity("Technology"));
 //            qualityGateService.save(new QualityGateEntity(1,"Failed- needs support",1,2,"good technical answers but soft skill questions lacking","good content to answers but they are rambled and communication is unclear",  Date.valueOf("2021-04-12")));
+//           qualityGateService.save(new QualityGateEntity(1,"Failed- needs support",1,2,"good technical answers but soft skill questions lacking","good content to answers but they are rambled and communication is unclear",  Date.valueOf("2021-04-12")));
 //            qualityGateService.save(new QualityGateEntity(1,"Passed",2,3,"much clearer answers with strong personality coming through","Made good attempt at technical questions testing to see how they behaved when they aren't sure", Date.valueOf("2021-05-10")));
 //            qualityGateService.save(new QualityGateEntity(2,"passed",1,2,"Amazing","Really well structured answer to all questions", Date.valueOf("2021-05-04")));
 //            userService.addUser(new UserEntity("Alex", encoder.encode("password"), "USER", 1));

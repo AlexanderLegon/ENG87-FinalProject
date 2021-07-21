@@ -40,12 +40,10 @@
                 <th scope="col" id="tableHeader4">Edit Trainee</th>
                 <th scope="col" id="tableHeader5">Delete Trainee</th>
                 <th scope="col" id="tableHeader6">Add Quality Gate</th>
-                    <th scope="col" data-breakpoints="all" data-title="Quality Gate History">Quality Gate History</th>
-                    <td scope="col" data-breakpoints="all"></td>
-                    <th scope="col" data-breakpoints="all"></th>
-                    <th scope="col" data-breakpoints="all"></th>
-                    <th scope="col" data-breakpoints="all"></th>
-                    <th scope="col" data-breakpoints="all"></th>
+                <th scope="col" data-breakpoints="all" data-title="Quality Gate History">Quality Gate History</th>
+                <th scope="col" data-breakpoints="all"></th>
+                <th scope="col" data-breakpoints="all"></th>
+
             </tr>
             </thead>
             <tbody>
@@ -75,12 +73,7 @@
                                                            th:id="${iterStat.index}">Add</a></button>
                     </div>
                 </td>
-                <td>Third Date</td>
-                <td>Second Date</td>
-                <td>Good content to answers but they are rambled and communication is unclear</td>
-                <td>First Date</td>
-                <td>Made good attempt at technical questions testing to see how they behaved when they aren't sure</td>
-
+                    <td th:each="qualitygate : ${qualitygates}" th:if="${qualitygate.getTraineeID()} == ${trainee[3]}" th:utext="${qualitygate.getQualityGateDate()} + ' --- ' + ${qualitygate.getPass()} + '&lt;br&gt;' +  '&lt;br&gt;' + 'Feedback 1 : ' + ${qualitygate.getFeedbackTrainer1()} + '&lt;br&gt;' + 'Feedback 2 : ' + ${qualitygate.getFeedbackTrainer2()}">help</td>
             </tr>
 
             </tbody>
