@@ -14,4 +14,7 @@ public interface TrainerRepository extends JpaRepository<TrainerEntity, Integer>
 
     @Query(value = "SELECT trainer_color FROM trainer WHERE first_name = ?1 AND last_name = ?2", nativeQuery = true)
     String getTrainerColorByTrainerName(String firstName, String secondName);
+
+    @Query(value = "SELECT trainer_color FROM trainer WHERE trainer_id = ?1", nativeQuery = true)
+    String getTrainerColorByTrainerId(int trainerId);
 }
