@@ -93,23 +93,23 @@ public class TraineeController {
         return "redirect:/traineePage/{courseName}";
     }
 
-    @GetMapping("/addQualityGateStatus/{Tid}")
-    public String getAddQualityGatePage(@PathVariable("Tid") Integer id, Model model){
-        model.addAttribute("Tid", id);
-        return "addQualityGateStatus";
+    @GetMapping("/addQualityGate/{Tid}")
+    public String getAddQualityGatePage(@PathVariable("Tid") Integer traineeId, Model model){
+        model.addAttribute("traineeId", traineeId);
+        return "addQualityGate";
     }
 
-    @PostMapping("/addQualityGateStatus/{Tid}")
-    public String addQualityGate(@PathVariable("Tid") Integer id,
-                                 @PathVariable("qualityGateStatus") String QGS,
-                                 @PathVariable("trainerId1") Integer trainerId1,
-                                 @PathVariable("trainerId2") Integer trainerId2,
-                                 @PathVariable("trainerFeedback1") String trainerFeedback1,
-                                 @PathVariable("trainerFeedback2") String trainerFeedback2,
-                                 @PathVariable("date") String date){
+    @PostMapping("/addQualityGate")
+    public String addQualityGate(@PathVariable(name = "traineeId") Integer id,
+                                 @PathVariable(name = "qualityGateStatus") String qualityGateStatus,
+                                 @PathVariable(name = "trainerId1") Integer trainerId1,
+                                 @PathVariable(name = "trainerId2") Integer trainerId2,
+                                 @PathVariable(name = "trainerFeedback1") String trainerFeedback1,
+                                 @PathVariable(name = "trainerFeedback2") String trainerFeedback2,
+                                 @PathVariable(name = "date") String date){
         QualityGateEntity qualityGateEntity = new QualityGateEntity();
         qualityGateEntity.setTraineeID(id);
-        qualityGateEntity.setPass(QGS);
+        qualityGateEntity.setPass(qualityGateStatus);
         qualityGateEntity.setTrainer1ID(trainerId1);
         qualityGateEntity.setTrainer2ID(trainerId2);
         qualityGateEntity.setQualityGateDate(Date.valueOf(date));
