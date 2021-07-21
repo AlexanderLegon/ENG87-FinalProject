@@ -7,15 +7,67 @@ function showPage() {
     document.getElementsByClassName("sch-wrapper")[0].style.display = "block";
 };
 
-var plusMinusButtons = document.getElementsByClassName("btn-number");
 
-for (let i = 0; i < plusMinusButtons.length; i++) {
-    plusMinusButtons[i].addEventListener("click", function () {
+function updateNumberOfTrainers() {
+    let prevNumberOfTrainers = 1;
+    let numOfTrainers = 1;
+    document.body.addEventListener("click", function () {
+        prevNumberOfTrainers = numOfTrainers;
+        numOfTrainers = parseInt(document.getElementsByClassName("input-number")[0].value);
+        console.log(numOfTrainers);
+        console.log(prevNumberOfTrainers);
+
+        addTrainersForms(numOfTrainers - prevNumberOfTrainers);
 
     });
 }
 
+function addTrainersForms(trainersFormsToAdd) {
+    var trainersNode = document.getElementById("trainers");
+    if (trainersFormsToAdd > 0) {
+        let ids = ["trainer_id", "trainer_start_week", "trainer_end_week"];
+        for (var i = 0; i < trainersFormsToAdd; i++) {
+            var node = document.createElement("div");
+            node.className = "row";
+
+            for (var j = 0; j < 3; j++) {
+                var colNode = document.createElement("div");
+                colNode.className = "col";
+
+                var labelNode = document.createElement("label");
+                labelNode.htmlFor = ids[j];
+                labelNode.className = "form-label";
+
+                var inputNode = document.createElement("input");
+                inputNode.type = "number";
+                inputNode.id = ids[j];
+                inputNode.name = ids[j];
+                inputNode.className = "form-control";
+
+                if (j != 0) {
+                    inputNode.value = "1";
+                    inputNode.min = "1";
+                    inputNode.max = "52";
+                }
+
+                colNode.appendChild(labelNode);
+                colNode.appendChild(inputNode);
+                node.appendChild(colNode);
+            }
+
+
+            trainersNode.appendChild(node);
+        }
+    } else {
+        for (var i = 0; i > trainersFormsToAdd; i--) {
+            trainersNode.removeChild(trainersNode.lastChild);
+        }
+    }
+}
+
 window.onload = function () {
+    updateNumberOfTrainers();
+
     $('.btn-number').click(function (e) {
         e.preventDefault();
 
