@@ -19,7 +19,11 @@
             </div>
             <div class="mb-3">
                 <label for="qualitygateStatus" class="form-label">Quality Gate Status</label>
-                <input type="text" id="qualitygateStatus" class="form-control" name="qualityGateStatus">
+                <select id="qualitygateStatus" class="form-control" name="qualityGateStatus">
+                    <option value="Failed">Failed</option>
+                    <option value="Failed-Needs Help">Failed needs help</option>
+                    <option value="Passed">Passed</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="trainerId1" class="form-label">Trainer 1 ID</label>

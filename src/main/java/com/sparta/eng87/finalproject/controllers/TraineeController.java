@@ -100,21 +100,21 @@ public class TraineeController {
     }
 
     @PostMapping("/addQualityGate")
-    public String addQualityGate(@PathVariable(name = "traineeId") Integer id,
-                                 @PathVariable(name = "qualityGateStatus") String qualityGateStatus,
-                                 @PathVariable(name = "trainerId1") Integer trainerId1,
-                                 @PathVariable(name = "trainerId2") Integer trainerId2,
-                                 @PathVariable(name = "trainerFeedback1") String trainerFeedback1,
-                                 @PathVariable(name = "trainerFeedback2") String trainerFeedback2,
-                                 @PathVariable(name = "date") String date){
+    public String addQualityGate(@RequestParam(name = "traineeId") Integer id,
+                                 @RequestParam(name = "qualityGateStatus") String qualityGateStatus,
+                                 @RequestParam(name = "trainerId1") Integer trainerId1,
+                                 @RequestParam(name = "trainerId2") Integer trainerId2,
+                                 @RequestParam(name = "feedback1") String trainerFeedback1,
+                                 @RequestParam(name = "feedback2") String trainerFeedback2,
+                                 @RequestParam(name = "date") String date){
         QualityGateEntity qualityGateEntity = new QualityGateEntity();
         qualityGateEntity.setTraineeID(id);
         qualityGateEntity.setPass(qualityGateStatus);
         qualityGateEntity.setTrainer1ID(trainerId1);
         qualityGateEntity.setTrainer2ID(trainerId2);
-        qualityGateEntity.setQualityGateDate(Date.valueOf(date));
         qualityGateEntity.setFeedbackTrainer1(trainerFeedback1);
         qualityGateEntity.setFeedbackTrainer2(trainerFeedback2);
+        qualityGateEntity.setQualityGateDate(Date.valueOf(date));
         qualityGateService.save(qualityGateEntity);
         return "redirect:/traineePage";
     }
