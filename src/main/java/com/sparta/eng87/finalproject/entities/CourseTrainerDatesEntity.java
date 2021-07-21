@@ -12,14 +12,14 @@ public class CourseTrainerDatesEntity {
     private Integer courseTrainerDatesId;
     private Integer trainerId;
     private Integer courseId;
-    private Date trainerStartDate;
-    private Date trainerEndDate;
+    private Integer trainerStartDate;
+    private Integer trainerEndDate;
 
 
     public CourseTrainerDatesEntity() {
     }
 
-    public CourseTrainerDatesEntity(Integer courseTrainerDatesId, Integer trainerId, Integer courseId, Date trainerStartDate, Date trainerEndDate) {
+    public CourseTrainerDatesEntity(Integer courseTrainerDatesId, Integer trainerId, Integer courseId, Integer trainerStartDate, Integer trainerEndDate) {
         this.courseTrainerDatesId = courseTrainerDatesId;
         this.trainerId = trainerId;
         this.courseId = courseId;
@@ -63,22 +63,22 @@ public class CourseTrainerDatesEntity {
 
     @Basic
     @Column(name = "trainer_start_date")
-    public Date getTrainerStartDate() {
+    public Integer getTrainerStartDate() {
         return trainerStartDate;
     }
 
-    public void setTrainerStartDate(Date trainerStartDate) {
+    public void setTrainerStartDate(Integer trainerStartDate) {
         this.trainerStartDate = trainerStartDate;
     }
 
 
     @Basic
     @Column(name = "trainer_end_date")
-    public Date getTrainerEndDate() {
+    public Integer getTrainerEndDate() {
         return trainerEndDate;
     }
 
-    public void setTrainerEndDate(Date trainerEndDate) {
+    public void setTrainerEndDate(Integer trainerEndDate) {
         this.trainerEndDate = trainerEndDate;
     }
 }

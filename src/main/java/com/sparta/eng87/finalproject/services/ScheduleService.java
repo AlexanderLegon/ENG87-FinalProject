@@ -76,12 +76,14 @@ public class ScheduleService {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         for (int i = 0; i<courseNames.size();i++) {
+
             courseStartDate = courseRepository.getCourseStartDatesByCourseName(courseNames.get(i));
             currentEndDate = dateFormat.format(courseEndDate.get(i));
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate courseStartDateTime = LocalDate.parse(courseStartDate, formatter);
             LocalDate courseEndDateTime = LocalDate.parse(currentEndDate, formatter2);
+            Integer courseId = courseRepository.findCourseIdByCourseName(courseNames.get(i));
 
 
 //            courseStartDate = dateFormat.format(courseStartDate);
@@ -97,11 +99,18 @@ public class ScheduleService {
 
             currentEndDate = courseEndDateTime.toString();
             courseStartDate = courseStartDateTime.toString();
+            int weekNum = 1;
+            List<Object[]> trainerWeeks = courseRepository.getTrainerDatesByCourseId(courseId);
+            if( trainerWeeks.size()>0) {
+                System.out.println(trainerWeeks.get(0).toString());
+            }
             for(String week:weeks) {
                 LocalDate currentWeek = LocalDate.parse(week, formatter2);
 
                 if ((currentWeek.isAfter(courseStartDateTime) && currentWeek.isBefore(courseEndDateTime))||currentWeek.isEqual(courseEndDateTime)||currentWeek.isEqual(courseStartDateTime)){
                     currentCourseActive.add(1);
+
+                    weekNum++;
                 }else{currentCourseActive.add(0);}
 //                if (currentWeek.isEqual(courseStartDateTime)) {
 //                    active = true;
