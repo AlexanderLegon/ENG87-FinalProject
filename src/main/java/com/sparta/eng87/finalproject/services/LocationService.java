@@ -3,6 +3,7 @@ package com.sparta.eng87.finalproject.services;
 import com.sparta.eng87.finalproject.entities.LocationEntity;
 import com.sparta.eng87.finalproject.repositories.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,5 +34,9 @@ public class LocationService {
 
     public void deleteLocation(Integer id) {
         locationRepository.deleteById(id);
+    }
+
+    public int getNumberOfRoomsById(Integer locationId) {
+        return locationRepository.getNumberOfRoomsById(locationId);
     }
 }
