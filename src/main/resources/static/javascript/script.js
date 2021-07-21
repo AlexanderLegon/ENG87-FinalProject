@@ -24,6 +24,7 @@ function updateNumberOfTrainers() {
 
 function addTrainersForms(trainersFormsToAdd) {
     var trainersNode = document.getElementById("trainers");
+    var trainersNames = document.getElementsByClassName("trainers-options");
     if (trainersFormsToAdd > 0) {
         let ids = ["trainer_id", "trainer_start_week", "trainer_end_week"];
         var position = trainersNode.childElementCount;
@@ -42,20 +43,41 @@ function addTrainersForms(trainersFormsToAdd) {
                 labelNode.htmlFor = currentId;
                 labelNode.className = "form-label";
 
+
                 var inputNode = document.createElement("input");
                 inputNode.type = "number";
                 inputNode.id = currentId;
                 inputNode.name = ids[j];
                 inputNode.className = "form-control";
 
+                colNode.appendChild(labelNode);
+
+
                 if (j != 0) {
+                    var inputNode = document.createElement("input");
+                    inputNode.type = "number";
+                    inputNode.id = currentId;
+                    inputNode.name = ids[j];
+                    inputNode.className = "form-control";
                     inputNode.value = "1";
                     inputNode.min = "1";
                     inputNode.max = "52";
+                    colNode.appendChild(inputNode);
+                } else {
+                    var selectNode = document.createElement("select");
+                    selectNode.id = currentId;
+                    selectNode.name = ids[j];
+                    selectNode.className = "form-select";
+                    colNode.appendChild(selectNode);
+
+                    for (var k = 0; k < trainersNames.length; k++){
+                        var optionNode = document.createElement("option");
+                        optionNode.textContent = trainersNames[k].textContent;
+                        selectNode.appendChild(optionNode);
+                    }
+
                 }
 
-                colNode.appendChild(labelNode);
-                colNode.appendChild(inputNode);
                 node.appendChild(colNode);
             }
 

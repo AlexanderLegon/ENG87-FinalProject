@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface CourseRepository extends JpaRepository<CourseEntity,Integer> {
-    @Query(value="SELECT c.course_name, d.discipline_name, ct.type_name, t.first_name, t.last_name, l.location, c.start_date, d.discipline_duration, c.course_id " +
+    @Query(value="SELECT c.course_name, d.discipline_name, ct.type_name, t.first_name, t.last_name, l.location, c.start_date, d.discipline_duration, c.course_id, count(tr.trainee_id)" +
             "FROM course c INNER JOIN discipline d " +
             "ON c.discipline_id = d.discipline_id " +
             "INNER JOIN course_type ct " +
@@ -18,6 +18,9 @@ public interface CourseRepository extends JpaRepository<CourseEntity,Integer> {
             "ON c.trainer_id = t.trainer_id " +
             "INNER JOIN location l " +
             "ON l.location_id = c.location_id " +
+            "LEFT JOIN trainee tr " +
+            "ON tr.course_id = c.course_id " +
+            "group by course_id " +
             "ORDER BY c.start_date", nativeQuery = true)
 
     List<Object[]> getAllCoursesByArray();
