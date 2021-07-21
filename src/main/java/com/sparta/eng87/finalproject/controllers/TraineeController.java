@@ -8,6 +8,7 @@ import com.sparta.eng87.finalproject.services.CourseService;
 
 import com.sparta.eng87.finalproject.services.QualityGateService;
 import com.sparta.eng87.finalproject.services.TraineeService;
+import com.sparta.eng87.finalproject.services.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,12 +29,14 @@ public class TraineeController {
     private CourseService courseService;
     private TraineeService traineeService;
     private QualityGateService qualityGateService;
+    private TrainerService trainerService;
 
     @Autowired
-    public TraineeController(CourseService courseService, TraineeService traineeService, QualityGateService qualityGateService) {
+    public TraineeController(CourseService courseService,TrainerService trainerService, TraineeService traineeService, QualityGateService qualityGateService) {
         this.courseService = courseService;
         this.traineeService = traineeService;
         this.qualityGateService = qualityGateService;
+        this.trainerService = trainerService;
     }
 
 
@@ -47,9 +50,10 @@ public class TraineeController {
     @GetMapping("/traineePage/{courseName}")
     public String displayTraineesForCourseId(@PathVariable("courseName") String courseName, Model model)
     {
-
+        model.addAttribute("courses",courseService.getAllCourses());
         model.addAttribute("courseName", courseName);
         model.addAttribute("trainees", traineeService.findTraineeByCourse(courseName));
+        model.addAttribute("qualitygates", qualityGateService.getAllQualityGates());
 
         return "traineePage";
     }
@@ -81,7 +85,7 @@ public class TraineeController {
     public String editTrainee(@PathVariable("id") Integer id, TraineeEntity traineeEntity) {
         traineeEntity.setTraineeId(id);
         traineeService.addTrainee(traineeEntity);
-        return "redirect:/";
+        return "redirect:/traineePage";
     }
 
     @GetMapping("/deleteTrainee/{id}/{courseName}")
@@ -96,6 +100,7 @@ public class TraineeController {
     @GetMapping("/addQualityGate/{Tid}")
     public String getAddQualityGatePage(@PathVariable("Tid") Integer traineeId, Model model){
         model.addAttribute("traineeId", traineeId);
+        model.addAttribute("trainers", trainerService.getAllTrainerEntities());
         return "addQualityGate";
     }
 
