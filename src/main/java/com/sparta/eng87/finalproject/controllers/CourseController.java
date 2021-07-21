@@ -73,6 +73,7 @@ public class CourseController {
     @GetMapping("/editCourse/{id}")
     public String editCourse(@PathVariable("id") Integer id, Model model){
         model.addAttribute("course", courseService.findCourseById(id));
+        model.addAttribute("trainers", courseTrainerDatesService.getTrainersByCourseId(id));
         return "editCourse";
     }
 

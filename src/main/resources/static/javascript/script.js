@@ -45,7 +45,7 @@ function addTrainersForms(trainersFormsToAdd) {
                 var inputNode = document.createElement("input");
                 inputNode.type = "number";
                 inputNode.id = currentId;
-                inputNode.name = currentId;
+                inputNode.name = ids[j];
                 inputNode.className = "form-control";
 
                 if (j != 0) {
@@ -143,4 +143,23 @@ window.onload = function () {
             e.preventDefault();
         }
     });
+}
+
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+function exceedsCapacity() {
+    var location_id = document.getElementById("location_id").value;
+    var capacity = httpGet('http://localhost:8080/getSpacesAtLocation/' + location_id);
+    console.log(capacity);
+    if (parseInt(capacity) <= 0) {
+        return confirm("This will exceed the centres limit. \nAre you sure you wish to proceed?");
+    } else {
+        return true;
+    }
 }

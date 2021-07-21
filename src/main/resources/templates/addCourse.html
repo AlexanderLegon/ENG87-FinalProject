@@ -77,37 +77,6 @@
                 <input type="date" id="start_date" class="form-control" name="start_date">
             </div>
             <div class="mb-3">
-                <script>
-
-                    // async function httpGet(theUrl) {
-                    //     var obj;
-                    //
-                    //     fetch(theUrl)
-                    //         .then(res => res.text())
-                    //         .then(data => obj = data)
-                    //         .then(() => {return obj})
-                    //
-                    // }
-
-                    function httpGet(theUrl)
-                    {
-                        var xmlHttp = new XMLHttpRequest();
-                        xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-                        xmlHttp.send( null );
-                        return xmlHttp.responseText;
-                    }
-
-                    function exceedsCapacity() {
-                        var location_id = document.getElementById("location_id").value;
-                        var capacity = httpGet('http://localhost:8080/getSpacesAtLocation/' + location_id);
-                        console.log(capacity);
-                        if (parseInt(capacity) <= 0) {
-                            return confirm("This will exceed the centres limit. \nAre you sure you wish to proceed?");
-                        } else {
-                            return true;
-                        }
-                    }
-                </script>
                 <input onclick="return exceedsCapacity()" type="submit" class="btn btn-primary" value="Submit" id="inputButton">
             </div>
         </form>

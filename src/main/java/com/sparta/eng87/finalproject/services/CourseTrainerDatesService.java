@@ -6,6 +6,8 @@ import com.sparta.eng87.finalproject.repositories.CourseTrainerDatesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CourseTrainerDatesService {
     private CourseTrainerDatesRepository courseTrainerDatesRepository;
@@ -17,5 +19,9 @@ public class CourseTrainerDatesService {
 
     public void addCourse(CourseTrainerDatesEntity courseTrainerDatesEntity) {
         courseTrainerDatesRepository.save(courseTrainerDatesEntity);
+    }
+
+    public List<CourseTrainerDatesEntity> getTrainersByCourseId(int courseId){
+       return courseTrainerDatesRepository.GetTrainersByCourseId(courseId);
     }
 }
