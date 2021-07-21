@@ -93,13 +93,13 @@ public class TraineeController {
         return "redirect:/traineePage/{courseName}";
     }
 
-    @GetMapping("/addQualityGate/{Tid}")
+    @GetMapping("/addQualityGateStatus/{Tid}")
     public String getAddQualityGatePage(@PathVariable("Tid") Integer id, Model model){
         model.addAttribute("Tid", id);
-        return "addQualityGate";
+        return "addQualityGateStatus";
     }
 
-    @PostMapping("/addQualityGate/{Tid}")
+    @PostMapping("/addQualityGateStatus/{Tid}")
     public String addQualityGate(@PathVariable("Tid") Integer id,
                                  @PathVariable("qualityGateStatus") String QGS,
                                  @PathVariable("trainerId1") Integer trainerId1,
