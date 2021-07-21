@@ -2,6 +2,7 @@ package com.sparta.eng87.finalproject.entities;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.sql.Date;
 
 @Entity
 @Table(name = "trainee", schema = "courseorganisation", catalog = "")
@@ -11,11 +12,13 @@ public class TraineeEntity {
     private String firstName;
     private String lastName;
     private Integer courseId;
+    private Date qualityGateDate;
 
-    public TraineeEntity(String firstName, String lastName, Integer courseId) {
+    public TraineeEntity(String firstName, String lastName, Integer courseId, Date qualityGateDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.courseId = courseId;
+        this.qualityGateDate = qualityGateDate;
     }
 
     public TraineeEntity() {
@@ -61,6 +64,17 @@ public class TraineeEntity {
     public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
+
+    @Basic
+    @Column(name = "quality_gate_date")
+    public Date getQualityGateDate() {
+        return qualityGateDate;
+    }
+
+    public void setQualityGateDate(Date qualityGateDate) {
+        this.qualityGateDate = qualityGateDate;
+    }
+
 
     @Override
     public boolean equals(Object o) {
