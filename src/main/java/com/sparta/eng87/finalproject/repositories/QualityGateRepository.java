@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface QualityGateRepository extends JpaRepository<QualityGateEntity,Integer>{
 
-    @Query(value = "SELECT * FROM quality_gate", nativeQuery = true)
+    @Query(value = "SELECT * FROM quality_gate ORDER BY quality_gate_date DESC", nativeQuery = true)
     List<QualityGateEntity> getAllQualityGates();
 }
