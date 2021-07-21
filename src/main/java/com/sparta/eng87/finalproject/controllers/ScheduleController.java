@@ -28,6 +28,7 @@ public class ScheduleController {
         List<String> dates = scheduleService.listDates();
         List<String> courseNames = courseService.getCourseNames();
         List<Object[]> activeDays =  scheduleService.getActiveCourseWeeks(dates,courseNames);
+        courseService.getTraineeCount();
         model.addAttribute("activeWeeks",activeDays);
         model.addAttribute("CourseName", courseNames);
         model.addAttribute("DisciplineName", courseService.getDisciplineNames());
@@ -40,6 +41,7 @@ public class ScheduleController {
         model.addAttribute("BondDate", courseService.getListOfStringFromDates(courseService.getBonds()));
         model.addAttribute("color", trainerService.getListOfTrainerColor(courseService.getTrainerNames()));
         model.addAttribute("dates", dates);
+        model.addAttribute("traineeCount", courseService.getTraineeCount());
         return "schedulerPage";
     }
 }

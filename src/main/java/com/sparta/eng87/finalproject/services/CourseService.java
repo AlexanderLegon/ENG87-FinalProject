@@ -82,6 +82,17 @@ public class CourseService {
         return courseTypeNames;
     }
 
+    public List<String> getTraineeCount() {
+        List<String> courseTraineeCount = new ArrayList<>();
+        List<Object[]> courseInformation = courseRepository.getAllCoursesByArray();
+
+        for (Object[] c : courseInformation) {
+            courseTraineeCount.add("" + c[9]);
+            System.out.println(c[9]);
+        }
+        return courseTraineeCount;
+    }
+
     public List<String> getTrainerNames() {
         List<String> trainerNames = new ArrayList<>();
         List<Object[]> courseInformation = courseRepository.getAllCoursesByArray();

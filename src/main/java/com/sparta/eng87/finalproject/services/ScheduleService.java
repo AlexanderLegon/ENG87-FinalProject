@@ -135,10 +135,6 @@ public class ScheduleService {
 //                }
 
             }
-            for(String t : currentCourseActive)
-            {
-                System.out.println(t);
-            }
             activeDays.add(currentCourseActive.toArray());
             currentCourseActive.clear();
         }
