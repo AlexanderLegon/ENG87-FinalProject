@@ -7,8 +7,13 @@
 
 
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/spartaStyles.css}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/javascript/script.js"></script>
 </head>
 <body class="sparta-background-colour">
 <nav th:replace="fragments/header.html :: navbar"></nav>
@@ -20,10 +25,41 @@
                 <label for="course_name" class="form-label">Course Name</label>
                 <input type="text" id="course_name" class="form-control" name="course_name">
             </div>
-            <div class="mb-3">
-                <label for="trainer_id" class="form-label">Trainer ID</label>
-                <input type="number" id="trainer_id" class="form-control" name="trainer_id">
+
+            Number of Trainers
+            <div class="input-group">
+                <span class="input-group-btn">
+              <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus"
+                      data-field="quant[1]">
+                  <span class="bi bi-minus">-</span>
+                </button>
+                </span>
+                <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
+                <span class="input-group-btn">
+              <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                  <span class="bi bi-plus">+</span>
+                </button>
+                </span>
             </div>
+            <div id="trainers">
+                <div class="row">
+                    <div class="col">
+                        <label for="trainer_id0" class="form-label">Trainer ID</label>
+                        <input type="number" id="trainer_id0" class="form-control" name="trainer_id">
+                    </div>
+                    <div class="col">
+                        <label for="trainer_start_week0" class="form-label">Trainer Start Week</label>
+                        <input type="number" id="trainer_start_week0" class="form-control" name="trainer_start_week"
+                               value="1" min="1" max="52">
+                    </div>
+                    <div class="col">
+                        <label for="trainer_end_week0" class="form-label">Trainer End Week</label>
+                        <input type="number" id="trainer_end_week0" class="form-control" name="trainer_end_week"
+                               value="1" min="1" max="52">
+                    </div>
+                </div>
+            </div>
+
             <div class="mb-3">
                 <label for="discipline_id" class="form-label">Discipline ID</label>
                 <input type="number" id="discipline_id" class="form-control" name="discipline_id">

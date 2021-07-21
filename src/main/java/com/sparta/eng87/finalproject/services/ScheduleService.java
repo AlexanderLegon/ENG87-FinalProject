@@ -1,6 +1,7 @@
 package com.sparta.eng87.finalproject.services;
 
 import com.sparta.eng87.finalproject.repositories.CourseRepository;
+import com.sparta.eng87.finalproject.repositories.TrainerRepository;
 import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
@@ -16,10 +17,12 @@ public class ScheduleService {
 
     CourseRepository courseRepository;
     CourseService courseService;
+    TrainerRepository trainerRepository;
 
-    public ScheduleService(CourseRepository courseRepository,CourseService courseService) {
+    public ScheduleService(CourseRepository courseRepository,CourseService courseService,TrainerRepository trainerRepository) {
         this.courseRepository = courseRepository;
         this.courseService = courseService;
+        this.trainerRepository=trainerRepository;
     }
 
     public List<String> listDates() {
@@ -65,13 +68,14 @@ public class ScheduleService {
         List<Date> courseEndDate = courseService.getCourseEndDate();
         String currentEndDate;
         List<Object[]> activeDays = new ArrayList<>();
-        List<Integer> currentCourseActive = new ArrayList<>();
+        List<String> currentCourseActive = new ArrayList<>();
         boolean active = false;
 
 //        ZoneOffset offset = ZoneOffset.of("Z");
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         for (int i = 0; i<courseNames.size();i++) {
+
             courseStartDate = courseRepository.getCourseStartDatesByCourseName(courseNames.get(i));
             currentEndDate = dateFormat.format(courseEndDate.get(i));
 
@@ -79,6 +83,7 @@ public class ScheduleService {
             DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate courseStartDateTime = LocalDate.parse(courseStartDate, formatter);
             LocalDate courseEndDateTime = LocalDate.parse(currentEndDate, formatter2);
+            Integer courseId = courseRepository.findCourseIdByCourseName(courseNames.get(i));
 
 
 //            courseStartDate = dateFormat.format(courseStartDate);
@@ -95,12 +100,27 @@ public class ScheduleService {
 
             currentEndDate = courseEndDateTime.toString();
             courseStartDate = courseStartDateTime.toString();
+            int weekNum = 1;
+            int index = 0;
+            List<Object[]> trainerWeeks = courseRepository.getTrainerDatesByCourseId(courseId);
             for(String week:weeks) {
                 LocalDate currentWeek = LocalDate.parse(week, formatter2);
 
                 if ((currentWeek.isAfter(courseStartDateTime) && currentWeek.isBefore(courseEndDateTime))||currentWeek.isEqual(courseEndDateTime)||currentWeek.isEqual(courseStartDateTime)){
-                    currentCourseActive.add(1);
-                }else{currentCourseActive.add(0);}
+                   // currentCourseActive.add(1);
+
+                   if ((int)trainerWeeks.get(index)[2]>weekNum)
+                   {
+                       currentCourseActive.add(trainerRepository.getTrainerColorByTrainerId((int)trainerWeeks.get(index)[3]));
+                   }
+                    if((int)trainerWeeks.get(index)[2]==weekNum){
+                        currentCourseActive.add(trainerRepository.getTrainerColorByTrainerId((int)trainerWeeks.get(index)[3]));
+                        index++;
+                    }
+
+
+                    weekNum++;
+                }else{currentCourseActive.add("#ffffff");}
 //                if (currentWeek.isEqual(courseStartDateTime)) {
 //                    active = true;
 //                    currentCourseActive.add(1);
@@ -115,7 +135,10 @@ public class ScheduleService {
 //                }
 
             }
-
+            for(String t : currentCourseActive)
+            {
+                System.out.println(t);
+            }
             activeDays.add(currentCourseActive.toArray());
             currentCourseActive.clear();
         }

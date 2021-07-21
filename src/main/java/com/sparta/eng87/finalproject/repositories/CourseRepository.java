@@ -39,4 +39,7 @@ public interface CourseRepository extends JpaRepository<CourseEntity,Integer> {
     @Query(value = "SELECT number_of_rooms FROM location WHERE location_id = ?1", nativeQuery = true)
     Integer getNumberOfRoomsAtLocation(int locationId);
 
+    @Query(value ="SELECT * FROM course_trainer_dates WHERE course_id=?1" ,nativeQuery = true)
+    List<Object[]> getTrainerDatesByCourseId(Integer course_id);
+
 }
