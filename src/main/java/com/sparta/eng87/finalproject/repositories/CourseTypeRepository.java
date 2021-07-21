@@ -13,4 +13,7 @@ public interface CourseTypeRepository extends JpaRepository <CourseTypeEntity,In
     @Query(value = "SELECT * FROM course_type ct", nativeQuery = true)
     List<Object[]> getAllCourseTypes();
 
+    @Query(value = "SELECT * FROM course_type", nativeQuery = true)
+    List<CourseTypeEntity> getAllCourseTypeEntities();
+
 }

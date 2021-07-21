@@ -37,4 +37,9 @@ public class CourseTypeService {
     public List<Object[]> getAllCourseTypes(){
         return courseTypeRepository.getAllCourseTypes();
     }
+
+    public List<CourseTypeEntity> getAllCourseTypeEntities() {
+        return courseTypeRepository.getAllCourseTypeEntities();
+    }
+
 }

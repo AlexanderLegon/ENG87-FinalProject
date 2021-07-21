@@ -13,4 +13,7 @@ public interface LocationRepository extends JpaRepository<LocationEntity, Intege
     @Query(value = "SELECT * FROM location l", nativeQuery = true)
     List<Object> getAllLocations();
 
+    @Query(value = "SELECT * FROM location", nativeQuery = true)
+    List<LocationEntity> getAllLocationEntities();
+
 }

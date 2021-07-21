@@ -34,4 +34,8 @@ public class DisciplineService {
         return disciplineRepository.getAllDisciplines();
     }
 
+    public List<DisciplineEntity> getAllDisciplineEntities() {
+        return disciplineRepository.getAllDisciplineEntities();
+    }
+
 }

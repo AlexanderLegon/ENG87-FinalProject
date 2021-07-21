@@ -34,4 +34,9 @@ public class LocationService {
     public void deleteLocation(Integer id) {
         locationRepository.deleteById(id);
     }
+
+    public List<LocationEntity> getAllLocationEntities() {
+        return locationRepository.getAllLocationEntities();
+    }
+
 }
