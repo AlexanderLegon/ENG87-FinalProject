@@ -9,11 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.sql.Array;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class CourseServiceTests {
 
@@ -27,7 +24,7 @@ public class CourseServiceTests {
     private List<String> trainerFirstNames = Arrays.asList("fred","jeff");
     private List<String> trainerLastNames = Arrays.asList("bloggs","doe");
     private List<String> location = Arrays.asList("London", "Birmingham");
-    private List<java.util.Date> startDate = Arrays.asList(new Date(121,4,1),new Date(121,4,8));
+    private List<java.util.Date> startDate = Arrays.asList(new GregorianCalendar(2021,Calendar.MAY,4).getTime(),new GregorianCalendar(2021,Calendar.MAY,10).getTime());
     private List<Integer> duration= Arrays.asList(12,7);
     private List<Integer> courseId = Arrays.asList(1,2);
     private List<String> traineeCount = Arrays.asList("12","5");
@@ -112,8 +109,8 @@ public class CourseServiceTests {
     @Test
     void shouldReturnDatesAsFormattedString(){
         List<String> formattedDates= new ArrayList<>();
-        formattedDates.add("01-05-21");
-        formattedDates.add("08-05-21");
+        formattedDates.add("04-05-21");
+        formattedDates.add("10-05-21");
         Assertions.assertEquals(courseService.getListOfStringFromDates(startDate),formattedDates);
     }
     @Test
@@ -122,8 +119,18 @@ public class CourseServiceTests {
     }
     @Test
     void shouldReturnCourseEndDates(){
+        List<java.util.Date> endDates = new ArrayList<>();
+        endDates.add(new GregorianCalendar(2021, Calendar.JULY,23).getTime());
+        endDates.add(new GregorianCalendar(2021, Calendar.JUNE,25).getTime());
+       Assertions.assertEquals(courseService.getCourseEndDate(),endDates);
+    }
 
-
+    @Test
+    void shouldReturnBondDates(){
+        List<java.util.Date> bonds = new ArrayList<>();
+        bonds.add(new GregorianCalendar(2021, Calendar.OCTOBER,23).getTime());
+        bonds.add(new GregorianCalendar(2021, Calendar.SEPTEMBER,25).getTime());
+        Assertions.assertEquals(courseService.getBonds(),bonds);
     }
     
 }
