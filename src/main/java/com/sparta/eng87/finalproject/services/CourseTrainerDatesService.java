@@ -25,10 +25,9 @@ public class CourseTrainerDatesService {
        return courseTrainerDatesRepository.GetTrainersByCourseId(courseId);
     }
 
-    public Integer[] getTrainersDateIdByCourseId(int courseId){
+
+    public Integer[] getTrainersDateIdByCourseId(int courseId) {
         Integer[] trainerDatesId = courseTrainerDatesRepository.getTrainersDateIdByCourseId(courseId);
-
-
         return trainerDatesId;
     }
 }
