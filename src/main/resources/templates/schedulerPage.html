@@ -69,14 +69,22 @@
                 <td th:if="${active!='#ffffff'}" th:styleappend="'background-color:' + ${active}"
                     class="vertical-table-lines" id="active"></td>
                 <td th:unless="${active!='#ffffff'}" style="background-color: white" class="vertical-table-lines"
-                    id="inactive"></td>
+                    id="inactive" ></td>
                 </span>
+                    <script th:inline="javascript">
+                        var christmas1 = /*[[${dates.indexOf('20/12/2021')}]]*/ '0';
+                        var christmas2 = /*[[${dates.indexOf('27/12/2021')}]]*/ '0';
+                        var i = /*[[${iterStat.index}]]*/ '0';
+                        document.getElementsByClassName("vertical-table-lines")[christmas1+((i)*53)].style.backgroundColor = "dimgray";
+                        document.getElementsByClassName("vertical-table-lines")[christmas2+((i)*53)].style.backgroundColor = "dimgray";
+                    </script>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
 <footer>
     <nav th:replace="fragments/footer.html :: navbar"></nav>
 </footer>
