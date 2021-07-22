@@ -103,29 +103,25 @@ public class ScheduleService {
             List<Object[]> trainerWeeks = courseRepository.getTrainerDatesByCourseId(courseId);
             Object[] currentTrainer = trainerWeeks.get(0);
 
-            LocalDate holidayDate;
-            LocalDate holidayDate2;
+            LocalDate holidayDate = LocalDate.of(2021, 12, 31);
 
-            SimpleDateFormat sdf = new  SimpleDateFormat("yyyy/DD/mm");
+            LocalDate currentYear = LocalDate.parse(weeks.get(0), formatter2);
+            while (currentYear.isAfter(holidayDate.plusMonths(5))) {
+                holidayDate = holidayDate.plusYears(1);
+            }
+            while (!(holidayDate.getDayOfWeek().equals(DayOfWeek.MONDAY))) {
+                holidayDate = holidayDate.minusDays(1);
+            }
 
-            Calendar cal = Calendar.getInstance();
-            cal.set(Calendar.WEEK_OF_YEAR, 51);
-            Date yourDate = cal.getTime();
-            cal.setTime(yourDate);
-            cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-            holidayDate = LocalDate.parse(sdf.format(cal.getTime()));
+            LocalDate holidayDate2 = holidayDate.minusDays(8);
+            holidayDate = holidayDate.plusDays(1);
 
-            Calendar cal2 = Calendar.getInstance();
-            cal2.set(Calendar.WEEK_OF_YEAR, 52);
-            Date yourDate2 = cal2.getTime();
-            cal2.setTime(yourDate2);
-            cal2.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-            holidayDate2 = LocalDate.parse(sdf.format(cal2.getTime()));
+
 
             for (String week : weeks) {
                 LocalDate currentWeek = LocalDate.parse(week, formatter2);
 
-                if (!currentWeek.isEqual(holidayDate) || !currentWeek.isEqual(holidayDate2)) {
+                if (currentWeek.isBefore(holidayDate) && currentWeek.isAfter(holidayDate2))) {
 
                     if ((currentWeek.isAfter(courseStartDateTime) && currentWeek.isBefore(courseEndDateTime)) || currentWeek.isEqual(courseEndDateTime) || currentWeek.isEqual(courseStartDateTime)) {
                         // currentCourseActive.add(1);
