@@ -64,6 +64,7 @@ function addTrainersForms(trainersFormsToAdd) {
                     for (var k = 0; k < trainersNames.length; k++){
                         var optionNode = document.createElement("option");
                         optionNode.textContent = trainersNames[k].textContent;
+                        optionNode.value = trainersNames[k].value;
                         selectNode.appendChild(optionNode);
                     }
 
