@@ -8,9 +8,9 @@ function showPage() {
 };
 
 
-function updateNumberOfTrainers() {
-    let prevNumberOfTrainers = 1;
-    let numOfTrainers = 1;
+function updateNumberOfTrainers(numberOfTrainers) {
+    let prevNumberOfTrainers = numberOfTrainers;
+    let numOfTrainers = numberOfTrainers;
     document.body.addEventListener("click", function () {
         prevNumberOfTrainers = numOfTrainers;
         numOfTrainers = parseInt(document.getElementsByClassName("input-number")[0].value);
@@ -85,15 +85,14 @@ function addTrainersForms(trainersFormsToAdd) {
             trainersNode.appendChild(node);
         }
     } else {
-        for (var i = 0; i > trainersFormsToAdd; i--) {
-            trainersNode.removeChild(trainersNode.lastChild);
+        for (let i = 0; i > trainersFormsToAdd; i--) {
+            trainersNode.removeChild(trainersNode.lastElementChild);
+            console.log("asdasd:    " + i);
         }
     }
 }
 
 window.onload = function () {
-    updateNumberOfTrainers();
-
     $('.btn-number').click(function (e) {
         e.preventDefault();
 

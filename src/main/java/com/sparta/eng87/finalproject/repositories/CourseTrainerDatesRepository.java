@@ -15,5 +15,4 @@ public interface CourseTrainerDatesRepository extends JpaRepository<CourseTraine
     List<CourseTrainerDatesEntity> GetTrainersByCourseId(int courseId);
 
 
-    getTrainersDateIdByCourseId
 }
