@@ -121,7 +121,7 @@ public class ScheduleService {
             for (String week : weeks) {
                 LocalDate currentWeek = LocalDate.parse(week, formatter2);
 
-                if (currentWeek.isBefore(holidayDate) && currentWeek.isAfter(holidayDate2))) {
+                if (!(currentWeek.isBefore(holidayDate) && currentWeek.isAfter(holidayDate2))) {
 
                     if ((currentWeek.isAfter(courseStartDateTime) && currentWeek.isBefore(courseEndDateTime)) || currentWeek.isEqual(courseEndDateTime) || currentWeek.isEqual(courseStartDateTime)) {
                         // currentCourseActive.add(1);
