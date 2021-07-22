@@ -11,10 +11,10 @@ import java.util.List;
 public interface CourseTrainerDatesRepository extends JpaRepository<CourseTrainerDatesEntity, Integer> {
 
 
-    @Query(value = "SELECT * FROM course_trainer_dates WHERE course_id = ?1",nativeQuery = true)
+    @Query(value = "SELECT * FROM course_trainer_dates WHERE course_id = ?1", nativeQuery = true)
     List<CourseTrainerDatesEntity> GetTrainersByCourseId(int courseId);
 
-    @Query(value = "SELECT course_trainer_dates_id FROM course_trainer_dates WHERE course_id = ?1",nativeQuery = true)
+    @Query(value = "SELECT course_trainer_dates_id FROM course_trainer_dates WHERE course_id = ?1", nativeQuery = true)
     Integer[] getTrainersDateIdByCourseId(int courseId);
 
 }

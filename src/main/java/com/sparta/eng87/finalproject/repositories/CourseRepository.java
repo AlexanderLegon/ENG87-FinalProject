@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CourseRepository extends JpaRepository<CourseEntity,Integer> {
-    @Query(value="SELECT c.course_name, d.discipline_name, ct.type_name, t.first_name, t.last_name, l.location, c.start_date, d.discipline_duration, c.course_id, count(tr.trainee_id)" +
+public interface CourseRepository extends JpaRepository<CourseEntity, Integer> {
+    @Query(value = "SELECT c.course_name, d.discipline_name, ct.type_name, t.first_name, t.last_name, l.location, c.start_date, d.discipline_duration, c.course_id, count(tr.trainee_id)" +
             "FROM course c INNER JOIN discipline d " +
             "ON c.discipline_id = d.discipline_id " +
             "INNER JOIN course_type ct " +
@@ -22,19 +22,18 @@ public interface CourseRepository extends JpaRepository<CourseEntity,Integer> {
             "ON tr.course_id = c.course_id " +
             "group by course_id " +
             "ORDER BY c.start_date", nativeQuery = true)
-
     List<Object[]> getAllCoursesByArray();
 
     CourseEntity getCourseEntityByCourseName(String courseName);
 
-    @Query(value="SELECT * FROM course", nativeQuery = true)
+    @Query(value = "SELECT * FROM course", nativeQuery = true)
     List<CourseEntity> getAllCourses();
 
-    @Query(value = "SELECT course_id FROM course WHERE course_name = ?1" ,nativeQuery = true)
+    @Query(value = "SELECT course_id FROM course WHERE course_name = ?1", nativeQuery = true)
     int findCourseIdByCourseName(String courseName);
 
-    @Query(value = "SELECT start_date FROM course WHERE course_name = ?1" ,nativeQuery = true)
-     String getCourseStartDatesByCourseName(String courseName);
+    @Query(value = "SELECT start_date FROM course WHERE course_name = ?1", nativeQuery = true)
+    String getCourseStartDatesByCourseName(String courseName);
 
     @Query(value = "SELECT COUNT(*) FROM course WHERE location_id = ?1 ", nativeQuery = true)
     int getCurrentNumberOfCoursesAtLocation(int locationId);
@@ -42,7 +41,7 @@ public interface CourseRepository extends JpaRepository<CourseEntity,Integer> {
     @Query(value = "SELECT number_of_rooms FROM location WHERE location_id = ?1", nativeQuery = true)
     Integer getNumberOfRoomsAtLocation(int locationId);
 
-    @Query(value ="SELECT * FROM course_trainer_dates WHERE course_id=?1" ,nativeQuery = true)
+    @Query(value = "SELECT * FROM course_trainer_dates WHERE course_id=?1", nativeQuery = true)
     List<Object[]> getTrainerDatesByCourseId(Integer course_id);
 
 }

@@ -6,7 +6,7 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "trainee", schema = "courseorganisation", catalog = "")
-@SequenceGenerator(name="sequenceTrainee", initialValue=1, allocationSize = 1)
+@SequenceGenerator(name = "sequenceTrainee", initialValue = 1, allocationSize = 1)
 public class TraineeEntity {
     private Integer traineeId;
     private String firstName;

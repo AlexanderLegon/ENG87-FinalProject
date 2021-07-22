@@ -8,16 +8,16 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "discipline", schema = "courseorganisation", catalog = "")
-@SequenceGenerator(name="sequenceDiscipline", initialValue=1, allocationSize = 1)
+@SequenceGenerator(name = "sequenceDiscipline", initialValue = 1, allocationSize = 1)
 public class DisciplineEntity {
     private Integer discipline_id;
     private String discipline_name;
     private Integer discipline_duration;
 
-    public DisciplineEntity(){
+    public DisciplineEntity() {
     }
 
-    public DisciplineEntity(String discipline_name, Integer discipline_duration){
+    public DisciplineEntity(String discipline_name, Integer discipline_duration) {
         this.discipline_name = discipline_name;
         this.discipline_duration = discipline_duration;
     }

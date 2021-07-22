@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "course", schema="courseorganisation")
-@SequenceGenerator(name="sequenceCourse", initialValue=1, allocationSize = 1)
+@Table(name = "course", schema = "courseorganisation")
+@SequenceGenerator(name = "sequenceCourse", initialValue = 1, allocationSize = 1)
 public class CourseEntity {
 
     private Integer courseId;
@@ -40,7 +40,7 @@ public class CourseEntity {
     }
 
     @Basic
-    @Column(name="course_name")
+    @Column(name = "course_name")
     public String getCourseName() {
         return courseName;
     }
@@ -50,7 +50,7 @@ public class CourseEntity {
     }
 
     @Basic
-    @Column(name="discipline_id")
+    @Column(name = "discipline_id")
     public Integer getDisciplineId() {
         return disciplineId;
     }
@@ -60,7 +60,7 @@ public class CourseEntity {
     }
 
     @Basic
-    @Column(name="trainer_id")
+    @Column(name = "trainer_id")
     public Integer getTrainerId() {
         return trainerId;
     }
@@ -70,7 +70,7 @@ public class CourseEntity {
     }
 
     @Basic
-    @Column(name="type_id")
+    @Column(name = "type_id")
     public Integer getTypeId() {
         return typeId;
     }
@@ -81,7 +81,7 @@ public class CourseEntity {
     }
 
     @Basic
-    @Column(name="location_id")
+    @Column(name = "location_id")
     public Integer getLocationId() {
         return locationId;
     }
@@ -91,7 +91,7 @@ public class CourseEntity {
     }
 
     @Basic
-    @Column(name="start_date")
+    @Column(name = "start_date")
     public Date getStartDate() {
         return startDate;
     }

@@ -1,22 +1,22 @@
-#navbarFrag{
+#navbarFrag {
     background-color: black;
     color: white;
 }
 
-#spartaLogo{
+#spartaLogo {
     height: 30px;
     width: 30px;
     padding: 2px;
 }
 
-#navbarFooter{
+#navbarFooter {
     margin: auto;
     background-color: black;
     color: white;
 
 }
 
-#TheBoys{
+#TheBoys {
     width: max-content;
     text-align: right;
 }
@@ -34,6 +34,7 @@
     background-color: var(--bs-dark);
     border-color: var(--bs-gray);
 }
+
 .form-control-dark:focus {
     color: white;
     background-color: var(--bs-dark);

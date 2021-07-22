@@ -21,8 +21,8 @@ public class CourseTrainerDatesService {
         courseTrainerDatesRepository.save(courseTrainerDatesEntity);
     }
 
-    public List<CourseTrainerDatesEntity> getTrainersByCourseId(int courseId){
-       return courseTrainerDatesRepository.GetTrainersByCourseId(courseId);
+    public List<CourseTrainerDatesEntity> getTrainersByCourseId(int courseId) {
+        return courseTrainerDatesRepository.GetTrainersByCourseId(courseId);
     }
 
 

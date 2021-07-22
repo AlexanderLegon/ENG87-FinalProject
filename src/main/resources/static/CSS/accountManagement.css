@@ -1,13 +1,13 @@
-#changePassword{
+#changePassword {
     text-align: center;
 }
 
-#passwordsDoNotMatch{
+#passwordsDoNotMatch {
     text-align: center;
     color: red;
 }
 
-#passwordUpdated{
+#passwordUpdated {
     text-align: center;
     color: blue;
 }

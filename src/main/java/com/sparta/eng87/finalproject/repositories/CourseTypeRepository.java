@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CourseTypeRepository extends JpaRepository <CourseTypeEntity,Integer> {
+public interface CourseTypeRepository extends JpaRepository<CourseTypeEntity, Integer> {
 
     @Query(value = "SELECT * FROM course_type ct", nativeQuery = true)
     List<Object[]> getAllCourseTypes();

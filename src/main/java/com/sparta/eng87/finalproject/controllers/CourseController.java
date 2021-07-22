@@ -39,7 +39,7 @@ public class CourseController {
 
 
     @GetMapping("/addCourse")
-    public String getAddCoursePage(Model model){
+    public String getAddCoursePage(Model model) {
         model.addAttribute("trainers", trainerService.getAllTrainerEntities());
         model.addAttribute("disciplines", disciplineService.getAllDisciplineEntities());
         model.addAttribute("locations", locationService.getAllLocationEntities());
@@ -55,7 +55,7 @@ public class CourseController {
                             @RequestParam(name = "discipline_id") Integer disciplineId,
                             @RequestParam(name = "type_id") Integer typeId,
                             @RequestParam(name = "location_id") Integer locationId,
-                            @RequestParam(name = "start_date") String startDate){
+                            @RequestParam(name = "start_date") String startDate) {
 
 
 //        Add to course table
@@ -81,13 +81,12 @@ public class CourseController {
         }
 
 
-
         return "redirect:/coursePage";
 
     }
 
     @GetMapping("/editCourse/{id}")
-    public String editCourse(@PathVariable("id") Integer id, Model model){
+    public String editCourse(@PathVariable("id") Integer id, Model model) {
 
         model.addAttribute("course", courseService.findCourseById(id));
         model.addAttribute("allTrainers", trainerService.getAllTrainerEntities());
@@ -107,7 +106,7 @@ public class CourseController {
                              @RequestParam(name = "disciplineId") Integer disciplineId,
                              @RequestParam(name = "typeId") Integer typeId,
                              @RequestParam(name = "locationId") Integer locationId,
-                             @RequestParam(name = "startDate") String startDate){
+                             @RequestParam(name = "startDate") String startDate) {
 
 
 //        Add to course table
@@ -122,11 +121,11 @@ public class CourseController {
         courseService.addCourse(courseEntity);
 
 //        Add to course_trainer_dates table
-        Integer[] trainerDatesIds=courseTrainerDatesService.getTrainersDateIdByCourseId(id);
+        Integer[] trainerDatesIds = courseTrainerDatesService.getTrainersDateIdByCourseId(id);
 
         for (int i = 0; i < trainerId.length; i++) {
             CourseTrainerDatesEntity courseTrainerDatesEntity = new CourseTrainerDatesEntity();
-            if(trainerDatesIds.length>i) {
+            if (trainerDatesIds.length > i) {
                 if (trainerDatesIds[i] != null) {
                     courseTrainerDatesEntity.setCourseTrainerDatesId(trainerDatesIds[i]);
                 }
@@ -142,8 +141,6 @@ public class CourseController {
         }
 
 
-
-
 //            @PathVariable("id") Integer id, CourseEntity courseEntity){
 //        courseEntity.setCourseId(id);
 //        courseService.addCourse(courseEntity);
@@ -151,7 +148,7 @@ public class CourseController {
     }
 
     @GetMapping("/deleteCourse/{id}")
-    public String removeCourse(@PathVariable("id") Integer id){
+    public String removeCourse(@PathVariable("id") Integer id) {
         courseService.removeCourse(id);
         return "redirect:/coursePage";
     }
@@ -159,7 +156,7 @@ public class CourseController {
 
     @GetMapping("/getSpacesAtLocation/{locationId}")
     @ResponseBody
-    public String getSpacesAtLocation(@PathVariable("locationId") Integer locationId){
+    public String getSpacesAtLocation(@PathVariable("locationId") Integer locationId) {
         int spacesAtLocation = courseService.getNumberOfRoomsAtLocation(locationId) - courseService.getRoomOccupancyByLocationId(locationId);
         return String.valueOf(spacesAtLocation);
     }

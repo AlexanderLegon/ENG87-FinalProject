@@ -27,26 +27,26 @@ public class DisciplineController {
 
     @PostMapping("/addDiscipline")
     public String addDiscipline(@RequestParam(name = "discipline-name") String disciplineName,
-                                @RequestParam(name = "discipline-duration") Integer disciplineDuration){
+                                @RequestParam(name = "discipline-duration") Integer disciplineDuration) {
         disciplineService.addDiscipline(new DisciplineEntity(disciplineName, disciplineDuration));
         return "redirect:/extraCourseInfoPage";
     }
 
     @GetMapping("/editDiscipline/{id}")
-    public String updateDiscipline(@PathVariable("id") Integer id, Model model){
+    public String updateDiscipline(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("discipline", disciplineService.findDisciplineById(id));
         return "editDiscipline";
     }
 
     @PostMapping("/updateDiscipline/{id}")
-    public String updateDiscipline(DisciplineEntity disciplineEntity, @PathVariable("id") Integer id){
+    public String updateDiscipline(DisciplineEntity disciplineEntity, @PathVariable("id") Integer id) {
         disciplineEntity.setDiscipline_id(id);
         disciplineService.addDiscipline(disciplineEntity);
         return "redirect:/extraCourseInfoPage";
     }
 
     @GetMapping("/removeDiscipline/{id}")
-    public String removeDiscipline(DisciplineEntity disciplineEntity, @PathVariable("id") Integer id){
+    public String removeDiscipline(DisciplineEntity disciplineEntity, @PathVariable("id") Integer id) {
         disciplineService.deleteDiscipline(id);
         return "redirect:/extraCourseInfoPage";
     }

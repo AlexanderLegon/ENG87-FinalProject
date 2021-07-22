@@ -24,12 +24,12 @@ public class ScheduleController {
     }
 
     @GetMapping("/")
-    public String goToScheduler(Model model){
+    public String goToScheduler(Model model) {
         List<String> dates = scheduleService.listDates();
         List<String> courseNames = courseService.getCourseNames();
-        List<Object[]> activeDays =  scheduleService.getActiveCourseWeeks(dates,courseNames);
+        List<Object[]> activeDays = scheduleService.getActiveCourseWeeks(dates, courseNames);
         courseService.getTraineeCount();
-        model.addAttribute("activeWeeks",activeDays);
+        model.addAttribute("activeWeeks", activeDays);
         model.addAttribute("CourseName", courseNames);
         model.addAttribute("DisciplineName", courseService.getDisciplineNames());
         model.addAttribute("CourseTypeName", courseService.getCourseTypeNames());

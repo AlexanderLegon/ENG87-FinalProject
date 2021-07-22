@@ -20,17 +20,17 @@ public class DisciplineService {
         disciplineRepository.save(disciplineEntity);
     }
 
-    public DisciplineEntity findDisciplineById(Integer id){
+    public DisciplineEntity findDisciplineById(Integer id) {
         return disciplineRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("Invalid Discipline ID " + id)
         );
     }
 
-    public void deleteDiscipline(Integer id){
+    public void deleteDiscipline(Integer id) {
         disciplineRepository.deleteById(id);
     }
 
-    public List<Object[]> getAllDisciplines(){
+    public List<Object[]> getAllDisciplines() {
         return disciplineRepository.getAllDisciplines();
     }
 

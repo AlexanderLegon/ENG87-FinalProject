@@ -50,7 +50,7 @@ public class LocationController {
     }
 
     @GetMapping("/deleteLocation/{id}")
-    public String deleteLocation(@PathVariable("id") Integer id,Model model) {
+    public String deleteLocation(@PathVariable("id") Integer id, Model model) {
         locationService.deleteLocation(id);
         model.addAttribute("locations", locationService.getAllLocations());
         return "redirect:/centres";

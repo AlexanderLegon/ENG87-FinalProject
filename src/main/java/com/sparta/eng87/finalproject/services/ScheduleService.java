@@ -19,44 +19,43 @@ public class ScheduleService {
     CourseService courseService;
     TrainerRepository trainerRepository;
 
-    public ScheduleService(CourseRepository courseRepository,CourseService courseService,TrainerRepository trainerRepository) {
+    public ScheduleService(CourseRepository courseRepository, CourseService courseService, TrainerRepository trainerRepository) {
         this.courseRepository = courseRepository;
         this.courseService = courseService;
-        this.trainerRepository=trainerRepository;
+        this.trainerRepository = trainerRepository;
     }
 
     public List<String> listDates() {
 
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
-        LocalDate yearStart = LocalDate.of(2021,5,1);
-        LocalDate yearEnd = LocalDate.of(2022,4,30);
+        LocalDate yearStart = LocalDate.of(2021, 5, 1);
+        LocalDate yearEnd = LocalDate.of(2022, 4, 30);
         LocalDate now = LocalDate.now();
 
         List<String> dates = new ArrayList<>();
 
         while (!(yearStart.getDayOfWeek().equals(DayOfWeek.MONDAY))) {
-            yearStart=yearStart.minusDays(1);
+            yearStart = yearStart.minusDays(1);
         }
 
         while (!(yearEnd.getDayOfWeek().equals(DayOfWeek.MONDAY))) {
-            yearEnd=yearEnd.minusDays(1);
+            yearEnd = yearEnd.minusDays(1);
         }
 
-        while(now.isAfter(yearEnd)){
-            yearEnd=yearEnd.plusYears(1);
+        while (now.isAfter(yearEnd)) {
+            yearEnd = yearEnd.plusYears(1);
         }
 
 
         //   System.out.println(dateFormat.format(date));
         //   System.out.println(new SimpleDateFormat("EE").format(date));
-       dates.add(formatter.format(yearStart).toString());
+        dates.add(formatter.format(yearStart).toString());
         for (int i = 0; i < 52; i++) {
 
-            yearStart=yearStart.plusDays(7);
+            yearStart = yearStart.plusDays(7);
             dates.add(formatter.format(yearStart).toString());
         }
-
 
 
         return dates;
@@ -74,7 +73,7 @@ public class ScheduleService {
 //        ZoneOffset offset = ZoneOffset.of("Z");
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-        for (int i = 0; i<courseNames.size();i++) {
+        for (int i = 0; i < courseNames.size(); i++) {
 
             courseStartDate = courseRepository.getCourseStartDatesByCourseName(courseNames.get(i));
             currentEndDate = dateFormat.format(courseEndDate.get(i));
@@ -90,12 +89,11 @@ public class ScheduleService {
 
 
             while (!(courseStartDateTime.getDayOfWeek().equals(DayOfWeek.MONDAY))) {
-                courseStartDateTime=courseStartDateTime.minusDays(1);
+                courseStartDateTime = courseStartDateTime.minusDays(1);
             }
             while (!(courseEndDateTime.getDayOfWeek().equals(DayOfWeek.MONDAY))) {
-                courseEndDateTime=courseEndDateTime.minusDays(1);
+                courseEndDateTime = courseEndDateTime.minusDays(1);
             }
-
 
 
             currentEndDate = courseEndDateTime.toString();
@@ -104,32 +102,31 @@ public class ScheduleService {
             int index = 0;
             List<Object[]> trainerWeeks = courseRepository.getTrainerDatesByCourseId(courseId);
             Object[] currentTrainer = trainerWeeks.get(0);
-            for(String week:weeks) {
+            for (String week : weeks) {
                 LocalDate currentWeek = LocalDate.parse(week, formatter2);
 
-                if ((currentWeek.isAfter(courseStartDateTime) && currentWeek.isBefore(courseEndDateTime))||currentWeek.isEqual(courseEndDateTime)||currentWeek.isEqual(courseStartDateTime)){
-                   // currentCourseActive.add(1);
-                   for (int k =0;k<trainerWeeks.size();k++){
+                if ((currentWeek.isAfter(courseStartDateTime) && currentWeek.isBefore(courseEndDateTime)) || currentWeek.isEqual(courseEndDateTime) || currentWeek.isEqual(courseStartDateTime)) {
+                    // currentCourseActive.add(1);
+                    for (int k = 0; k < trainerWeeks.size(); k++) {
 
-                       if((int)trainerWeeks.get(k)[4]==weekNum){
-                           currentTrainer = trainerWeeks.get(k);
-                           break;
-                       }
-                       if ((int)currentTrainer[2]<weekNum)
-                       {
-                           if((int)trainerWeeks.get(k)[4]<weekNum && (int)trainerWeeks.get(k)[2]>weekNum )
-                           {
-                              currentTrainer = trainerWeeks.get(k);
-                           }
-                       }
-                   }
+                        if ((int) trainerWeeks.get(k)[4] == weekNum) {
+                            currentTrainer = trainerWeeks.get(k);
+                            break;
+                        }
+                        if ((int) currentTrainer[2] < weekNum) {
+                            if ((int) trainerWeeks.get(k)[4] < weekNum && (int) trainerWeeks.get(k)[2] > weekNum) {
+                                currentTrainer = trainerWeeks.get(k);
+                            }
+                        }
+                    }
 
-                    currentCourseActive.add(trainerRepository.getTrainerColorByTrainerId((int)currentTrainer[3]));
-
+                    currentCourseActive.add(trainerRepository.getTrainerColorByTrainerId((int) currentTrainer[3]));
 
 
                     weekNum++;
-                }else{currentCourseActive.add("#ffffff");}
+                } else {
+                    currentCourseActive.add("#ffffff");
+                }
 
             }
             activeDays.add(currentCourseActive.toArray());

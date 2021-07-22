@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
-    @Query(value="Select * from user_entity WHERE user_name=?",nativeQuery = true)
+    @Query(value = "Select * from user_entity WHERE user_name=?", nativeQuery = true)
     UserEntity getCurrentUser(String user_name);
 
 }

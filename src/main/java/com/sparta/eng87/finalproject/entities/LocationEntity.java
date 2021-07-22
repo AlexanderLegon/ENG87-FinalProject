@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "location", schema = "courseorganisation")
-@SequenceGenerator(name="sequenceLocation", initialValue=1, allocationSize = 1)
+@SequenceGenerator(name = "sequenceLocation", initialValue = 1, allocationSize = 1)
 public class LocationEntity {
     private Integer locationId;
     private String location;

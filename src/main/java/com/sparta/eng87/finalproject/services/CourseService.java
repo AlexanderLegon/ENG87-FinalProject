@@ -160,33 +160,31 @@ public class CourseService {
 
             try {
                 holidayDate = simpleDateFormat2.parse("20/12/2021");
-                holidayDate2 =simpleDateFormat2.parse("31/12/2021");
+                holidayDate2 = simpleDateFormat2.parse("31/12/2021");
 
             } catch (ParseException e) {
                 e.printStackTrace();
             }
 
-            while(currentDate.after(holidayDate))
-            {
+            while (currentDate.after(holidayDate)) {
                 calendar.setTime(holidayDate);
                 calendar.add(Calendar.YEAR, 1);
                 holidayDate = calendar.getTime();
             }
-            while(currentDate.after(holidayDate2))
-            {
+            while (currentDate.after(holidayDate2)) {
                 calendar.setTime(holidayDate2);
                 calendar.add(Calendar.YEAR, 1);
                 holidayDate2 = calendar.getTime();
             }
 
 
-            if ((courseStartDates.get(i).compareTo(holidayDate) < 0) && (endDate.compareTo(holidayDate) > 0)){
+            if ((courseStartDates.get(i).compareTo(holidayDate) < 0) && (endDate.compareTo(holidayDate) > 0)) {
                 Calendar c = Calendar.getInstance();
                 c.setTime(endDate);
                 c.add(Calendar.DATE, 7);
                 endDate = c.getTime();
             }
-            if ((courseStartDates.get(i).compareTo(holidayDate2) < 0) && (endDate.compareTo(holidayDate2) > 0)){
+            if ((courseStartDates.get(i).compareTo(holidayDate2) < 0) && (endDate.compareTo(holidayDate2) > 0)) {
                 Calendar c = Calendar.getInstance();
                 c.setTime(endDate);
                 c.add(Calendar.DATE, 7);
@@ -194,7 +192,7 @@ public class CourseService {
             }
 
 
-                courseEndDates.add(endDate);
+            courseEndDates.add(endDate);
 
 
 //            for(int j = 0; j < 7; j++){
@@ -246,11 +244,11 @@ public class CourseService {
         return endBondDates;
     }
 
-    public Integer getRoomOccupancyByLocationId(int locationId){
+    public Integer getRoomOccupancyByLocationId(int locationId) {
         return courseRepository.getCurrentNumberOfCoursesAtLocation(locationId);
     }
 
-    public Integer getNumberOfRoomsAtLocation(int locationId){
+    public Integer getNumberOfRoomsAtLocation(int locationId) {
         return courseRepository.getNumberOfRoomsAtLocation(locationId);
     }
 

@@ -27,13 +27,14 @@
         <h1>Change your password</h1>
         <br/>
         <form id="new-password" th:action="@{/changePassword}" method="post">
-                <label class="form-label">New Password</label>
-                <input type="password" class="form-control" name="password1" id="newPassword" required>
+            <label class="form-label">New Password</label>
+            <input type="password" class="form-control" name="password1" id="newPassword" required>
 
             <br>
             <div class="mb-3">
                 <label>Confirm Password</label>
-                <input type="password" class="form-control" name="password2" id="confirmPassword"  onkeyup='check();'  required>
+                <input type="password" class="form-control" name="password2" id="confirmPassword" onkeyup='check();'
+                       required>
             </div>
             <span id='message'></span>
 

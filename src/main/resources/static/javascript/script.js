@@ -70,7 +70,7 @@ function addTrainersForms(trainersFormsToAdd) {
                     selectNode.className = "form-select";
                     colNode.appendChild(selectNode);
 
-                    for (var k = 0; k < trainersNames.length; k++){
+                    for (var k = 0; k < trainersNames.length; k++) {
                         var optionNode = document.createElement("option");
                         optionNode.textContent = trainersNames[k].textContent;
                         optionNode.value = trainersNames[k].value;
@@ -167,11 +167,10 @@ window.onload = function () {
     });
 }
 
-function httpGet(theUrl)
-{
+function httpGet(theUrl) {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-    xmlHttp.send( null );
+    xmlHttp.open("GET", theUrl, false); // false for synchronous request
+    xmlHttp.send(null);
     return xmlHttp.responseText;
 }
 
@@ -186,7 +185,7 @@ function exceedsCapacity() {
     }
 }
 
-var check = function() {
+var check = function () {
     if (document.getElementById('newPassword').value ==
         document.getElementById('confirmPassword').value) {
         document.getElementById('message').style.color = 'green';
