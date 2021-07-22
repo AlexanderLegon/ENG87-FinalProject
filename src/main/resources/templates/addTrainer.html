@@ -14,11 +14,11 @@
         <form id="add-trainer-form" th:action="@{/addTrainer}" method="post">
             <div class="mb-3">
                 <label for="trainer-first-name" class="form-label">First name</label>
-                <input type="text" id="trainer-first-name" class="form-control" name="trainer-first-name" autofocus>
+                <input type="text" id="trainer-first-name" class="form-control" name="trainer-first-name" autofocus required>
             </div>
             <div class="mb-3">
                 <label for="trainer-last-name" class="form-label">Last name</label>
-                <input type="text" id="trainer-last-name" class="form-control" name="trainer-last-name">
+                <input type="text" id="trainer-last-name" class="form-control" name="trainer-last-name" required>
             </div>
             <div class="mb-3">
                 <label for="trainer-hex" class="form-label">Select a color for the trainer</label>

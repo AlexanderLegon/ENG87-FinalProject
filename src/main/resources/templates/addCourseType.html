@@ -13,7 +13,7 @@
         <form id="add-course-type-form" th:action="@{/addCourseType}" method="post">
             <div class="mb-3">
                 <label for="course-type-name" class="form-label">Course Type Name</label>
-                <input type="text" id="course-type-name" class="form-control" name="course-type-name">
+                <input type="text" id="course-type-name" class="form-control" name="course-type-name" required>
             </div>
             <div class="mb-3">
                 <input type="submit" class="btn btn-primary" value="Submit">
