@@ -106,26 +106,27 @@ public class ScheduleService {
             LocalDate holidayDate;
             LocalDate holidayDate2;
 
-            SimpleDateFormat sdf = new  SimpleDateFormat("yyyy/DD/mm");
+            SimpleDateFormat sdf = new  SimpleDateFormat("yyyy/MM/dd");
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
             Calendar cal = Calendar.getInstance();
             cal.set(Calendar.WEEK_OF_YEAR, 51);
             Date yourDate = cal.getTime();
             cal.setTime(yourDate);
-            cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-            holidayDate = LocalDate.parse(sdf.format(cal.getTime()));
+            cal.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
+            holidayDate = LocalDate.parse(sdf.format(cal.getTime()), dtf);
 
             Calendar cal2 = Calendar.getInstance();
-            cal2.set(Calendar.WEEK_OF_YEAR, 52);
+            cal2.set(Calendar.WEEK_OF_YEAR, 51);
             Date yourDate2 = cal2.getTime();
             cal2.setTime(yourDate2);
-            cal2.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-            holidayDate2 = LocalDate.parse(sdf.format(cal2.getTime()));
+            cal2.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+            holidayDate2 = LocalDate.parse(sdf.format(cal2.getTime()), dtf);
 
             for (String week : weeks) {
                 LocalDate currentWeek = LocalDate.parse(week, formatter2);
 
-                if (!currentWeek.isEqual(holidayDate) || !currentWeek.isEqual(holidayDate2)) {
+                if (!currentWeek.isAfter(holidayDate) && !currentWeek.isBefore(holidayDate2)) {
 
                     if ((currentWeek.isAfter(courseStartDateTime) && currentWeek.isBefore(courseEndDateTime)) || currentWeek.isEqual(courseEndDateTime) || currentWeek.isEqual(courseStartDateTime)) {
                         // currentCourseActive.add(1);
