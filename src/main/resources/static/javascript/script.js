@@ -22,6 +22,8 @@ function updateNumberOfTrainers(numberOfTrainers) {
     });
 }
 
+
+
 function addTrainersForms(trainersFormsToAdd) {
     var trainersNode = document.getElementById("trainers");
     var trainersNames = document.getElementsByClassName("trainers-options");
@@ -93,7 +95,11 @@ function addTrainersForms(trainersFormsToAdd) {
     }
 }
 
+
+
 window.onload = function () {
+
+
     $('.btn-number').click(function (e) {
         e.preventDefault();
 
@@ -180,6 +186,27 @@ function exceedsCapacity() {
     console.log(capacity);
     if (parseInt(capacity) <= 0) {
         return confirm("This will exceed the centres limit. \nAre you sure you wish to proceed?");
+    } else {
+        return true;
+    }
+}
+
+
+// var isChanged = false;
+// locationInput.addEventListener("input", function () {
+//     isChanged = true;
+// })
+
+function exceedsCapacityEdit() {
+    var locationInput = document.getElementById("location_id");
+    var isDefault = locationInput.options[locationInput.selectedIndex].defaultSelected;
+    if (!isDefault) {
+        var location_id = document.getElementById("location_id").value;
+        var capacity = httpGet('http://localhost:8080/getSpacesAtLocation/' + location_id);
+        console.log(capacity);
+        if (parseInt(capacity) <= 0) {
+            return confirm("This will exceed the centres limit. \nAre you sure you wish to proceed?");
+        }
     } else {
         return true;
     }
