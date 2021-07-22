@@ -14,6 +14,6 @@ public interface CourseTrainerDatesRepository extends JpaRepository<CourseTraine
     @Query(value = "SELECT * FROM course_trainer_dates WHERE course_id = ?1",nativeQuery = true)
     List<CourseTrainerDatesEntity> GetTrainersByCourseId(int courseId);
 
-
-    getTrainersDateIdByCourseId
+    @Query(value = "SELECT course_trainer_dates_id FROM course_trainer_dates WHERE course_id = ?1",nativeQuery = true)
+    Integer[] getTrainersDateIdByCourseId(int courseId);
 }

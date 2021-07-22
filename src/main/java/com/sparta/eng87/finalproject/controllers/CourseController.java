@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.util.Arrays;
 
 @Controller
 public class CourseController {
@@ -121,8 +122,16 @@ public class CourseController {
         courseService.addCourse(courseEntity);
 
 //        Add to course_trainer_dates table
+        Integer[] trainerDatesIds=courseTrainerDatesService.getTrainersDateIdByCourseId(id);
+
         for (int i = 0; i < trainerId.length; i++) {
             CourseTrainerDatesEntity courseTrainerDatesEntity = new CourseTrainerDatesEntity();
+            if(trainerDatesIds.length>i) {
+                if (trainerDatesIds[i] != null) {
+                    courseTrainerDatesEntity.setCourseTrainerDatesId(trainerDatesIds[i]);
+                }
+            }
+
 
             courseTrainerDatesEntity.setCourseId(courseEntity.getCourseId());
             courseTrainerDatesEntity.setTrainerId(trainerId[i]);
