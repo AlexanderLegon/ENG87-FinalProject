@@ -24,4 +24,11 @@ public class CourseTrainerDatesService {
     public List<CourseTrainerDatesEntity> getTrainersByCourseId(int courseId){
        return courseTrainerDatesRepository.GetTrainersByCourseId(courseId);
     }
+
+    public int[] getTrainersDateIdByCourseId(int courseId){
+        int[] trainerDatesId = courseTrainerDatesRepository.getTrainersDateIdByCourseId(courseId);
+
+
+        return trainerDatesId;
+    }
 }

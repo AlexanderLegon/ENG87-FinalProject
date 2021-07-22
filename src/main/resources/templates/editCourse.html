@@ -20,7 +20,7 @@
             <div class="mb-3">
                 <label for="course_name" class="form-label">Course Name</label>
                 <input th:field="${course.courseName}" type="text" id="course_name" class="form-control"
-                       name="course_name">
+                       name="courseName">
             </div>
 
             <!--    <div class="mb-3" th:each="trainer : ${trainers}">-->
@@ -48,7 +48,7 @@
                     <div class=" col">
                         <label for="trainer_start_week0" class="form-label">Trainer Start Week</label>
                         <input th:value="${trainer1.trainerStartDate}" type="number" id="trainer_start_week0"
-                               class="form-control" name="trainer_start_week" 
+                               class="form-control" name="trainer_start_week"
                                min="1" max="52">
                     </div>
                     <div class="col">
@@ -63,28 +63,28 @@
 
     <div class="mb-3">
         <label for="discipline_id" class="form-label">Discipline ID</label>
-        <select name="discipline_id" id="discipline_id" class="form-select" th:field="${course.disciplineId}">
+        <select name="disciplineId" id="discipline_id" class="form-select" th:field="${course.disciplineId}">
             <option th:each="discipline : ${disciplines}" th:value="${discipline.discipline_id}"
                     th:text="${discipline.discipline_name}"></option>
         </select>
     </div>
     <div class="mb-3">
         <label for="type_id" class="form-label">Type ID</label>
-        <select name="type_id" id="type_id" class="form-select" th:field="${course.typeId}">
+        <select name="typeId" id="type_id" class="form-select" th:field="${course.typeId}">
             <option th:each="courseType : ${courseTypes}" th:value="${courseType.courseTypeId}"
                     th:text="${courseType.typeName}"></option>
         </select>
     </div>
     <div class="mb-3">
         <label for="location_id" class="form-label">Location ID</label>
-        <select name="location_id" id="location_id" class="form-select" th:field="${course.locationId}">
+        <select name="locationId" id="location_id" class="form-select" th:field="${course.locationId}">
             <option th:each="location : ${locations}" th:value="${location.locationId}"
                     th:text="${location.location}"></option>
         </select>
     </div>
     <div class="mb-3">
         <label for="start_date" class="form-label">Start Date</label>
-        <input th:field="${course.startDate}" type="date" id="start_date" class="form-control" name="start_date">
+        <input th:field="${course.startDate}" type="date" id="start_date" class="form-control" name="startDate">
     </div>
     <div class="mb-3">
         <input onclick="return exceedsCapacity()" type="submit" class="btn btn-primary" value="Submit">

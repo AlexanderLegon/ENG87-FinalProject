@@ -98,9 +98,46 @@ public class CourseController {
     }
 
     @PostMapping("/updateCourse/{id}")
-    public String editCourse(@PathVariable("id") Integer id, CourseEntity courseEntity){
+    public String editCourse(@PathVariable("id") Integer id,
+                             @RequestParam(name = "courseName") String courseName,
+                             @RequestParam(name = "trainer_id") Integer[] trainerId,
+                             @RequestParam(name = "trainer_start_week") Integer[] trainerStartWeek,
+                             @RequestParam(name = "trainer_end_week") Integer[] trainerEndWeek,
+                             @RequestParam(name = "disciplineId") Integer disciplineId,
+                             @RequestParam(name = "typeId") Integer typeId,
+                             @RequestParam(name = "locationId") Integer locationId,
+                             @RequestParam(name = "startDate") String startDate){
+
+
+//        Add to course table
+        CourseEntity courseEntity = new CourseEntity();
         courseEntity.setCourseId(id);
+        courseEntity.setCourseName(courseName);
+        courseEntity.setTrainerId(trainerId[0]);
+        courseEntity.setDisciplineId(disciplineId);
+        courseEntity.setLocationId(locationId);
+        courseEntity.setTypeId(typeId);
+        courseEntity.setStartDate(Date.valueOf(startDate));
         courseService.addCourse(courseEntity);
+
+//        Add to course_trainer_dates table
+        for (int i = 0; i < trainerId.length; i++) {
+            CourseTrainerDatesEntity courseTrainerDatesEntity = new CourseTrainerDatesEntity();
+
+            courseTrainerDatesEntity.setCourseId(courseEntity.getCourseId());
+            courseTrainerDatesEntity.setTrainerId(trainerId[i]);
+            courseTrainerDatesEntity.setTrainerStartDate(trainerStartWeek[i]);
+            courseTrainerDatesEntity.setTrainerEndDate(trainerEndWeek[i]);
+
+            courseTrainerDatesService.addCourse(courseTrainerDatesEntity);
+        }
+
+
+
+
+//            @PathVariable("id") Integer id, CourseEntity courseEntity){
+//        courseEntity.setCourseId(id);
+//        courseService.addCourse(courseEntity);
         return "redirect:/coursePage";
     }
 
