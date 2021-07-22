@@ -53,19 +53,20 @@ public class CourseController implements WebMvcConfigurer {
     }
 
     @RequestMapping(value = "/addCourse")
-    @ExceptionHandler({ConstraintViolationException.class, IllegalArgumentException.class})
+    @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    String handleConstraintViolationException(ConstraintViolationException c, Model model) {
+    String handleConstraintViolationException(Exception e, Model model) {
+        System.out.println(e.getMessage());
         model.addAttribute("trainers", trainerService.getAllTrainerEntities());
         model.addAttribute("disciplines", disciplineService.getAllDisciplineEntities());
         model.addAttribute("locations", locationService.getAllLocationEntities());
         model.addAttribute("courseTypes", courseTypeService.getAllCourseTypeEntities());
-        //if (c != null) {
+        if(e.getMessage() != null){
             model.addAttribute("errorName", "error");
-        //}
-        //if (i != null) {
+        }
+        if (e.getMessage() == null) {
             model.addAttribute("errorDate","error");
-        //}
+        }
         return "addCourse";
     }
 
