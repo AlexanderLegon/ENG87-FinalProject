@@ -10,7 +10,7 @@
 <nav class="navbar" th:fragment="navbar" id="navbarFrag">
   <div class="container" id="navbarFooter">
     <ul class="nav col-12 col-md-auto mb-2 justify-content-between w-100">
-      <li><img th:src="@{/images/sparta-logo.png}" id="spartaLogo"></li>
+      <li><a th:href="@{/}"  class="nav-link px-2 text-white" id="homePageLinkLogo"><img th:src="@{/images/sparta-logo.png}" id="spartaLogo"></a></li>
       <li><a th:href="@{/}"  class="nav-link px-2 text-white" id="homePageLink">Scheduler Page</a></li>
       <li><a  class="nav-link px-2 text-white" th:href="@{/traineePage}" id="traineePageLink">Trainees Page</a></li>
       <li><a  class="nav-link px-2 text-white" th:href="@{/trainerPage}" id="trainerPageLink">Trainers Page</a></li>
