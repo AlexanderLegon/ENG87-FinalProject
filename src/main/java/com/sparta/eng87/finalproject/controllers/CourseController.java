@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.util.Arrays;
 
 @Controller
 public class CourseController {
@@ -38,7 +39,7 @@ public class CourseController {
 
 
     @GetMapping("/addCourse")
-    public String getAddCoursePage(Model model){
+    public String getAddCoursePage(Model model) {
         model.addAttribute("trainers", trainerService.getAllTrainerEntities());
         model.addAttribute("disciplines", disciplineService.getAllDisciplineEntities());
         model.addAttribute("locations", locationService.getAllLocationEntities());
@@ -54,7 +55,7 @@ public class CourseController {
                             @RequestParam(name = "discipline_id") Integer disciplineId,
                             @RequestParam(name = "type_id") Integer typeId,
                             @RequestParam(name = "location_id") Integer locationId,
-                            @RequestParam(name = "start_date") String startDate){
+                            @RequestParam(name = "start_date") String startDate) {
 
 
 //        Add to course table
@@ -80,15 +81,16 @@ public class CourseController {
         }
 
 
-
         return "redirect:/coursePage";
 
     }
 
     @GetMapping("/editCourse/{id}")
-    public String editCourse(@PathVariable("id") Integer id, Model model){
+    public String editCourse(@PathVariable("id") Integer id, Model model) {
+
         model.addAttribute("course", courseService.findCourseById(id));
-        model.addAttribute("trainers", trainerService.getAllTrainerEntities());
+        model.addAttribute("allTrainers", trainerService.getAllTrainerEntities());
+        model.addAttribute("trainers", courseTrainerDatesService.getTrainersByCourseId(id));
         model.addAttribute("disciplines", disciplineService.getAllDisciplineEntities());
         model.addAttribute("locations", locationService.getAllLocationEntities());
         model.addAttribute("courseTypes", courseTypeService.getAllCourseTypeEntities());
@@ -96,14 +98,57 @@ public class CourseController {
     }
 
     @PostMapping("/updateCourse/{id}")
-    public String editCourse(@PathVariable("id") Integer id, CourseEntity courseEntity){
+    public String editCourse(@PathVariable("id") Integer id,
+                             @RequestParam(name = "courseName") String courseName,
+                             @RequestParam(name = "trainer_id") Integer[] trainerId,
+                             @RequestParam(name = "trainer_start_week") Integer[] trainerStartWeek,
+                             @RequestParam(name = "trainer_end_week") Integer[] trainerEndWeek,
+                             @RequestParam(name = "disciplineId") Integer disciplineId,
+                             @RequestParam(name = "typeId") Integer typeId,
+                             @RequestParam(name = "locationId") Integer locationId,
+                             @RequestParam(name = "startDate") String startDate) {
+
+
+//        Add to course table
+        CourseEntity courseEntity = new CourseEntity();
         courseEntity.setCourseId(id);
+        courseEntity.setCourseName(courseName);
+        courseEntity.setTrainerId(trainerId[0]);
+        courseEntity.setDisciplineId(disciplineId);
+        courseEntity.setLocationId(locationId);
+        courseEntity.setTypeId(typeId);
+        courseEntity.setStartDate(Date.valueOf(startDate));
         courseService.addCourse(courseEntity);
+
+//        Add to course_trainer_dates table
+        Integer[] trainerDatesIds = courseTrainerDatesService.getTrainersDateIdByCourseId(id);
+
+        for (int i = 0; i < trainerId.length; i++) {
+            CourseTrainerDatesEntity courseTrainerDatesEntity = new CourseTrainerDatesEntity();
+            if (trainerDatesIds.length > i) {
+                if (trainerDatesIds[i] != null) {
+                    courseTrainerDatesEntity.setCourseTrainerDatesId(trainerDatesIds[i]);
+                }
+            }
+
+
+            courseTrainerDatesEntity.setCourseId(courseEntity.getCourseId());
+            courseTrainerDatesEntity.setTrainerId(trainerId[i]);
+            courseTrainerDatesEntity.setTrainerStartDate(trainerStartWeek[i]);
+            courseTrainerDatesEntity.setTrainerEndDate(trainerEndWeek[i]);
+
+            courseTrainerDatesService.addCourse(courseTrainerDatesEntity);
+        }
+
+
+//            @PathVariable("id") Integer id, CourseEntity courseEntity){
+//        courseEntity.setCourseId(id);
+//        courseService.addCourse(courseEntity);
         return "redirect:/coursePage";
     }
 
     @GetMapping("/deleteCourse/{id}")
-    public String removeCourse(@PathVariable("id") Integer id){
+    public String removeCourse(@PathVariable("id") Integer id) {
         courseService.removeCourse(id);
         return "redirect:/coursePage";
     }
@@ -111,7 +156,7 @@ public class CourseController {
 
     @GetMapping("/getSpacesAtLocation/{locationId}")
     @ResponseBody
-    public String getSpacesAtLocation(@PathVariable("locationId") Integer locationId){
+    public String getSpacesAtLocation(@PathVariable("locationId") Integer locationId) {
         int spacesAtLocation = courseService.getNumberOfRoomsAtLocation(locationId) - courseService.getRoomOccupancyByLocationId(locationId);
         return String.valueOf(spacesAtLocation);
     }

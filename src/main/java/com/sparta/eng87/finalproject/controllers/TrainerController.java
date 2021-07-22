@@ -16,7 +16,7 @@ public class TrainerController {
     private TrainerService trainerService;
 
     @Autowired
-    public TrainerController(TrainerService trainerService){
+    public TrainerController(TrainerService trainerService) {
         this.trainerService = trainerService;
     }
 
@@ -45,14 +45,14 @@ public class TrainerController {
 
     @PostMapping("/updateTrainer/{id}")
     public String updateTrainer(TrainerEntity trainerEntity,
-                                 @PathVariable("id") Integer id) {
+                                @PathVariable("id") Integer id) {
         trainerEntity.setTrainerId(id);
         trainerService.addTrainer(trainerEntity);
         return "redirect:/trainerPage";
     }
 
     @GetMapping("/deleteTrainer/{id}")
-    public String deleteTrainer(@PathVariable("id") Integer id,Model model) {
+    public String deleteTrainer(@PathVariable("id") Integer id, Model model) {
         trainerService.deleteTrainer(id);
         model.addAttribute("trainer", trainerService.getAllTrainers());
         return "redirect:/trainerPage";

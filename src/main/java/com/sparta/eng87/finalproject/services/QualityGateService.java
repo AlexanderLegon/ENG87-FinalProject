@@ -17,11 +17,11 @@ public class QualityGateService {
         this.qualityGateRepository = qualityGateRepository;
     }
 
-    public void save(QualityGateEntity qualityGate){
+    public void save(QualityGateEntity qualityGate) {
         qualityGateRepository.save(qualityGate);
     }
 
-    public List<QualityGateEntity> getAllQualityGates(){
+    public List<QualityGateEntity> getAllQualityGates() {
         return qualityGateRepository.getAllQualityGates();
     }
 }

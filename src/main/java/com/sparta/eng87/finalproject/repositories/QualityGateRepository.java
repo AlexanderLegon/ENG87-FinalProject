@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface QualityGateRepository extends JpaRepository<QualityGateEntity,Integer>{
+public interface QualityGateRepository extends JpaRepository<QualityGateEntity, Integer> {
 
     @Query(value = "SELECT * FROM quality_gate ORDER BY quality_gate_date DESC", nativeQuery = true)
     List<QualityGateEntity> getAllQualityGates();

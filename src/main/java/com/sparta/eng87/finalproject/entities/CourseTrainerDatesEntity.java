@@ -5,8 +5,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "course_trainer_dates", schema="courseorganisation")
-@SequenceGenerator(name="sequenceCourseTrainer", initialValue=1, allocationSize = 1)
+@Table(name = "course_trainer_dates", schema = "courseorganisation")
+@SequenceGenerator(name = "sequenceCourseTrainer", initialValue = 1, allocationSize = 1)
 public class CourseTrainerDatesEntity {
 
     private Integer courseTrainerDatesId;

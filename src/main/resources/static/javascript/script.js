@@ -8,9 +8,9 @@ function showPage() {
 };
 
 
-function updateNumberOfTrainers() {
-    let prevNumberOfTrainers = 1;
-    let numOfTrainers = 1;
+function updateNumberOfTrainers(numberOfTrainers) {
+    let prevNumberOfTrainers = numberOfTrainers;
+    let numOfTrainers = numberOfTrainers;
     document.body.addEventListener("click", function () {
         prevNumberOfTrainers = numOfTrainers;
         numOfTrainers = parseInt(document.getElementsByClassName("input-number")[0].value);
@@ -42,7 +42,16 @@ function addTrainersForms(trainersFormsToAdd) {
                 var labelNode = document.createElement("label");
                 labelNode.htmlFor = currentId;
                 labelNode.className = "form-label";
+
+
+                var inputNode = document.createElement("input");
+                inputNode.type = "number";
+                inputNode.id = currentId;
+                inputNode.name = ids[j];
+                inputNode.className = "form-control";
+
                 colNode.appendChild(labelNode);
+
 
                 if (j != 0) {
                     var inputNode = document.createElement("input");
@@ -61,7 +70,7 @@ function addTrainersForms(trainersFormsToAdd) {
                     selectNode.className = "form-select";
                     colNode.appendChild(selectNode);
 
-                    for (var k = 0; k < trainersNames.length; k++){
+                    for (var k = 0; k < trainersNames.length; k++) {
                         var optionNode = document.createElement("option");
                         optionNode.textContent = trainersNames[k].textContent;
                         optionNode.value = trainersNames[k].value;
@@ -77,15 +86,14 @@ function addTrainersForms(trainersFormsToAdd) {
             trainersNode.appendChild(node);
         }
     } else {
-        for (var i = 0; i > trainersFormsToAdd; i--) {
-            trainersNode.removeChild(trainersNode.lastChild);
+        for (let i = 0; i > trainersFormsToAdd; i--) {
+            trainersNode.removeChild(trainersNode.lastElementChild);
+            console.log("asdasd:    " + i);
         }
     }
 }
 
 window.onload = function () {
-    updateNumberOfTrainers();
-
     $('.btn-number').click(function (e) {
         e.preventDefault();
 
@@ -157,4 +165,33 @@ window.onload = function () {
             e.preventDefault();
         }
     });
+}
+
+function httpGet(theUrl) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", theUrl, false); // false for synchronous request
+    xmlHttp.send(null);
+    return xmlHttp.responseText;
+}
+
+function exceedsCapacity() {
+    var location_id = document.getElementById("location_id").value;
+    var capacity = httpGet('http://localhost:8080/getSpacesAtLocation/' + location_id);
+    console.log(capacity);
+    if (parseInt(capacity) <= 0) {
+        return confirm("This will exceed the centres limit. \nAre you sure you wish to proceed?");
+    } else {
+        return true;
+    }
+}
+
+var check = function () {
+    if (document.getElementById('newPassword').value ==
+        document.getElementById('confirmPassword').value) {
+        document.getElementById('message').style.color = 'green';
+        document.getElementById('message').innerHTML = 'Passwords Match';
+    } else {
+        document.getElementById('message').style.color = 'red';
+        document.getElementById('message').innerHTML = 'Passwords Do Not Match';
+    }
 }

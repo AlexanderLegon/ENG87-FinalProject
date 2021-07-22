@@ -16,25 +16,25 @@ public class CourseTypeService {
     private CourseTypeRepository courseTypeRepository;
 
     @Autowired
-    public CourseTypeService (CourseTypeRepository courseTypeRepository){
+    public CourseTypeService(CourseTypeRepository courseTypeRepository) {
         this.courseTypeRepository = courseTypeRepository;
     }
 
-    public void addCourseType(CourseTypeEntity courseTypeEntity){
+    public void addCourseType(CourseTypeEntity courseTypeEntity) {
         courseTypeRepository.save(courseTypeEntity);
     }
 
-    public CourseTypeEntity findCourseTypeById(Integer id){
+    public CourseTypeEntity findCourseTypeById(Integer id) {
         return courseTypeRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("Invalid Course Type ID " + id)
         );
     }
 
-    public void deleteCourseType(Integer id){
+    public void deleteCourseType(Integer id) {
         courseTypeRepository.deleteById(id);
     }
 
-    public List<Object[]> getAllCourseTypes(){
+    public List<Object[]> getAllCourseTypes() {
         return courseTypeRepository.getAllCourseTypes();
     }
 

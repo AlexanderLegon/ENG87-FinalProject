@@ -31,25 +31,25 @@ form {
     color: white;
 }
 
-#navbarFrag{
+#navbarFrag {
     background-color: black;
     color: white;
 }
 
-#spartaLogo{
+#spartaLogo {
     height: 30px;
     width: 30px;
     padding: 2px;
 }
 
-#navbarFooter{
+#navbarFooter {
     margin: auto;
     background-color: black;
     color: white;
 
 }
 
-#TheBoys{
+#TheBoys {
     width: max-content;
 }
 
@@ -86,19 +86,23 @@ form {
     border-spacing: 0;
 
 }
+
 .sch-table thead th {
     border: none;
     padding: 10px;
     text-align: left;
     white-space: nowrap;
 }
+
 .sch-table tbody td {
     padding: 10px;
     white-space: nowrap;
 }
+
 .sch-wrapper {
     position: relative;
 }
+
 .sch-scroller {
     margin-left: 120px;
     overflow-x: scroll;
@@ -106,6 +110,7 @@ form {
     padding-bottom: 5px;
     width: 85%;
 }
+
 .sch-table .sticky-col {
     left: 0;
     position: sticky;
@@ -130,17 +135,22 @@ form {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
-html, body{
+html, body {
     height: 100%;
 }
 
-#wrapper{
+#wrapper {
     min-height: 100%;
 }
+
 tr{
      color: white !important;
  }

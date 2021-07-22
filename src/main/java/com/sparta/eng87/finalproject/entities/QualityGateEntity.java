@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(schema = "courseorganisation", name="quality_gate")
+@Table(schema = "courseorganisation", name = "quality_gate")
 public class QualityGateEntity {
 
     private Integer qualityGateID;
@@ -31,7 +31,7 @@ public class QualityGateEntity {
 
     @Id
     @GeneratedValue
-    @Column(name="quality_gate_id")
+    @Column(name = "quality_gate_id")
     public Integer getQualityGateID() {
         return qualityGateID;
     }
@@ -41,7 +41,7 @@ public class QualityGateEntity {
     }
 
     @Basic
-    @Column(name="trainee_id")
+    @Column(name = "trainee_id")
     public Integer getTraineeID() {
         return traineeID;
     }
@@ -61,7 +61,7 @@ public class QualityGateEntity {
     }
 
     @Basic
-    @Column(name="trainer_id_1")
+    @Column(name = "trainer_id_1")
     public Integer getTrainer1ID() {
         return trainer1ID;
     }
@@ -71,7 +71,7 @@ public class QualityGateEntity {
     }
 
     @Basic
-    @Column(name="trainer_id_2")
+    @Column(name = "trainer_id_2")
     public Integer getTrainer2ID() {
         return trainer2ID;
     }
@@ -79,8 +79,9 @@ public class QualityGateEntity {
     public void setTrainer2ID(Integer trainer2ID) {
         this.trainer2ID = trainer2ID;
     }
+
     @Basic
-    @Column(name="trainer_feedback_1")
+    @Column(name = "trainer_feedback_1")
     public String getFeedbackTrainer1() {
         return feedbackTrainer1;
     }
@@ -90,7 +91,7 @@ public class QualityGateEntity {
     }
 
     @Basic
-    @Column(name="trainer_feedback_2")
+    @Column(name = "trainer_feedback_2")
     public String getFeedbackTrainer2() {
         return feedbackTrainer2;
     }

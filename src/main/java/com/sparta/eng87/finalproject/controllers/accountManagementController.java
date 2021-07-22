@@ -22,9 +22,9 @@ public class accountManagementController {
     @PostMapping("/changePassword")
     public String changePassword(@RequestParam(name = "password1") String password,
                                  @RequestParam(name = "password2") String passwordConfirm,
-                                 Model model, Principal principal){
+                                 Model model, Principal principal) {
         String name = principal.getName();
-        model.addAttribute("ReturnValue", userService.changePassword(name,password,passwordConfirm));
+        model.addAttribute("ReturnValue", userService.changePassword(name, password, passwordConfirm));
         return "/accountManagement";
     }
 }

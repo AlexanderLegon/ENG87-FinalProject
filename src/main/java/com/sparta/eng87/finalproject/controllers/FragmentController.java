@@ -29,17 +29,17 @@ public class FragmentController {
     }
 
     @GetMapping("/accountManagement")
-    public String goToAbout(){
+    public String goToAbout() {
         return "accountManagement";
     }
 
     @GetMapping("/login")
-    public String goToLogin(){
+    public String goToLogin() {
         return "login";
     }
 
     @GetMapping("/traineePage")
-    public String goToTrainee(Model model){
+    public String goToTrainee(Model model) {
         model.addAttribute("trainees", traineeService.getAllTrainees());
         model.addAttribute("qualitygates", qualityGateService.getAllQualityGates());
         model.addAttribute("courses",courseService.getAllCourses());
@@ -47,25 +47,25 @@ public class FragmentController {
     }
 
     @GetMapping("/trainerPage")
-    public String goToTrainer(Model model){
+    public String goToTrainer(Model model) {
         model.addAttribute("trainers", trainerService.getAllTrainers());
         return "trainerPage";
     }
 
     @GetMapping("/coursePage")
-    public String goToCourse(Model model){
+    public String goToCourse(Model model) {
         model.addAttribute("courses", courseService.getAllCoursesObjects());
         return "coursePage";
     }
 
     @GetMapping("/centres")
-    public String goToCentre(Model model){
+    public String goToCentre(Model model) {
         model.addAttribute("locations", locationService.getAllLocations());
         return "centres";
     }
 
     @GetMapping("/extraCourseInfoPage")
-    public String goToCourseTypes(Model model){
+    public String goToCourseTypes(Model model) {
         model.addAttribute("coursetypes", courseTypeService.getAllCourseTypes());
         model.addAttribute("disciplines", disciplineService.getAllDisciplines());
         return "extraCourseInfoPage";

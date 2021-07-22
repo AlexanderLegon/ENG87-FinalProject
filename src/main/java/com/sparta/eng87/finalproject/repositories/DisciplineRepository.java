@@ -8,12 +8,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DisciplineRepository extends JpaRepository<DisciplineEntity,Integer> {
+public interface DisciplineRepository extends JpaRepository<DisciplineEntity, Integer> {
 
     @Query(value = "SELECT * FROM discipline d", nativeQuery = true)
     List<Object[]> getAllDisciplines();
 
-    @Query(value="SELECT * FROM discipline", nativeQuery = true)
+    @Query(value = "SELECT * FROM discipline", nativeQuery = true)
     List<DisciplineEntity> getAllDisciplineEntities();
 
 }

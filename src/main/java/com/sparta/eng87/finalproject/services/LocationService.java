@@ -18,7 +18,7 @@ public class LocationService {
         this.locationRepository = locationRepository;
     }
 
-    public void addLocation (LocationEntity locationEntity) {
+    public void addLocation(LocationEntity locationEntity) {
         locationRepository.save(locationEntity);
     }
 
@@ -28,7 +28,7 @@ public class LocationService {
         );
     }
 
-    public List<Object> getAllLocations(){
+    public List<Object> getAllLocations() {
         return locationRepository.getAllLocations();
     }
 

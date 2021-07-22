@@ -21,15 +21,15 @@ public class UserService {
         userRepository.save(userEntity);
     }
 
-    public String changePassword(String username, String password1, String password2){
+    public String changePassword(String username, String password1, String password2) {
 
-        if(password1.equals(password2)){
+        if (password1.equals(password2)) {
             UserEntity currentUser = userRepository.getCurrentUser(username);
 
             currentUser.setUserPassword(encoder.encode(password1));
             userRepository.save(currentUser);
             return "Password Updated";
-        }else{
+        } else {
             return "Invalid Details";
         }
     }

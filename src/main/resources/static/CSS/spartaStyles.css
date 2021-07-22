@@ -1,35 +1,36 @@
 body {
-    margin:0;
-    padding:0;
-    height:100%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
-html{
-    height:100%;
+
+html {
+    height: 100%;
 }
 
 .container {
-    min-height:100%;
-    position:relative;
+    min-height: 100%;
+    position: relative;
     padding-top: 2rem;
 }
 
 #body {
-    padding:10px;
-    padding-bottom:60px;   /* Height of the footer */
+    padding: 10px;
+    padding-bottom: 60px; /* Height of the footer */
 }
 
-#navbarFrag{
+#navbarFrag {
     background-color: black;
     color: white;
 }
 
-#spartaLogo{
+#spartaLogo {
     height: 30px;
     width: 30px;
     padding: 2px;
 }
 
-#navbarFooter{
+#navbarFooter {
     margin: auto;
     background-color: black;
     color: white;
@@ -61,6 +62,7 @@ a:hover {
     background-color: transparent;
     text-decoration: none;
 }
+
 a:active {
     color: white;
 }

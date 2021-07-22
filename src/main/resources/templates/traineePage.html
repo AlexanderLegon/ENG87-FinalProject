@@ -18,7 +18,7 @@
 
     <link th:href="@{/CSS/footable.bootstrap.min.css}">
     <script src="/javascript/footable.min.js"></script>
-    <script>jQuery(function($){
+    <script>jQuery(function ($) {
         $('.table').footable();
     });</script>
 </head>
@@ -93,7 +93,10 @@
                                                            th:id="${iterStat.index}">Add</a></button>
                     </div>
                 </td>
-                    <td th:each="qualitygate : ${qualitygates}" th:if="${qualitygate.getTraineeID()} == ${trainee[3]}" th:utext="${qualitygate.getQualityGateDate()} + ' --- ' + ${qualitygate.getPass()} + '&lt;br&gt;' +  '&lt;br&gt;' + 'Feedback 1 : ' + ${qualitygate.getFeedbackTrainer1()} + '&lt;br&gt;' + 'Feedback 2 : ' + ${qualitygate.getFeedbackTrainer2()}">help</td>
+                <td th:each="qualitygate : ${qualitygates}" th:if="${qualitygate.getTraineeID()} == ${trainee[3]}"
+                    th:utext="${qualitygate.getQualityGateDate()} + ' --- ' + ${qualitygate.getPass()} + '&lt;br&gt;' +  '&lt;br&gt;' + 'Feedback 1 : ' + ${qualitygate.getFeedbackTrainer1()} + '&lt;br&gt;' + 'Feedback 2 : ' + ${qualitygate.getFeedbackTrainer2()}">
+                    help
+                </td>
             </tr>
 
             </tbody>

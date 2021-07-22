@@ -3,8 +3,8 @@ package com.sparta.eng87.finalproject.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name= "course_type", schema = "courseorganisation")
-@SequenceGenerator(name="sequenceCourseType", initialValue=1, allocationSize = 1)
+@Table(name = "course_type", schema = "courseorganisation")
+@SequenceGenerator(name = "sequenceCourseType", initialValue = 1, allocationSize = 1)
 public class CourseTypeEntity {
 
 
@@ -20,7 +20,7 @@ public class CourseTypeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceCourseType")
-    @Column(name ="course_type_id")
+    @Column(name = "course_type_id")
     public Integer getCourseTypeId() {
         return courseTypeId;
     }

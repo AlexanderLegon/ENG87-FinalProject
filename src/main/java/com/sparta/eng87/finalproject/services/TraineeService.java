@@ -18,12 +18,12 @@ public class TraineeService {
     private CourseRepository courseRepository;
 
     @Autowired
-    public TraineeService(TraineeRepository traineeRepository,CourseRepository courseRepository, QualityGateRepository qualityGateRepositoryAdd) {
+    public TraineeService(TraineeRepository traineeRepository, CourseRepository courseRepository, QualityGateRepository qualityGateRepositoryAdd) {
         this.traineeRepository = traineeRepository;
-        this.courseRepository=courseRepository;
+        this.courseRepository = courseRepository;
     }
 
-    public void addTrainee(TraineeEntity traineeEntity){
+    public void addTrainee(TraineeEntity traineeEntity) {
         traineeRepository.save(traineeEntity);
     }
 
@@ -36,8 +36,8 @@ public class TraineeService {
         List<Integer> duplicates = new ArrayList<>();
         List<Object[]> results = new ArrayList<>();
 
-        for(Object[] trainee: trainees){
-            if (trainee[2] == (null)){
+        for (Object[] trainee : trainees) {
+            if (trainee[2] == (null)) {
                 trainee[2] = "Pending";
             }
         }
@@ -45,16 +45,14 @@ public class TraineeService {
         for (int i = 0; i < trainees.size(); i++) {
             if (duplicates.contains(trainees.get(i)[3])) {
                 for (int j = 0; j < results.size(); j++) {
-                    if ((results.get(j)[3].equals(trainees.get(i)[3]) )) {
+                    if ((results.get(j)[3].equals(trainees.get(i)[3]))) {
                         if (trainees.get(i)[2].toString().equalsIgnoreCase("passed")) {
                             results.remove(j);
                             results.add(trainees.get(i));
                             break;
-                        }
-                        else if (results.get(j)[2].toString().equalsIgnoreCase("failed-needs support")) {
+                        } else if (results.get(j)[2].toString().equalsIgnoreCase("failed-needs support")) {
                             break;
-                        }
-                        else if (results.get(j)[2].toString().equalsIgnoreCase("failed")) {
+                        } else if (results.get(j)[2].toString().equalsIgnoreCase("failed")) {
                             results.remove(j);
                             results.add(trainees.get(i));
                             break;
@@ -64,7 +62,7 @@ public class TraineeService {
                 }
             } else {
                 results.add(trainees.get(i));
-                duplicates.add((Integer)trainees.get(i)[3]);
+                duplicates.add((Integer) trainees.get(i)[3]);
             }
         }
 
@@ -73,23 +71,24 @@ public class TraineeService {
 
 
     }
-        public TraineeEntity getTraineeById (Integer id){
-            return traineeRepository.getById(id);
-        }
 
-        public void deleteTrainee (Integer id){
-            traineeRepository.deleteById(id);
-        }
+    public TraineeEntity getTraineeById(Integer id) {
+        return traineeRepository.getById(id);
+    }
 
-    public List<Object[]> getAllTrainees(){
+    public void deleteTrainee(Integer id) {
+        traineeRepository.deleteById(id);
+    }
+
+    public List<Object[]> getAllTrainees() {
 
         List<Object[]> trainees = traineeRepository.getAllTrainees();
         List<Integer> duplicates = new ArrayList<>();
 
         List<Object[]> results = new ArrayList<>();
 
-        for(Object[] trainee: trainees){
-            if (trainee[2] == (null)){
+        for (Object[] trainee : trainees) {
+            if (trainee[2] == (null)) {
                 trainee[2] = "Pending";
             }
         }
@@ -97,16 +96,14 @@ public class TraineeService {
         for (int i = 0; i < trainees.size(); i++) {
             if (duplicates.contains(trainees.get(i)[3])) {
                 for (int j = 0; j < results.size(); j++) {
-                    if ((results.get(j)[3].equals(trainees.get(i)[3]) )) {
+                    if ((results.get(j)[3].equals(trainees.get(i)[3]))) {
                         if (trainees.get(i)[2].toString().equalsIgnoreCase("passed")) {
                             results.remove(j);
                             results.add(trainees.get(i));
                             break;
-                        }
-                        else if (results.get(j)[2].toString().equalsIgnoreCase("failed-needs support")) {
+                        } else if (results.get(j)[2].toString().equalsIgnoreCase("failed-needs support")) {
                             break;
-                        }
-                        else if (results.get(j)[2].toString().equalsIgnoreCase("failed")) {
+                        } else if (results.get(j)[2].toString().equalsIgnoreCase("failed")) {
                             results.remove(j);
                             results.add(trainees.get(i));
                             break;
@@ -115,7 +112,7 @@ public class TraineeService {
                 }
             } else {
                 results.add(trainees.get(i));
-                duplicates.add((Integer)trainees.get(i)[3]);
+                duplicates.add((Integer) trainees.get(i)[3]);
             }
         }
         return results;

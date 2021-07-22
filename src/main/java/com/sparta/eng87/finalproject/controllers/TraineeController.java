@@ -48,8 +48,8 @@ public class TraineeController {
     }
 
     @GetMapping("/traineePage/{courseName}")
-    public String displayTraineesForCourseId(@PathVariable("courseName") String courseName, Model model)
-    {
+
+    public String displayTraineesForCourseId(@PathVariable("courseName") String courseName, Model model) {
         model.addAttribute("courses",courseService.getAllCourses());
         model.addAttribute("courseName", courseName);
         model.addAttribute("trainees", traineeService.findTraineeByCourse(courseName));
@@ -75,7 +75,7 @@ public class TraineeController {
 
     @GetMapping("/editTrainee/{id}")
     public String getEditTraineePage(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("trainee",traineeService.getTraineeById(id));
+        model.addAttribute("trainee", traineeService.getTraineeById(id));
         List<CourseEntity> courses = courseService.getAllCourses();
         model.addAttribute("courses", courses);
         return "editTrainee";
@@ -98,7 +98,7 @@ public class TraineeController {
     }
 
     @GetMapping("/addQualityGate/{Tid}")
-    public String getAddQualityGatePage(@PathVariable("Tid") Integer traineeId, Model model){
+    public String getAddQualityGatePage(@PathVariable("Tid") Integer traineeId, Model model) {
         model.addAttribute("traineeId", traineeId);
         model.addAttribute("trainers", trainerService.getAllTrainerEntities());
         return "addQualityGate";
@@ -111,7 +111,7 @@ public class TraineeController {
                                  @RequestParam(name = "trainerId2") Integer trainerId2,
                                  @RequestParam(name = "feedback1") String trainerFeedback1,
                                  @RequestParam(name = "feedback2") String trainerFeedback2,
-                                 @RequestParam(name = "date") String date){
+                                 @RequestParam(name = "date") String date) {
         QualityGateEntity qualityGateEntity = new QualityGateEntity();
         qualityGateEntity.setTraineeID(id);
         qualityGateEntity.setPass(qualityGateStatus);
