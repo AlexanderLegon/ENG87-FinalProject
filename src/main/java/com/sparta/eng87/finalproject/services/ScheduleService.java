@@ -102,28 +102,49 @@ public class ScheduleService {
             int index = 0;
             List<Object[]> trainerWeeks = courseRepository.getTrainerDatesByCourseId(courseId);
             Object[] currentTrainer = trainerWeeks.get(0);
+
+            LocalDate holidayDate = LocalDate.of(2021, 12, 31);
+
+            LocalDate currentYear = LocalDate.parse(weeks.get(0), formatter2);
+            while (currentYear.isAfter(holidayDate.plusMonths(5))) {
+                holidayDate = holidayDate.plusYears(1);
+            }
+            while (!(holidayDate.getDayOfWeek().equals(DayOfWeek.MONDAY))) {
+                holidayDate = holidayDate.minusDays(1);
+            }
+
+            LocalDate holidayDate2 = holidayDate.minusDays(8);
+            holidayDate = holidayDate.plusDays(1);
+
+
+
             for (String week : weeks) {
                 LocalDate currentWeek = LocalDate.parse(week, formatter2);
 
-                if ((currentWeek.isAfter(courseStartDateTime) && currentWeek.isBefore(courseEndDateTime)) || currentWeek.isEqual(courseEndDateTime) || currentWeek.isEqual(courseStartDateTime)) {
-                    // currentCourseActive.add(1);
-                    for (int k = 0; k < trainerWeeks.size(); k++) {
+                if (!(currentWeek.isBefore(holidayDate) && currentWeek.isAfter(holidayDate2))) {
 
-                        if ((int) trainerWeeks.get(k)[4] == weekNum) {
-                            currentTrainer = trainerWeeks.get(k);
-                            break;
-                        }
-                        if ((int) currentTrainer[2] < weekNum) {
-                            if ((int) trainerWeeks.get(k)[4] < weekNum && (int) trainerWeeks.get(k)[2] > weekNum) {
+                    if ((currentWeek.isAfter(courseStartDateTime) && currentWeek.isBefore(courseEndDateTime)) || currentWeek.isEqual(courseEndDateTime) || currentWeek.isEqual(courseStartDateTime)) {
+                        // currentCourseActive.add(1);
+                        for (int k = 0; k < trainerWeeks.size(); k++) {
+
+                            if ((int) trainerWeeks.get(k)[4] == weekNum) {
                                 currentTrainer = trainerWeeks.get(k);
+                                break;
+                            }
+                            if ((int) currentTrainer[2] < weekNum) {
+                                if ((int) trainerWeeks.get(k)[4] < weekNum && (int) trainerWeeks.get(k)[2] > weekNum) {
+                                    currentTrainer = trainerWeeks.get(k);
+                                }
                             }
                         }
+
+                        currentCourseActive.add(trainerRepository.getTrainerColorByTrainerId((int) currentTrainer[3]));
+
+
+                        weekNum++;
+                    } else {
+                        currentCourseActive.add("#ffffff");
                     }
-
-                    currentCourseActive.add(trainerRepository.getTrainerColorByTrainerId((int) currentTrainer[3]));
-
-
-                    weekNum++;
                 } else {
                     currentCourseActive.add("#ffffff");
                 }
