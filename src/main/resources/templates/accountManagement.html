@@ -15,6 +15,7 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/javascript/script.js"></script>
 
 </head>
 <body id="accountManagementBody" class="sparta-background-colour">
@@ -27,13 +28,14 @@
         <br/>
         <form id="new-password" th:action="@{/changePassword}" method="post">
                 <label class="form-label">New Password</label>
-                <input type="password" class="form-control" name="password1" id="newPassword">
+                <input type="password" class="form-control" name="password1" id="newPassword" required>
 
             <br>
             <div class="mb-3">
                 <label>Confirm Password</label>
-                <input type="password" class="form-control" name="password2" id="confirmPassword">
+                <input type="password" class="form-control" name="password2" id="confirmPassword"  onkeyup='check();'  required>
             </div>
+            <span id='message'></span>
 
             <br>
             <input type="submit" class="btn btn-primary" value="Submit" id="submitPassword">

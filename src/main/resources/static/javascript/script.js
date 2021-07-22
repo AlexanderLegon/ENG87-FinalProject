@@ -185,3 +185,14 @@ function exceedsCapacity() {
         return true;
     }
 }
+
+var check = function() {
+    if (document.getElementById('newPassword').value ==
+        document.getElementById('confirmPassword').value) {
+        document.getElementById('message').style.color = 'green';
+        document.getElementById('message').innerHTML = 'Passwords Match';
+    } else {
+        document.getElementById('message').style.color = 'red';
+        document.getElementById('message').innerHTML = 'Passwords Do Not Match';
+    }
+}
