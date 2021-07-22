@@ -34,7 +34,7 @@ public class QualityGateTest {
 
     @Test
     public void shouldReturnTrainer1Id(){
-        Assertions.assertEquals(2, qualityGateEntity.getTraineeID());
+        Assertions.assertEquals(2, qualityGateEntity.getTrainer1ID());
     }
 
     @Test
