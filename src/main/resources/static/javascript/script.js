@@ -222,3 +222,10 @@ var check = function () {
         document.getElementById('message').innerHTML = 'Passwords Do Not Match';
     }
 }
+
+var date = document.getElementById("schedulerGraph")
+if (date == "20/12/2021" || date == "27/12/2021") {
+    $("#daddy > div:nth-child(" + position + ")").animate({
+        opacity: 0.01,
+    }, 500);
+}

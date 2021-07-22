@@ -158,13 +158,27 @@ public class CourseService {
             Date holidayDate2 = new Date();
             SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("dd/MM/yyyy");
 
-            try {
-                holidayDate = simpleDateFormat2.parse("20/12/2021");
-                holidayDate2 = simpleDateFormat2.parse("31/12/2021");
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.WEEK_OF_YEAR, 51);
+            Date yourDate = cal.getTime();
+            cal.setTime(yourDate);
+            cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+            holidayDate = cal.getTime();
 
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            Calendar cal2 = Calendar.getInstance();
+            cal2.set(Calendar.WEEK_OF_YEAR, 52);
+            Date yourDate2 = cal2.getTime();
+            cal2.setTime(yourDate2);
+            cal2.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+            holidayDate2 = cal2.getTime();
+
+//            try {
+//                holidayDate = simpleDateFormat2.parse("20/12/2021");
+//                holidayDate2 = simpleDateFormat2.parse("31/12/2021");
+//
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
 
             while (currentDate.after(holidayDate)) {
                 calendar.setTime(holidayDate);

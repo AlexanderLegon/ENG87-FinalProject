@@ -48,7 +48,7 @@
                     <th scope="col" data-breakpoints="all" data-title="Bond">Bond</th>
                     <th scope="col" data-breakpoints="all" data-title="Trainees in Course">Trainees in Course</th>
                     <th scope="col" data-breakpoints="all"></th>
-                    <th th:each="date: ${dates}" th:text="${date}" class="vertical-date"></th>
+                    <th th:each="date: ${dates}" th:text="${date}" class="vertical-date" id="schedulerGraph"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -67,9 +67,10 @@
                     <td><a th:href="@{/traineePage/{coursename}(coursename=${coursename})}">See Trainees</a></td>
                     <span th:each="active : ${activeWeeks[iterStat.index]}">
                 <td th:if="${active!='#ffffff'}" th:styleappend="'background-color:' + ${active}"
-                    class="vertical-table-lines" id="active"></td>
-                <td th:unless="${active!='#ffffff'}" style="background-color: white" class="vertical-table-lines"
+                    class="vertical-table-lines" th:classappend="${dates[iterStat.index] == '20/12/2021' || dates[iterStat.index] == '27/12/2021'} ? holiday" id="active"></td>
+                <td th:unless="${active!='#ffffff'}" style="background-color: white" class="vertical-table-lines" th:classappend="${dates[iterStat.index] == '20/12/2021' || dates[iterStat.index] == '27/12/2021'} ? holiday"
                     id="inactive"></td>
+<!--                        <h1 th:each="i : ${#numbers.sequence(0, 52)}" th:text="${dates[i]}">Hello</h1>-->
                 </span>
                 </tr>
                 </tbody>
