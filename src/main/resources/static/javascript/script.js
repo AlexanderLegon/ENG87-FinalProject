@@ -223,6 +223,7 @@ var check = function () {
     }
 }
 
+
 function getDateOfISOWeek(w) {
     var simple = new Date(new Date().getFullYear(), 0, 1 + (w - 1) * 7);
     var dow = simple.getDay();
@@ -234,4 +235,5 @@ function getDateOfISOWeek(w) {
 
 
     return ISOweekStart;
+
 }
