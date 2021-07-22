@@ -54,4 +54,14 @@ public class NavbarControllerTest {
     void shouldGoToCourse(){
         Assertions.assertEquals(fragmentController.goToCourse(model),"coursePage");
     }
+
+    @Test
+    void shouldGoToCentre(){
+        Assertions.assertEquals(fragmentController.goToCentre(model),"centres");
+    }
+
+    @Test
+    void shouldGotToExtraCourseInfoPage(){
+        Assertions.assertEquals(fragmentController.goToCourseTypes(model),"extraCourseInfoPage");
+    }
 }
