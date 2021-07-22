@@ -158,3 +158,11 @@ tr{
     text-align: center;
     margin:auto;
 }
+
+.error {
+    color: #c70303;
+}
+
+.errorform {
+    border: 3px solid #c70303 !important;
+}

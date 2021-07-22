@@ -1,6 +1,7 @@
 package com.sparta.eng87.finalproject.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 
 @Entity

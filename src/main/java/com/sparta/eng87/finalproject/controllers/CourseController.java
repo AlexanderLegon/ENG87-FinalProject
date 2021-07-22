@@ -5,19 +5,25 @@ import com.sparta.eng87.finalproject.entities.CourseTrainerDatesEntity;
 import com.sparta.eng87.finalproject.services.CourseService;
 import com.sparta.eng87.finalproject.services.CourseTrainerDatesService;
 import com.sparta.eng87.finalproject.services.LocationService;
-import com.sparta.eng87.finalproject.entities.CourseTypeEntity;
-import com.sparta.eng87.finalproject.entities.DisciplineEntity;
-import com.sparta.eng87.finalproject.entities.LocationEntity;
 import com.sparta.eng87.finalproject.services.*;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.validation.ConstraintViolationException;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 
 @Controller
-public class CourseController {
+@Validated
+public class CourseController implements WebMvcConfigurer {
     private CourseService courseService;
     private TrainerService trainerService;
     private DisciplineService disciplineService;
@@ -46,8 +52,37 @@ public class CourseController {
         return "addCourse";
     }
 
+    @RequestMapping(value = "/addCourse")
+    @ExceptionHandler({ConstraintViolationException.class, IllegalArgumentException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    String handleConstraintViolationException(ConstraintViolationException c, Model model) {
+        model.addAttribute("trainers", trainerService.getAllTrainerEntities());
+        model.addAttribute("disciplines", disciplineService.getAllDisciplineEntities());
+        model.addAttribute("locations", locationService.getAllLocationEntities());
+        model.addAttribute("courseTypes", courseTypeService.getAllCourseTypeEntities());
+        //if (c != null) {
+            model.addAttribute("errorName", "error");
+        //}
+        //if (i != null) {
+            model.addAttribute("errorDate","error");
+        //}
+        return "addCourse";
+    }
+
+//    @RequestMapping(value = "/addCourse")
+//    @ExceptionHandler(IllegalArgumentException.class)
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    String handleIllegalArgumentException(IllegalArgumentException e, Model model) {
+//        model.addAttribute("trainers", trainerService.getAllTrainerEntities());
+//        model.addAttribute("disciplines", disciplineService.getAllDisciplineEntities());
+//        model.addAttribute("locations", locationService.getAllLocationEntities());
+//        model.addAttribute("courseTypes", courseTypeService.getAllCourseTypeEntities());
+//        model.addAttribute("errorDate","error");
+//        return "addCourse";
+//    }
+
     @PostMapping("/addCourse")
-    public String addCourse(@RequestParam(name = "course_name") String courseName,
+    public String addCourse(@RequestParam(name = "course_name") @Size(min = 1) String courseName,
                             @RequestParam(name = "trainer_id") Integer[] trainerId,
                             @RequestParam(name = "trainer_start_week") Integer[] trainerStartWeek,
                             @RequestParam(name = "trainer_end_week") Integer[] trainerEndWeek,
