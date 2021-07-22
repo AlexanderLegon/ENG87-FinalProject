@@ -103,36 +103,33 @@ public class ScheduleService {
             int weekNum = 1;
             int index = 0;
             List<Object[]> trainerWeeks = courseRepository.getTrainerDatesByCourseId(courseId);
+            Object[] currentTrainer = trainerWeeks.get(0);
             for(String week:weeks) {
                 LocalDate currentWeek = LocalDate.parse(week, formatter2);
 
                 if ((currentWeek.isAfter(courseStartDateTime) && currentWeek.isBefore(courseEndDateTime))||currentWeek.isEqual(courseEndDateTime)||currentWeek.isEqual(courseStartDateTime)){
                    // currentCourseActive.add(1);
+                   for (int k =0;k<trainerWeeks.size();k++){
 
-                   if ((int)trainerWeeks.get(index)[2]>weekNum)
-                   {
-                       currentCourseActive.add(trainerRepository.getTrainerColorByTrainerId((int)trainerWeeks.get(index)[3]));
+                       if((int)trainerWeeks.get(k)[4]==weekNum){
+                           currentTrainer = trainerWeeks.get(k);
+                           break;
+                       }
+                       if ((int)currentTrainer[2]<weekNum)
+                       {
+                           if((int)trainerWeeks.get(k)[4]<weekNum && (int)trainerWeeks.get(k)[2]>weekNum )
+                           {
+                              currentTrainer = trainerWeeks.get(k);
+                           }
+                       }
                    }
-                    if((int)trainerWeeks.get(index)[2]==weekNum){
-                        currentCourseActive.add(trainerRepository.getTrainerColorByTrainerId((int)trainerWeeks.get(index)[3]));
-                        index++;
-                    }
+
+                    currentCourseActive.add(trainerRepository.getTrainerColorByTrainerId((int)currentTrainer[3]));
+
 
 
                     weekNum++;
                 }else{currentCourseActive.add("#ffffff");}
-//                if (currentWeek.isEqual(courseStartDateTime)) {
-//                    active = true;
-//                    currentCourseActive.add(1);
-//                } else if (active){
-//                    currentCourseActive.add(1);
-//                }
-//                if(currentWeek.isEqual(courseEndDateTime) && LocalDate.parse(weeks.get(0), formatter2).isAfter(courseStartDateTime)){
-//                    currentCourseActive.add(1);
-//                    active = false;
-//                } else if(!active){
-//                    currentCourseActive.add(0);
-//                }
 
             }
             activeDays.add(currentCourseActive.toArray());
