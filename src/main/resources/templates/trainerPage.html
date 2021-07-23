@@ -31,7 +31,7 @@
             <tr>
                 <th scope="col" id="tableHeader1">First Name</th>
                 <th scope="col" id="tableHeader2">Last Name</th>
-                <th scope="col" id="tableHeader3">Hex Code</th>
+                <th scope="col" id="tableHeader3">Colour</th>
                 <th scope="col" id="tableHeader4">Edit</th>
                 <th scope="col" id="tableHeader5">Delete</th>
             </tr>
@@ -41,7 +41,7 @@
 
                 <td th:text="${trainers[1]}" th:id="${iterStat.index} + 'trainer-firstname'">First name</td>
                 <td th:text="${trainers[2]}" th:id="${iterStat.index} + 'trainer-lastname'">Last name</td>
-                <td th:text="${trainers[3]}" th:id="${iterStat.index} + 'Hex'">Hex Code</td>
+                <td th:style="'background:' + ${trainers[3]}" th:id="${iterStat.index} + 'Hex'"></td>
 
 
                 <td>
