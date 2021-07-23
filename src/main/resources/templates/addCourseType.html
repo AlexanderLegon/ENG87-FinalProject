@@ -8,6 +8,7 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body class="sparta-background-colour">
+<nav th:replace="fragments/header.html :: navbar"></nav>
 <div class="container">
     <h1 id="login-page-title">Add a Course Type</h1>
     <div>
@@ -25,5 +26,8 @@
                 crossorigin="anonymous"></script>
     </div>
 </div>
+<footer>
+    <nav th:replace="fragments/footer.html :: navbar"></nav>
+</footer>
 </body>
 </html>
