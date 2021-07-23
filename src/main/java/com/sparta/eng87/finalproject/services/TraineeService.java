@@ -50,11 +50,11 @@ public class TraineeService {
                             results.remove(j);
                             results.add(trainees.get(i));
                             break;
-                        } else if (results.get(j)[2].toString().equalsIgnoreCase("failed-needs support")) {
-                            break;
                         } else if (results.get(j)[2].toString().equalsIgnoreCase("failed")) {
                             results.remove(j);
                             results.add(trainees.get(i));
+                            break;
+                        } else if (results.get(j)[2].toString().equalsIgnoreCase("failed-needs support")) {
                             break;
                         }
 
